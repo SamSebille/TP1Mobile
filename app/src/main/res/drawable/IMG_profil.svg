@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="38" viewBox="0 0 40 38">
+  <g id="IMG_profil" transform="translate(-322 -13)">
+    <rect id="image_compte" width="40" height="38" rx="16" transform="translate(322 13)" fill="#fff"/>
+    <path id="image_compte_-_Contour"
+        d="M16,1A15,15,0,0,0,1,16v6A15,15,0,0,0,16,37h8A15,15,0,0,0,39,22V16A15,15,0,0,0,24,1H16m0-1h8A16,16,0,0,1,40,16v6A16,16,0,0,1,24,38H16A16,16,0,0,1,0,22V16A16,16,0,0,1,16,0Z" transform="translate(322 13)" fill="#707070"/>
+    <path id="ic_person_24px" d="M12,12A4,4,0,1,0,8,8,4,4,0,0,0,12,12Zm0,2c-2.67,0-8,1.34-8,4v2H20V18C20,15.34,14.67,14,12,14Z" transform="translate(330 20)"/>
+  </g>
+</svg>
