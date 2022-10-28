@@ -9,146 +9,161 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingLeft="15dp"
-        android:paddingTop="15dp"
-        android:paddingRight="15dp">
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingTop="15dp"
+            android:paddingRight="15dp">
 
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight="0"
-                app:srcCompat="@mipmap/btn_profil" />
-
-            <TextView
-                android:id="@+id/textViewNameEntrprise"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:text="Nouvelle Entreprise"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+                android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/editTextEntreprise"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:hint="Nom de l'entreprise"
-            android:inputType="textPersonName" />
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="0"
+                    app:srcCompat="@mipmap/btn_profil" />
 
-        <EditText
-            android:id="@+id/editTextTextContactName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:hint="Nom du contact"
-            android:inputType="textPersonName" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/textViewNameEntrprise"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:text="Nouvelle Entreprise"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
             <EditText
-                android:id="@+id/editTextTextEmailAddress"
-                android:layout_width="325dp"
+                android:id="@+id/sai_nom_entreprise"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:ems="10"
-                android:hint="Courriel"
-                android:inputType="textEmailAddress" />
-
-            <ImageButton
-                android:id="@+id/imageButtonMail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:backgroundTint="#00FFFFFF"
-                app:srcCompat="@mipmap/btn_mail" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/editTextPhone"
-                android:layout_width="325dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:ems="10"
-                android:hint="Telephone"
-                android:inputType="phone" />
-
-            <ImageButton
-                android:id="@+id/imageButtonPhone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:backgroundTint="#00FFFFFF"
-                app:srcCompat="@mipmap/btn_phone" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/editTextTextSiteWeb"
-                android:layout_width="325dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:ems="10"
-                android:hint="Site Web"
+                android:hint="Nom de l'entreprise"
                 android:inputType="textPersonName" />
 
-            <ImageButton
-                android:id="@+id/imageButtonWeb"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/sai_contact"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:backgroundTint="#00FFFFFF"
-                app:srcCompat="@mipmap/btn_web" />
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:hint="Nom du contact"
+                android:inputType="textPersonName" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/sai_email"
+                    android:layout_width="325dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:hint="Courriel"
+                    android:inputType="textEmailAddress" />
+
+                <ImageButton
+                    android:id="@+id/imageButtonMail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:backgroundTint="#00FFFFFF"
+                    app:srcCompat="@mipmap/btn_mail" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/sai_phone"
+                    android:layout_width="325dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:hint="Telephone"
+                    android:inputType="phone" />
+
+                <ImageButton
+                    android:id="@+id/imageButtonPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:backgroundTint="#00FFFFFF"
+                    app:srcCompat="@mipmap/btn_phone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/sai_web"
+                    android:layout_width="325dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:hint="Site Web"
+                    android:inputType="textPersonName" />
+
+                <ImageButton
+                    android:id="@+id/imageButtonWeb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:backgroundTint="#00FFFFFF"
+                    app:srcCompat="@mipmap/btn_web" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/sai_adresse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:hint="Adresse"
+                android:inputType="textPostalAddress" />
+
+            <EditText
+                android:id="@+id/sai_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:hint="Date de contact"
+                android:inputType="date" />
+
+            <Button
+                android:id="@+id/btn_valider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Valider" />
+
         </LinearLayout>
-
-        <EditText
-            android:id="@+id/editTextTextPostalAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:hint="Adresse"
-            android:inputType="textPostalAddress" />
-
-        <EditText
-            android:id="@+id/editTextDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:hint="Date de contact"
-            android:inputType="date" />
-
-        <Button
-            android:id="@+id/editBouttonValider"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Valider" />
-
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

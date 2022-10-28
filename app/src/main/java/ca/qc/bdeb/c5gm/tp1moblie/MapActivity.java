@@ -13,7 +13,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import ca.qc.bdeb.c5gm.tp1moblie.databinding.ActivityMapsBinding;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
