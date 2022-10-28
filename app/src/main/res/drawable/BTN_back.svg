@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="38" height="32" viewBox="0 0 38 32">
-  <g id="BTN_back" transform="translate(-12.663 -16)">
-    <rect id="Rectangle_1" width="38" height="32" rx="12" transform="translate(12.663 16)" fill="rgba(214,21,21,0)"/>
-    <path id="Rectangle_1_-_Contour"
-        d="M12,1A11,11,0,0,0,1,12v8A11,11,0,0,0,12,31H26A11,11,0,0,0,37,20V12A11,11,0,0,0,26,1H12m0-1H26A12,12,0,0,1,38,12v8A12,12,0,0,1,26,32H12A12,12,0,0,1,0,20V12A12,12,0,0,1,12,0Z" transform="translate(12.663 16)" fill="#707070"/>
-    <path id="ic_arrow_back_24px" d="M20,11H7.83l5.59-5.59L12,4,4,12l8,8,1.41-1.41L7.83,13H20Z" transform="translate(19.663 20)"/>
-  </g>
-</svg>

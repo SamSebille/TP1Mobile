@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="35" height="34" viewBox="0 0 35 34">
-  <g id="BTN_mail" transform="translate(-296 -9)">
-    <ellipse id="Ellipse_35"
-        cx="17.5" cy="17" rx="17.5" ry="17" transform="translate(296 9)" fill="#fff"/>
-    <path id="Ellipse_35_-_Contour"
-        d="M17.5,1A16.653,16.653,0,0,0,5.822,5.7a15.659,15.659,0,0,0,0,22.607,16.866,16.866,0,0,0,23.355,0,15.659,15.659,0,0,0,0-22.607A16.653,16.653,0,0,0,17.5,1m0-1A17.255,17.255,0,0,1,35,17,17.255,17.255,0,0,1,17.5,34,17.255,17.255,0,0,1,0,17,17.255,17.255,0,0,1,17.5,0Z" transform="translate(296 9)" fill="#707070"/>
-    <path id="ic_date_range_24px" d="M9,11H7v2H9Zm4,0H11v2h2Zm4,0H15v2h2Zm2-7H18V2H16V4H8V2H6V4H5A1.991,1.991,0,0,0,3.01,6L3,20a2,2,0,0,0,2,2H19a2.006,2.006,0,0,0,2-2V6A2.006,2.006,0,0,0,19,4Zm0,16H5V9H19Z" transform="translate(302 14)"/>
-  </g>
-</svg>

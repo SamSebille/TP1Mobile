@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="91" height="40" viewBox="0 0 91 40">
-  <g id="BTN_toutes" transform="translate(-34 -206)">
-    <rect id="Rectangle_3"
-        width="91" height="40" rx="12" transform="translate(34 206)" fill="#fff"/>
-    <path id="Rectangle_3_-_Contour"
-        d="M12,1A11,11,0,0,0,1,12V28A11,11,0,0,0,12,39H79A11,11,0,0,0,90,28V12A11,11,0,0,0,79,1H12m0-1H79A12,12,0,0,1,91,12V28A12,12,0,0,1,79,40H12A12,12,0,0,1,0,28V12A12,12,0,0,1,12,0Z" transform="translate(34 206)" fill="#707070"/>
-    <text id="Toutes" transform="translate(51 234)" fill="#707070" font-size="20" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">Toutes</tspan></text>
-  </g>
-</svg>
