@@ -20,6 +20,17 @@ public class Entreprise {
         this.date = date;
     }
 
+    public Entreprise(long id, String nom, String contact, String courriel, String telephone, String web, String adresse, String date) {
+        this.id = id;
+        this.nom = nom;
+        this.contact = contact;
+        this.courriel = courriel;
+        this.telephone = telephone;
+        this.web = web;
+        this.adresse = adresse;
+        this.date = date;
+    }
+
     public void setId(long id) {
         this.id = id;
     }

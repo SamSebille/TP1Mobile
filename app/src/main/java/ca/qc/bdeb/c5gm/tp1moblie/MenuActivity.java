@@ -22,7 +22,7 @@ public class MenuActivity extends AppCompatActivity {
     private static ArrayList<Entreprise> entreprises;
 
     private RecyclerView recyclerView;
-    private StringListAdapter stringListAdapter;
+    private StringListAdapter entrepriseListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,21 +31,31 @@ public class MenuActivity extends AppCompatActivity {
 
         stockage = Stockage.getInstance(getApplicationContext());
 
-        entreprises = new ArrayList<>();
-        majListBDEntreprise();
+        entreprises = stockage.getEntreprises();
 
         // initialiser le recyclerView
         recyclerView = findViewById(R.id.liste_entreprises);
         // Créer l'adapter et lui fournir les données.
-        stringListAdapter = new StringListAdapter(this, entreprises);
+        entrepriseListAdapter = new StringListAdapter(this, entreprises);
         // Connecter l'adapter au RecyclerView.
-        recyclerView.setAdapter(stringListAdapter);
+        recyclerView.setAdapter(entrepriseListAdapter);
         // Donner au RecyclerView un layout manager par défaut.
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        majListBDEntreprise();
+    }
+
     public void majListBDEntreprise(){
-        ArrayList<Entreprise> entreprises = stockage.getEntreprises();
+        entreprises = stockage.getEntreprises();
+        entrepriseListAdapter.entreprises = entreprises;
+
+        if (entreprises != null)
+            entrepriseListAdapter.notifyDataSetChanged();
+
     }
 
     public void onClickMaps(View view) {
@@ -59,7 +69,7 @@ public class MenuActivity extends AppCompatActivity {
     public class StringListAdapter extends
             RecyclerView.Adapter<StringListAdapter.StringViewHolder> {
 
-        private final ArrayList<Entreprise> entreprises;
+        private ArrayList<Entreprise> entreprises;
         private LayoutInflater inflater;
 
         public StringListAdapter(Context context,
@@ -96,6 +106,7 @@ public class MenuActivity extends AppCompatActivity {
                 tv = (TextView) itemView.findViewById(R.id.textViewMenuNameEntrprise);
                 this.adapter = adapter;
             }
+
         }
 
     }

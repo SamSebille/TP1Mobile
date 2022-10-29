@@ -55,23 +55,28 @@ public class Stockage extends SQLiteOpenHelper {
         };
 
         String selection = Entreprises._ID + " = ?";
-        Cursor cursor = db.query(Entreprises.NOM_TABLE, columns, selection, null,
+        Cursor cursor = db.query(Entreprises.NOM_TABLE, columns, null, null,
                 null, null, null, null);
 
         ArrayList<Entreprise> entreprises = new ArrayList<>();
 
-        if (cursor != null && cursor.getCount() > 0){
+        if (cursor != null){
             cursor.moveToFirst();
+            System.out.println("test&");
             do {
                 entreprises.add(new Entreprise(
-                        cursor.getString(0), cursor.getString(1),
+                        cursor.getLong(0), cursor.getString(1),
                         cursor.getString(2), cursor.getString(3),
                         cursor.getString(4), cursor.getString(5),
-                        cursor.getString(6)));
+                        cursor.getString(6), cursor.getString(7)));
             } while (cursor.moveToNext());
+            cursor.close();
         }
 
-        cursor.close();
+        for (Entreprise entreprise: entreprises
+             ) {
+            System.out.println(entreprise.getNom());
+        }
 
         return entreprises;
     }
