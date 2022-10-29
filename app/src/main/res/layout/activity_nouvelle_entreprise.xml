@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EntrepriseActivity">
+    tools:context=".NouvelleEntrepriseActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,7 +41,7 @@
                     app:srcCompat="@mipmap/btn_profil" />
 
                 <TextView
-                    android:id="@+id/textViewNameEntrprise"
+                    android:id="@+id/textViewMenuNameEntrprise"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -76,7 +76,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/sai_email"
+                    android:id="@+id/sai_courriel"
                     android:layout_width="325dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -100,7 +100,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/sai_phone"
+                    android:id="@+id/sai_telephone"
                     android:layout_width="325dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -164,6 +164,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
+                android:onClick="onClickValider"
                 android:text="Valider" />
 
         </LinearLayout>

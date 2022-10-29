@@ -38,7 +38,7 @@
             android:parentActivityName=".MenuActivity"/>
 
         <activity
-            android:name=".EntrepriseActivity"
+            android:name=".NouvelleEntrepriseActivity"
             android:exported="false"
             android:parentActivityName=".MenuActivity"/>
 

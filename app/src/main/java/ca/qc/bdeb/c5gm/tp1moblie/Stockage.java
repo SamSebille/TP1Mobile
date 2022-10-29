@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class Stockage extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "app.db"; // Votre nom de fichier de BD
@@ -29,12 +32,48 @@ public class Stockage extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         // Contient la création des tables
-        sqLiteDatabase.execSQL(SQL_CREATE_CLIENTS);
+        sqLiteDatabase.execSQL(SQL_CREATE_ENTREPRISES);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         // mise à jour de la structure des tables.
+    }
+
+    public ArrayList<Entreprise> getEntreprises() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] columns = {
+                Entreprises._ID,
+                Entreprises.ENTREPRISE_NOM,
+                Entreprises.ENTREPRISE_CONTACT,
+                Entreprises.ENTREPRISE_COURRIEL,
+                Entreprises.ENTREPRISE_TELEPHONE,
+                Entreprises.ENTREPRISE_WEB,
+                Entreprises.ENTREPRISE_ADRESSE,
+                Entreprises.ENTREPRISE_DATE
+        };
+
+        String selection = Entreprises._ID + " = ?";
+        Cursor cursor = db.query(Entreprises.NOM_TABLE, columns, selection, null,
+                null, null, null, null);
+
+        ArrayList<Entreprise> entreprises = new ArrayList<>();
+
+        if (cursor != null && cursor.getCount() > 0){
+            cursor.moveToFirst();
+            do {
+                entreprises.add(new Entreprise(
+                        cursor.getString(0), cursor.getString(1),
+                        cursor.getString(2), cursor.getString(3),
+                        cursor.getString(4), cursor.getString(5),
+                        cursor.getString(6)));
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+
+        return entreprises;
     }
 
     public Entreprise getEntreprise(int id) {
@@ -117,7 +156,12 @@ public class Stockage extends SQLiteOpenHelper {
         db.delete(Entreprises.NOM_TABLE, whereClause, whereArgs);
     }
 
-    private static final String SQL_CREATE_CLIENTS =
+    public void dropTable(){
+        SQLiteDatabase db = this.getWritableDatabase(); // On veut écrire dans la B
+        db.execSQL(SQL_DELETE_CLIENTS);
+    }
+
+    private static final String SQL_CREATE_ENTREPRISES =
             "CREATE TABLE " + Entreprises.NOM_TABLE + " (" +
                     Entreprises._ID + " INTEGER PRIMARY KEY," +
                     Entreprises.ENTREPRISE_NOM + " TEXT," +
