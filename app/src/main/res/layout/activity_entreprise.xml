@@ -24,7 +24,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingLeft="15dp"
-            android:paddingTop="15dp"
+            android:paddingTop="20dp"
             android:paddingRight="15dp">
 
             <LinearLayout
@@ -55,7 +55,7 @@
                 android:id="@+id/sai_nom_entreprise"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:ems="10"
                 android:hint="Nom de l'entreprise"
                 android:inputType="textPersonName" />
@@ -64,7 +64,7 @@
                 android:id="@+id/sai_contact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:ems="10"
                 android:hint="Nom du contact"
                 android:inputType="textPersonName" />
@@ -72,6 +72,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:orientation="horizontal">
 
                 <EditText
@@ -95,6 +96,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:orientation="horizontal">
 
                 <EditText
@@ -118,6 +120,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:orientation="horizontal">
 
                 <EditText
@@ -142,7 +145,7 @@
                 android:id="@+id/sai_adresse"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:ems="10"
                 android:hint="Adresse"
                 android:inputType="textPostalAddress" />
@@ -151,7 +154,7 @@
                 android:id="@+id/sai_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:ems="10"
                 android:hint="Date de contact"
                 android:inputType="date" />
@@ -160,7 +163,7 @@
                 android:id="@+id/btn_valider"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:text="Valider" />
 
         </LinearLayout>

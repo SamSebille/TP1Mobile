@@ -34,13 +34,18 @@
         <activity
             android:name=".MapsActivity"
             android:exported="false"
-            android:label="@string/title_activity_maps" />
+            android:label="@string/title_activity_maps"
+            android:parentActivityName=".MenuActivity"/>
+
         <activity
             android:name=".EntrepriseActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MenuActivity"/>
+
         <activity
             android:name=".MenuActivity"
             android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
