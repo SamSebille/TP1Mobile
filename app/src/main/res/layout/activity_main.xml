@@ -64,11 +64,11 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btn_connection"
+        android:id="@+id/btn_connexion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onClickConnection"
-        android:text="Connection"
+        android:onClick="onClickConnexion"
+        android:text="Connexion"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
