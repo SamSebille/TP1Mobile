@@ -157,7 +157,7 @@
                 android:layout_marginTop="15dp"
                 android:ems="10"
                 android:hint="Date de contact"
-                android:inputType="date" />
+                android:inputType="datetime" />
 
             <Button
                 android:id="@+id/btn_valider"

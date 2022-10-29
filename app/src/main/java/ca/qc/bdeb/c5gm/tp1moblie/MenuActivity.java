@@ -8,10 +8,14 @@ import android.view.View;
 
 public class MenuActivity extends AppCompatActivity {
 
+    Stockage stockage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        stockage = Stockage.getInstance(getApplicationContext());
     }
 
     public void onClickMaps(View view) {

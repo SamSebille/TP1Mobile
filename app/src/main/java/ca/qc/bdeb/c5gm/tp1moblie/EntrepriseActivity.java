@@ -6,10 +6,13 @@ import android.os.Bundle;
 
 public class EntrepriseActivity extends AppCompatActivity {
 
+    Stockage stockage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entreprise);
 
+        stockage = Stockage.getInstance(getApplicationContext());
     }
 }
