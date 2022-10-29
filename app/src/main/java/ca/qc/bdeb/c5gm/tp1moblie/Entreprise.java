@@ -9,6 +9,7 @@ public class Entreprise {
     private String web;
     private String adresse;
     private String date;
+    private boolean favori;
 
     public Entreprise(String nom, String contact, String courriel, String telephone, String web, String adresse, String date) {
         this.nom = nom;
@@ -18,6 +19,7 @@ public class Entreprise {
         this.web = web;
         this.adresse = adresse;
         this.date = date;
+        this.favori = false;
     }
 
     public Entreprise(long id, String nom, String contact, String courriel, String telephone, String web, String adresse, String date) {
@@ -29,10 +31,15 @@ public class Entreprise {
         this.web = web;
         this.adresse = adresse;
         this.date = date;
+        this.favori = false;
     }
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public void setFavori(boolean favori) {
+        this.favori = favori;
     }
 
     public long getId() {

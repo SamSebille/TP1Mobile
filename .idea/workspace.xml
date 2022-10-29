@@ -14,17 +14,26 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fde56842-c3d7-4189-832f-6bb5b900b614" name="Changes" comment="Liste Entreprises affichée">
+    <list default="true" id="fde56842-c3d7-4189-832f-6bb5b900b614" name="Changes" comment="Correction otrographe">
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/ca/qc/bdeb/c5gm/tp1moblie/ModifierEntrepriseActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_modifier_entreprise.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/ca/qc/bdeb/c5gm/tp1moblie/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ca/qc/bdeb/c5gm/tp1moblie/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/ca/qc/bdeb/c5gm/tp1moblie/Entreprise.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ca/qc/bdeb/c5gm/tp1moblie/Entreprise.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/ca/qc/bdeb/c5gm/tp1moblie/Stockage.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ca/qc/bdeb/c5gm/tp1moblie/Stockage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_nouvelle_entreprise.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_nouvelle_entreprise.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\quent.000\.android\avd\Copy_of_Pixel_3a_API_33_x86_64_big.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\quent.000\.android\avd\Pixel_4_XL_API_28.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -88,6 +97,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -104,6 +114,9 @@
       <recent name="ca.qc.bdeb.c5gm.tp1moblie" />
     </key>
     <key name="android.template.1018798029">
+      <recent name="ca.qc.bdeb.c5gm.tp1moblie" />
+    </key>
+    <key name="android.template.-258289701">
       <recent name="ca.qc.bdeb.c5gm.tp1moblie" />
     </key>
   </component>
@@ -233,7 +246,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667080421515</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Correction otrographe">
+      <created>1667081112880</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1667081112880</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -268,6 +288,7 @@
     <MESSAGE value="Ajout de la bd" />
     <MESSAGE value="implementation bd" />
     <MESSAGE value="Liste Entreprises affichée" />
-    <option name="LAST_COMMIT_MESSAGE" value="Liste Entreprises affichée" />
+    <MESSAGE value="Correction otrographe" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correction otrographe" />
   </component>
 </project>

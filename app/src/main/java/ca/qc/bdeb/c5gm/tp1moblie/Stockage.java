@@ -56,13 +56,12 @@ public class Stockage extends SQLiteOpenHelper {
 
         String selection = Entreprises._ID + " = ?";
         Cursor cursor = db.query(Entreprises.NOM_TABLE, columns, null, null,
-                null, null, null, null);
+                null, null, Entreprises.ENTREPRISE_NOM, null);
 
         ArrayList<Entreprise> entreprises = new ArrayList<>();
 
-        if (cursor != null){
+        if (cursor != null && cursor.getCount() > 0){
             cursor.moveToFirst();
-            System.out.println("test&");
             do {
                 entreprises.add(new Entreprise(
                         cursor.getLong(0), cursor.getString(1),
