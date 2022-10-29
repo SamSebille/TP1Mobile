@@ -1,7 +1,7 @@
 package ca.qc.bdeb.c5gm.tp1moblie;
 
 public class Entreprise {
-    private long id;
+    private int id;
     private String nom;
     private String contact;
     private String courriel;
@@ -22,7 +22,7 @@ public class Entreprise {
         this.favori = false;
     }
 
-    public Entreprise(long id, String nom, String contact, String courriel, String telephone, String web, String adresse, String date) {
+    public Entreprise(int id, String nom, String contact, String courriel, String telephone, String web, String adresse, String date) {
         this.id = id;
         this.nom = nom;
         this.contact = contact;
@@ -34,7 +34,7 @@ public class Entreprise {
         this.favori = false;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -42,7 +42,7 @@ public class Entreprise {
         this.favori = favori;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 

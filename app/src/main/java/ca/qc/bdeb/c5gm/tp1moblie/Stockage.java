@@ -64,17 +64,12 @@ public class Stockage extends SQLiteOpenHelper {
             cursor.moveToFirst();
             do {
                 entreprises.add(new Entreprise(
-                        cursor.getLong(0), cursor.getString(1),
+                        cursor.getInt(0), cursor.getString(1),
                         cursor.getString(2), cursor.getString(3),
                         cursor.getString(4), cursor.getString(5),
                         cursor.getString(6), cursor.getString(7)));
             } while (cursor.moveToNext());
             cursor.close();
-        }
-
-        for (Entreprise entreprise: entreprises
-             ) {
-            System.out.println(entreprise.getNom());
         }
 
         return entreprises;
@@ -95,22 +90,25 @@ public class Stockage extends SQLiteOpenHelper {
         };
 
         String selection = Entreprises._ID + " = ?";
+
         String[] selectionArgs = {String.valueOf(id)};
+
         Cursor cursor = db.query(Entreprises.NOM_TABLE, columns, selection, selectionArgs,
                 null, null, null, null);
 
-        if (cursor != null)
+        Entreprise entreprise = null;
+
+        if (cursor != null){
             cursor.moveToFirst();
 
-        Entreprise entreprise = new Entreprise(
-                cursor.getString(0), cursor.getString(1),
-                cursor.getString(2), cursor.getString(3),
-                cursor.getString(4), cursor.getString(5),
-                cursor.getString(6));
+            entreprise = new Entreprise(
+                    cursor.getInt(0), cursor.getString(1),
+                    cursor.getString(2), cursor.getString(3),
+                    cursor.getString(4), cursor.getString(5),
+                    cursor.getString(6), cursor.getString(7));
+        }
 
         cursor.close();
-
-        entreprise.setId(id);
 
         return entreprise;
     }
@@ -150,7 +148,7 @@ public class Stockage extends SQLiteOpenHelper {
 
         long id = db.insert(Entreprises.NOM_TABLE, null, values);
 
-        entreprise.setId(id);
+        entreprise.setId((int)id);
     }
 
     public void deleteEntreprise(Entreprise entreprise) {

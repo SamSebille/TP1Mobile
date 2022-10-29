@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -97,14 +99,29 @@ public class MenuActivity extends AppCompatActivity {
             return entreprises.size();
         }
 
-        public class StringViewHolder extends RecyclerView.ViewHolder{
+        public class StringViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
             TextView tv;
             final StringListAdapter adapter;
 
             public StringViewHolder(@NonNull View itemView, StringListAdapter adapter) {
                 super(itemView);
-                tv = (TextView) itemView.findViewById(R.id.textViewMenuNameEntrprise);
+                tv = (TextView) itemView.findViewById(R.id.menu_nom_entreprise);
+                tv.setOnClickListener(this);
                 this.adapter = adapter;
+            }
+
+            @Override
+            public void onClick(View view) {
+                // Récupère la position de l'item item clické.
+                int mPosition = getLayoutPosition();
+                // Accède l'item dans stringList avec l'info de position.
+                Entreprise element = entreprises.get(mPosition);
+
+                Intent intent = new Intent(getBaseContext(), ModifierEntrepriseActivity.class);
+                intent.putExtra("ENTREPRISE_ID", element.getId());
+                startActivity(intent);
+
+                majListBDEntreprise();
             }
 
         }
