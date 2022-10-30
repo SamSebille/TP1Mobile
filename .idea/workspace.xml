@@ -11,15 +11,11 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="AutoImportSettings">
-    <option name="autoReloadType" value="NONE" />
+    <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fde56842-c3d7-4189-832f-6bb5b900b614" name="Changes" comment="Modification format d'entrée de date (DD/MM/YYYY)">
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+    <list default="true" id="fde56842-c3d7-4189-832f-6bb5b900b614" name="Changes" comment="Ajout des deux formes de tri">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/ca/qc/bdeb/c5gm/tp1moblie/Entreprise.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ca/qc/bdeb/c5gm/tp1moblie/Entreprise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/ca/qc/bdeb/c5gm/tp1moblie/MenuActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ca/qc/bdeb/c5gm/tp1moblie/MenuActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_menu.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,12 +88,13 @@
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="cidr.known.project.marker" value="true" />
+    <property name="com.intellij.openapi.externalSystem.service.settings.ExternalSystemGroupConfigurable" value="ALL" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
   </component>
   <component name="RecentsManager">
     <key name="android.template.-1145765010">
@@ -281,7 +278,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667159328555</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Ajout des deux formes de tri">
+      <created>1667160624543</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1667160624543</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -322,6 +326,7 @@
     <MESSAGE value="Ajout suppression entreprise" />
     <MESSAGE value="Ajout implicit intent pour les pages modifier et ajouter" />
     <MESSAGE value="Modification format d'entrée de date (DD/MM/YYYY)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modification format d'entrée de date (DD/MM/YYYY)" />
+    <MESSAGE value="Ajout des deux formes de tri" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout des deux formes de tri" />
   </component>
 </project>
