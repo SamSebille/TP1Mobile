@@ -8,8 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +32,8 @@ public class MenuActivity extends AppCompatActivity {
         stockage = Stockage.getInstance(getApplicationContext());
 
         entreprises = stockage.getEntreprises();
+
+        entreprises.sort(new SortByName());
 
         // initialiser le recyclerView
         recyclerView = findViewById(R.id.liste_entreprises);
@@ -131,3 +131,4 @@ public class MenuActivity extends AppCompatActivity {
 
     }
 }
+

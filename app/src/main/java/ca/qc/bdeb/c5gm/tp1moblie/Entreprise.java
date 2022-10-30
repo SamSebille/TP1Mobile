@@ -1,5 +1,7 @@
 package ca.qc.bdeb.c5gm.tp1moblie;
 
+import java.util.Comparator;
+
 public class Entreprise {
     private int id;
     private String nom;
@@ -72,5 +74,20 @@ public class Entreprise {
 
     public String getDate() {
         return date;
+    }
+
+}
+
+class SortByName implements Comparator<Entreprise> {
+    public int compare(Entreprise a, Entreprise b)
+    {
+        return a.getNom().compareTo(b.getNom());
+    }
+}
+
+class SortByDate implements Comparator<Entreprise> {
+    public int compare(Entreprise a, Entreprise b)
+    {
+        return a.getDate().compareTo(b.getDate());
     }
 }
