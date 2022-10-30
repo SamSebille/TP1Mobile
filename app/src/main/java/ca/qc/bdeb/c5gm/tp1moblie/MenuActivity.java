@@ -24,6 +24,8 @@ public class MenuActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private StringListAdapter entrepriseListAdapter;
 
+    private static boolean triParDate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +34,6 @@ public class MenuActivity extends AppCompatActivity {
         stockage = Stockage.getInstance(getApplicationContext());
 
         entreprises = stockage.getEntreprises();
-
-        entreprises.sort(new SortByName());
 
         // initialiser le recyclerView
         recyclerView = findViewById(R.id.liste_entreprises);
@@ -53,11 +53,27 @@ public class MenuActivity extends AppCompatActivity {
 
     public void majListBDEntreprise(){
         entreprises = stockage.getEntreprises();
+
+        if (triParDate)
+            entreprises.sort(new SortByDate());
+        else
+            entreprises.sort(new SortByName());
+
         entrepriseListAdapter.entreprises = entreprises;
 
         if (entreprises != null)
             entrepriseListAdapter.notifyDataSetChanged();
 
+    }
+
+    public void onClickTriNom(View view) {
+        triParDate = false;
+        majListBDEntreprise();
+    }
+
+    public void onClickTriDate(View view) {
+        triParDate = true;
+        majListBDEntreprise();
     }
 
     public void onClickMaps(View view) {

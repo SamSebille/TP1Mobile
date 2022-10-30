@@ -88,6 +88,18 @@ class SortByName implements Comparator<Entreprise> {
 class SortByDate implements Comparator<Entreprise> {
     public int compare(Entreprise a, Entreprise b)
     {
-        return a.getDate().compareTo(b.getDate());
+        int dateA, dateB;
+
+        String[] tempA = a.getDate().split("/");
+        dateA = (Integer.parseInt(tempA[2]) * 10000) +
+                (Integer.parseInt(tempA[1]) * 100) + (Integer.parseInt(tempA[0]));
+
+        String[] tempB = b.getDate().split("/");
+        dateB = (Integer.parseInt(tempB[2]) * 10000) +
+                (Integer.parseInt(tempB[1]) * 100) + (Integer.parseInt(tempB[0]));
+
+        System.out.println("DATE A = " + dateA + ", DATE B = " + dateB);
+
+        return dateA - dateB;
     }
 }
