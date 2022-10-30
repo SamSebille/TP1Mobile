@@ -2,6 +2,8 @@ package ca.qc.bdeb.c5gm.tp1moblie;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -57,6 +59,41 @@ public class NouvelleEntrepriseActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this,
                     "Veuillez remplir tout les champs.", Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+    public void onClickCourriel(View view){
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:"));
+        intent.putExtra(Intent.EXTRA_EMAIL, saisies[1].getText().toString());
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+
+    }
+    public void onClickTelephone(View view){
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + saisies[2].getText().toString()));
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
+    public void onClickWeb(View view){
+        Uri webpage;
+
+        if (saisies[3].getText().toString().startsWith("http://")
+                || saisies[3].getText().toString().startsWith("https://"))
+            webpage = Uri.parse(saisies[3].getText().toString());
+        else
+            webpage = Uri.parse("http://" + saisies[3].getText().toString());
+
+        Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        } else {
+            Toast.makeText(this,
+                    "Le format web est incorrect.", Toast.LENGTH_LONG).show();
         }
     }
 }

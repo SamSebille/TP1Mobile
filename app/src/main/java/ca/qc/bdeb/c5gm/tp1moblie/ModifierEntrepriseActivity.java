@@ -4,6 +4,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -56,6 +58,40 @@ public class ModifierEntrepriseActivity extends AppCompatActivity {
         saisies[5].setText(entreprise.getDate());
     }
 
+    public void onClickCourriel(View view){
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:"));
+        intent.putExtra(Intent.EXTRA_EMAIL, saisies[1].getText().toString());
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+
+    }
+    public void onClickTelephone(View view){
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + saisies[2].getText().toString()));
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
+    public void onClickWeb(View view){
+        Uri webpage;
+
+        if (saisies[3].getText().toString().startsWith("http://")
+                || saisies[3].getText().toString().startsWith("https://"))
+            webpage = Uri.parse(saisies[3].getText().toString());
+        else
+            webpage = Uri.parse("http://" + saisies[3].getText().toString());
+
+        Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        } else {
+            Toast.makeText(this,
+                    "Le format web est incorrect.", Toast.LENGTH_LONG).show();
+        }
+    }
+
     public void onClickValider(View view) {
         boolean isChampVide = false;
 
@@ -102,9 +138,9 @@ public class ModifierEntrepriseActivity extends AppCompatActivity {
         builder.setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                // On ne fait rien
             }
         });
-
         AlertDialog dialog = builder.create();
         dialog.show();
     }

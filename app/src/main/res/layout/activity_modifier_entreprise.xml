@@ -85,6 +85,7 @@
                         android:layout_gravity="center"
                         android:layout_weight="0"
                         android:backgroundTint="#00FFFFFF"
+                        android:onClick="onClickCourriel"
                         app:srcCompat="@mipmap/btn_mail" />
                 </LinearLayout>
 
@@ -108,6 +109,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
                         android:backgroundTint="#00FFFFFF"
+                        android:onClick="onClickTelephone"
                         app:srcCompat="@mipmap/btn_phone" />
                 </LinearLayout>
 
@@ -131,6 +133,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
                         android:backgroundTint="#00FFFFFF"
+                        android:onClick="onClickWeb"
                         app:srcCompat="@mipmap/btn_web" />
                 </LinearLayout>
 
