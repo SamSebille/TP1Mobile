@@ -14,14 +14,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fde56842-c3d7-4189-832f-6bb5b900b614" name="Changes" comment="Ajout page modifier entreprise">
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+    <list default="true" id="fde56842-c3d7-4189-832f-6bb5b900b614" name="Changes" comment="Ajout modification entreprise">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/ca/qc/bdeb/c5gm/tp1moblie/Entreprise.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ca/qc/bdeb/c5gm/tp1moblie/Entreprise.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/ca/qc/bdeb/c5gm/tp1moblie/MenuActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ca/qc/bdeb/c5gm/tp1moblie/MenuActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/ca/qc/bdeb/c5gm/tp1moblie/ModifierEntrepriseActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ca/qc/bdeb/c5gm/tp1moblie/ModifierEntrepriseActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/ca/qc/bdeb/c5gm/tp1moblie/Stockage.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ca/qc/bdeb/c5gm/tp1moblie/Stockage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_modifier_entreprise.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_modifier_entreprise.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_nouvelle_entreprise.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_nouvelle_entreprise.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/entreprise_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/entreprise_item.xml" afterDir="false" />
@@ -258,7 +254,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667083972645</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Ajout modification entreprise">
+      <created>1667087811494</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1667087811494</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -295,6 +298,7 @@
     <MESSAGE value="Liste Entreprises affichée" />
     <MESSAGE value="Correction otrographe" />
     <MESSAGE value="Ajout page modifier entreprise" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout page modifier entreprise" />
+    <MESSAGE value="Ajout modification entreprise" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout modification entreprise" />
   </component>
 </project>

@@ -1,7 +1,9 @@
 package ca.qc.bdeb.c5gm.tp1moblie;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -80,5 +82,30 @@ public class ModifierEntrepriseActivity extends AppCompatActivity {
             Toast.makeText(this,
                     "Veuillez remplir tout les champs.", Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void onClickSupprimer(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle("Attention");
+        builder.setMessage("Supprimer définitivement cette entreprise?");
+
+        builder.setPositiveButton("Confirmer",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        stockage.deleteEntreprise(entreprise);
+                        finish();
+                    }
+                });
+
+        builder.setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

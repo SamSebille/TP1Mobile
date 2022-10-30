@@ -18,7 +18,7 @@
             android:paddingBottom="5dp">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/entreprise_icone"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
@@ -36,15 +36,16 @@
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+            <ImageButton
+                android:id="@+id/btn_favori"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
                 android:layout_weight="0"
+                android:backgroundTint="#00FFFFFF"
+                android:scaleType="centerCrop"
                 app:srcCompat="@mipmap/ic_favorite_border_24px" />
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

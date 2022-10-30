@@ -61,7 +61,8 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void onClickMaps(View view) {
-        startActivity(new Intent(this, MapsActivity.class));
+        startActivity(new Intent(this,
+                MapsActivity.class));
     }
 
     public void onClickPlus(View view) {
@@ -99,7 +100,8 @@ public class MenuActivity extends AppCompatActivity {
             return entreprises.size();
         }
 
-        public class StringViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        public class StringViewHolder extends RecyclerView.ViewHolder 
+                implements View.OnClickListener{
             TextView tv;
             final StringListAdapter adapter;
 
@@ -123,6 +125,7 @@ public class MenuActivity extends AppCompatActivity {
 
                 majListBDEntreprise();
             }
+
 
         }
 
