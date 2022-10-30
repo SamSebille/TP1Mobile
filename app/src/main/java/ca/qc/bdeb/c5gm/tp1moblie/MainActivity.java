@@ -20,6 +20,4 @@ public class MainActivity extends AppCompatActivity {
     public void onClickConnexion(View view) {
         startActivity(new Intent(MainActivity.this, MenuActivity.class));
     }
-
-
-    }
+}

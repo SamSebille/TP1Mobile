@@ -79,7 +79,7 @@ public class NouvelleEntrepriseActivity extends AppCompatActivity {
     public void onClickCourriel(View view){
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:"));
-        intent.putExtra(Intent.EXTRA_EMAIL, saisies[1].getText().toString());
+        intent.putExtra(Intent.EXTRA_EMAIL, saisies[2].getText().toString());
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
@@ -87,7 +87,7 @@ public class NouvelleEntrepriseActivity extends AppCompatActivity {
     }
     public void onClickTelephone(View view){
         Intent intent = new Intent(Intent.ACTION_DIAL);
-        intent.setData(Uri.parse("tel:" + saisies[2].getText().toString()));
+        intent.setData(Uri.parse("tel:" + saisies[3].getText().toString()));
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
@@ -95,11 +95,11 @@ public class NouvelleEntrepriseActivity extends AppCompatActivity {
     public void onClickWeb(View view){
         Uri webpage;
 
-        if (saisies[3].getText().toString().startsWith("http://")
-                || saisies[3].getText().toString().startsWith("https://"))
-            webpage = Uri.parse(saisies[3].getText().toString());
+        if (saisies[4].getText().toString().startsWith("http://")
+                || saisies[4].getText().toString().startsWith("https://"))
+            webpage = Uri.parse(saisies[4].getText().toString());
         else
-            webpage = Uri.parse("http://" + saisies[3].getText().toString());
+            webpage = Uri.parse("http://" + saisies[4].getText().toString());
 
         Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
         if (intent.resolveActivity(getPackageManager()) != null) {
