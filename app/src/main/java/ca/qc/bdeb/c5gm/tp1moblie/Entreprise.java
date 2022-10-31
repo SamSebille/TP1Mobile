@@ -98,8 +98,6 @@ class SortByDate implements Comparator<Entreprise> {
         dateB = (Integer.parseInt(tempB[2]) * 10000) +
                 (Integer.parseInt(tempB[1]) * 100) + (Integer.parseInt(tempB[0]));
 
-        System.out.println("DATE A = " + dateA + ", DATE B = " + dateB);
-
         return dateA - dateB;
     }
 }
