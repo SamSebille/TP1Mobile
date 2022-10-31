@@ -1,7 +1,6 @@
 package ca.qc.bdeb.c5gm.tp1moblie;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,6 +35,11 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setTitle("Entreprises");
+
         stockage = Stockage.getInstance(getApplicationContext());
 
         entreprises = stockage.getEntreprises();
@@ -48,9 +52,6 @@ public class MenuActivity extends AppCompatActivity {
         recyclerView.setAdapter(entrepriseListAdapter);
         // Donner au RecyclerView un layout manager par défaut.
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
     }
 
     @Override

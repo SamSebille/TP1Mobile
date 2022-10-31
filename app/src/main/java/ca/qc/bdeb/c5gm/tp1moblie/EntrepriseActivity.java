@@ -1,7 +1,9 @@
 package ca.qc.bdeb.c5gm.tp1moblie;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
 
 import android.app.DatePickerDialog;
@@ -10,6 +12,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -37,6 +41,9 @@ public class EntrepriseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entreprise);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         stockage = Stockage.getInstance(getApplicationContext());
 
         nomEntreprise = findViewById(R.id.menu_nom_entreprise);
@@ -50,6 +57,13 @@ public class EntrepriseActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(@NonNull Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.activity_main_menu, menu);
+        return true;
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
 
@@ -57,6 +71,8 @@ public class EntrepriseActivity extends AppCompatActivity {
         isModifier = extras.getBoolean("ISMODIFIER");
 
         if (isModifier){
+            getSupportActionBar().setTitle(" Modifier entreprise");
+
             System.out.println(extras.getInt("ENTREPRISE_ID"));
             entreprise_id = extras.getInt("ENTREPRISE_ID");
 
@@ -73,6 +89,8 @@ public class EntrepriseActivity extends AppCompatActivity {
             saisies[0].setVisibility(View.GONE);
 
         } else {
+            getSupportActionBar().setTitle("Ajouter entreprise");
+
             findViewById(R.id.btn_supprimer).setVisibility(View.GONE);
         }
 
