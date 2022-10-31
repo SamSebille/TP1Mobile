@@ -82,7 +82,9 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void onClickPlus(View view) {
-        startActivity(new Intent(this, NouvelleEntrepriseActivity.class));
+        Intent intent = new Intent(getBaseContext(), EntrepriseActivity.class);
+        intent.putExtra("ISMODIFIER", false);
+        startActivity(intent);
     }
 
     public class StringListAdapter extends
@@ -135,8 +137,9 @@ public class MenuActivity extends AppCompatActivity {
                 // Accède l'item dans stringList avec l'info de position.
                 Entreprise element = entreprises.get(mPosition);
 
-                Intent intent = new Intent(getBaseContext(), ModifierEntrepriseActivity.class);
+                Intent intent = new Intent(getBaseContext(), EntrepriseActivity.class);
                 intent.putExtra("ENTREPRISE_ID", element.getId());
+                intent.putExtra("ISMODIFIER", true);
                 startActivity(intent);
 
                 majListBDEntreprise();

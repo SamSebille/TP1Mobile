@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NouvelleEntrepriseActivity">
+    tools:context=".EntrepriseActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -184,9 +184,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:layout_marginBottom="15dp"
                     android:onClick="onClickValider"
                     android:text="Valider" />
+
+                <Button
+                    android:id="@+id/btn_supprimer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:backgroundTint="#D11818"
+                    android:onClick="onClickSupprimer"
+                    android:text="Supprimer" />
 
             </LinearLayout>
         </ScrollView>

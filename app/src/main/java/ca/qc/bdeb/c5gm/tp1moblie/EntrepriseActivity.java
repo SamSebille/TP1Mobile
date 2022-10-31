@@ -17,31 +17,35 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.regex.Pattern;
 
-public class ModifierEntrepriseActivity extends AppCompatActivity {
+public class EntrepriseActivity extends AppCompatActivity {
 
     private int entreprise_id;
     private Stockage stockage;
 
     private Entreprise entreprise;
 
-    private static EditText[] saisies = new EditText[5];
+    private static EditText[] saisies = new EditText[6];
     private static TextView date;
     private TextView nomEntreprise;
+
+    private static boolean isModifier;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_modifier_entreprise);
+        setContentView(R.layout.activity_entreprise);
 
         stockage = Stockage.getInstance(getApplicationContext());
 
         nomEntreprise = findViewById(R.id.menu_nom_entreprise);
-        saisies[0] = findViewById(R.id.sai_contact);
-        saisies[1] = findViewById(R.id.sai_courriel);
-        saisies[2] = findViewById(R.id.sai_telephone);
-        saisies[3] = findViewById(R.id.sai_web);
-        saisies[4] = findViewById(R.id.sai_adresse);
+        saisies[0] = findViewById(R.id.sai_nom_entreprise);
+        saisies[1] = findViewById(R.id.sai_contact);
+        saisies[2] = findViewById(R.id.sai_courriel);
+        saisies[3] = findViewById(R.id.sai_telephone);
+        saisies[4] = findViewById(R.id.sai_web);
+        saisies[5] = findViewById(R.id.sai_adresse);
         date = findViewById(R.id.sai_date);
     }
 
@@ -50,25 +54,35 @@ public class ModifierEntrepriseActivity extends AppCompatActivity {
         super.onStart();
 
         Bundle extras = getIntent().getExtras();
+        isModifier = extras.getBoolean("ISMODIFIER");
 
-        System.out.println(extras.getInt("ENTREPRISE_ID"));
-        entreprise_id = extras.getInt("ENTREPRISE_ID");
+        if (isModifier){
+            System.out.println(extras.getInt("ENTREPRISE_ID"));
+            entreprise_id = extras.getInt("ENTREPRISE_ID");
 
-        entreprise = stockage.getEntreprise(entreprise_id);
+            entreprise = stockage.getEntreprise(entreprise_id);
 
-        nomEntreprise.setText(entreprise.getNom());
-        saisies[0].setText(entreprise.getContact());
-        saisies[1].setText(entreprise.getCourriel());
-        saisies[2].setText(entreprise.getTelephone());
-        saisies[3].setText(entreprise.getWeb());
-        saisies[4].setText(entreprise.getAdresse());
-        date.setText(entreprise.getDate());
+            nomEntreprise.setText(entreprise.getNom());
+            saisies[1].setText(entreprise.getContact());
+            saisies[2].setText(entreprise.getCourriel());
+            saisies[3].setText(entreprise.getTelephone());
+            saisies[4].setText(entreprise.getWeb());
+            saisies[5].setText(entreprise.getAdresse());
+            date.setText(entreprise.getDate());
+
+            saisies[0].setVisibility(View.GONE);
+
+        } else {
+            findViewById(R.id.btn_supprimer).setVisibility(View.GONE);
+        }
+
+
     }
 
     public void onClickCourriel(View view){
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:"));
-        intent.putExtra(Intent.EXTRA_EMAIL, saisies[1].getText().toString());
+        intent.putExtra(Intent.EXTRA_EMAIL, saisies[2].getText().toString());
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
@@ -76,7 +90,7 @@ public class ModifierEntrepriseActivity extends AppCompatActivity {
     }
     public void onClickTelephone(View view){
         Intent intent = new Intent(Intent.ACTION_DIAL);
-        intent.setData(Uri.parse("tel:" + saisies[2].getText().toString()));
+        intent.setData(Uri.parse("tel:" + saisies[3].getText().toString()));
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
@@ -84,11 +98,11 @@ public class ModifierEntrepriseActivity extends AppCompatActivity {
     public void onClickWeb(View view){
         Uri webpage;
 
-        if (saisies[3].getText().toString().startsWith("http://")
-                || saisies[3].getText().toString().startsWith("https://"))
-            webpage = Uri.parse(saisies[3].getText().toString());
+        if (saisies[4].getText().toString().startsWith("http://")
+                || saisies[4].getText().toString().startsWith("https://"))
+            webpage = Uri.parse(saisies[4].getText().toString());
         else
-            webpage = Uri.parse("http://" + saisies[3].getText().toString());
+            webpage = Uri.parse("http://" + saisies[4].getText().toString());
 
         Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
         if (intent.resolveActivity(getPackageManager()) != null) {
@@ -100,30 +114,53 @@ public class ModifierEntrepriseActivity extends AppCompatActivity {
     }
 
     public void onClickValider(View view) {
+
         boolean isChampVide = false;
 
         for (EditText champ : saisies){
-            if (champ.getText().toString().trim().length() == 0){
+            if (champ.getText().toString().trim().length() == 0 && !(isModifier && champ == saisies[0])){
                 isChampVide = true;
                 break;
             }
         }
 
-        if (!isChampVide){
-            Entreprise entreprise = new Entreprise(
-                    entreprise_id, nomEntreprise.getText().toString(), saisies[0].getText().toString(),
-                    saisies[1].getText().toString(), saisies[2].getText().toString(),
-                    saisies[3].getText().toString(), saisies[4].getText().toString(),
-                    date.getText().toString());
+        Pattern dateRegex = Pattern.compile("\\d{2}/\\d{2}/\\d{4}");
 
-            stockage.updateEntreprise(entreprise);
+        if (!isChampVide && dateRegex.matcher(date.getText().toString()).matches()){
+            if (isModifier){
+                Entreprise entreprise = new Entreprise(
+                        entreprise_id, nomEntreprise.getText().toString(), saisies[1].getText().toString(),
+                        saisies[2].getText().toString(), saisies[3].getText().toString(),
+                        saisies[4].getText().toString(), saisies[5].getText().toString(),
+                        date.getText().toString());
 
-            Toast.makeText(this,
-                    "Modifications enregistrée.", Toast.LENGTH_LONG).show();
-            finish();
-        } else {
+                stockage.updateEntreprise(entreprise);
+
+                Toast.makeText(this,
+                        "Modifications enregistrée.", Toast.LENGTH_LONG).show();
+                finish();
+
+            } else {
+                Entreprise entreprise = new Entreprise(
+                        saisies[0].getText().toString(), saisies[1].getText().toString(),
+                        saisies[2].getText().toString(), saisies[3].getText().toString(),
+                        saisies[4].getText().toString(), saisies[5].getText().toString(),
+                        date.getText().toString());
+
+                stockage.ajouterEntreprise(entreprise);
+
+                Toast.makeText(this,
+                        "Entreprise enregistrée.", Toast.LENGTH_LONG).show();
+                finish();
+            }
+
+        } else if (isChampVide) {
             Toast.makeText(this,
                     "Veuillez remplir tout les champs.", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this,
+                    "Veuillez insérer un bon format de date (DD/MM/YYYY)",
+                    Toast.LENGTH_LONG).show();
         }
     }
 
@@ -154,7 +191,7 @@ public class ModifierEntrepriseActivity extends AppCompatActivity {
 
     // code from https://developer.android.com/develop/ui/views/components/pickers#DatePicker
     public void showDatePickerDialog(View v) {
-        DialogFragment newFragment = new ModifierEntrepriseActivity.DatePickerFragment();
+        DialogFragment newFragment = new EntrepriseActivity.DatePickerFragment();
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
@@ -174,6 +211,7 @@ public class ModifierEntrepriseActivity extends AppCompatActivity {
         }
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
+            // On veut le format DD/MM/YYYY
             String sday = day < 10 ? "0" + day : "" + day;
             String smonth = month < 10 ? "0" + month : "" + month;
 
