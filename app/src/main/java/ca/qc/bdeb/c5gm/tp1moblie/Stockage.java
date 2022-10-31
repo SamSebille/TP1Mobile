@@ -18,7 +18,7 @@ public class Stockage extends SQLiteOpenHelper {
     private static Stockage instance = null; //L’unique instance de DbHelper possible
 
     public static Stockage getInstance(Context context) {
-        if (instance == null){
+        if (instance == null) {
             instance = new Stockage(context.getApplicationContext());
         }
         return instance;
@@ -60,7 +60,7 @@ public class Stockage extends SQLiteOpenHelper {
 
         ArrayList<Entreprise> entreprises = new ArrayList<>();
 
-        if (cursor != null && cursor.getCount() > 0){
+        if (cursor != null && cursor.getCount() > 0) {
             cursor.moveToFirst();
             do {
                 entreprises.add(new Entreprise(
@@ -98,7 +98,7 @@ public class Stockage extends SQLiteOpenHelper {
 
         Entreprise entreprise = null;
 
-        if (cursor != null){
+        if (cursor != null) {
             cursor.moveToFirst();
 
             entreprise = new Entreprise(
@@ -134,7 +134,7 @@ public class Stockage extends SQLiteOpenHelper {
         return (nbMAJ > 0); // True si update, false sinon
     }
 
-    public void ajouterEntreprise(Entreprise entreprise){
+    public void ajouterEntreprise(Entreprise entreprise) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -148,7 +148,7 @@ public class Stockage extends SQLiteOpenHelper {
 
         long id = db.insert(Entreprises.NOM_TABLE, null, values);
 
-        entreprise.setId((int)id);
+        entreprise.setId((int) id);
     }
 
     public void deleteEntreprise(Entreprise entreprise) {
@@ -158,7 +158,7 @@ public class Stockage extends SQLiteOpenHelper {
         db.delete(Entreprises.NOM_TABLE, whereClause, whereArgs);
     }
 
-    public void dropTable(){
+    public void dropTable() {
         SQLiteDatabase db = this.getWritableDatabase(); // On veut écrire dans la B
         db.execSQL(SQL_DELETE_CLIENTS);
     }

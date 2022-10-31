@@ -79,15 +79,13 @@ public class Entreprise {
 }
 
 class SortByName implements Comparator<Entreprise> {
-    public int compare(Entreprise a, Entreprise b)
-    {
+    public int compare(Entreprise a, Entreprise b) {
         return a.getNom().compareTo(b.getNom());
     }
 }
 
 class SortByDate implements Comparator<Entreprise> {
-    public int compare(Entreprise a, Entreprise b)
-    {
+    public int compare(Entreprise a, Entreprise b) {
         int dateA, dateB;
 
         String[] tempA = a.getDate().split("/");

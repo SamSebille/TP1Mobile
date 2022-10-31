@@ -56,7 +56,7 @@ public class EntrepriseActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         isModifier = extras.getBoolean("ISMODIFIER");
 
-        if (isModifier){
+        if (isModifier) {
             System.out.println(extras.getInt("ENTREPRISE_ID"));
             entreprise_id = extras.getInt("ENTREPRISE_ID");
 
@@ -79,7 +79,7 @@ public class EntrepriseActivity extends AppCompatActivity {
 
     }
 
-    public void onClickCourriel(View view){
+    public void onClickCourriel(View view) {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:"));
         intent.putExtra(Intent.EXTRA_EMAIL, saisies[2].getText().toString());
@@ -88,14 +88,16 @@ public class EntrepriseActivity extends AppCompatActivity {
         }
 
     }
-    public void onClickTelephone(View view){
+
+    public void onClickTelephone(View view) {
         Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse("tel:" + saisies[3].getText().toString()));
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
     }
-    public void onClickWeb(View view){
+
+    public void onClickWeb(View view) {
         Uri webpage;
 
         if (saisies[4].getText().toString().startsWith("http://")
@@ -117,8 +119,8 @@ public class EntrepriseActivity extends AppCompatActivity {
 
         boolean isChampVide = false;
 
-        for (EditText champ : saisies){
-            if (champ.getText().toString().trim().length() == 0 && !(isModifier && champ == saisies[0])){
+        for (EditText champ : saisies) {
+            if (champ.getText().toString().trim().length() == 0 && !(isModifier && champ == saisies[0])) {
                 isChampVide = true;
                 break;
             }
@@ -126,8 +128,8 @@ public class EntrepriseActivity extends AppCompatActivity {
 
         Pattern dateRegex = Pattern.compile("\\d{2}/\\d{2}/\\d{4}");
 
-        if (!isChampVide && dateRegex.matcher(date.getText().toString()).matches()){
-            if (isModifier){
+        if (!isChampVide && dateRegex.matcher(date.getText().toString()).matches()) {
+            if (isModifier) {
                 Entreprise entreprise = new Entreprise(
                         entreprise_id, nomEntreprise.getText().toString(), saisies[1].getText().toString(),
                         saisies[2].getText().toString(), saisies[3].getText().toString(),

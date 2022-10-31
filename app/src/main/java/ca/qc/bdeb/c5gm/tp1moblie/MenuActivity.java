@@ -59,13 +59,14 @@ public class MenuActivity extends AppCompatActivity {
         menuInflater.inflate(R.menu.activity_main_menu, menu);
         return true;
     }
+
     @Override
     protected void onStart() {
         super.onStart();
         majListBDEntreprise();
     }
 
-    public void majListBDEntreprise(){
+    public void majListBDEntreprise() {
         entreprises = stockage.getEntreprises();
 
         if (triParDate)
@@ -132,8 +133,8 @@ public class MenuActivity extends AppCompatActivity {
             return entreprises.size();
         }
 
-        public class StringViewHolder extends RecyclerView.ViewHolder 
-                implements View.OnClickListener{
+        public class StringViewHolder extends RecyclerView.ViewHolder
+                implements View.OnClickListener {
             TextView tv;
             final StringListAdapter adapter;
 
