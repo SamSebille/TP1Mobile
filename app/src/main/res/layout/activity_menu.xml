@@ -7,17 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".MenuActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
@@ -47,8 +36,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.447" />
+        app:layout_constraintTop_toBottomOf="@+id/include" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -56,8 +44,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
-        tools:layout_editor_absoluteX="1dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2">
 
         <ImageButton
             android:id="@+id/btn_affichage_toutes"
@@ -113,6 +101,7 @@
         app:layout_constraintEnd_toStartOf="@+id/btn_ajouter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
+        app:layout_constraintVertical_bias="0.425"
         app:srcCompat="@mipmap/btn_map" />
 
     <ImageView
@@ -127,5 +116,14 @@
         app:layout_constraintVertical_bias="0.4"
         app:srcCompat="@mipmap/btn_add"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
