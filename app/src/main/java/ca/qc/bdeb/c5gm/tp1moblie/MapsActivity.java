@@ -89,10 +89,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 
-       // LatLng position = getPosition("Montreal");
+       // LatLng position = getPosition("10739 rue berri, Montreal, H3L 2H3");
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney").icon(vectorToBitmap(R.drawable.logo_framage, Color.parseColor("#FF0000"))));
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney").icon(BitmapDescriptorFactory.fromResource(R.drawable.france)));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
     }
@@ -100,7 +100,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public LatLng getPosition(String adresse){
         LatLng position = null;
         if (Geocoder.isPresent()){
-       Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+       Geocoder geocoder = new Geocoder(this);
        List<Address> adresses;
             try {
                adresses = geocoder.getFromLocationName(adresse,2);
