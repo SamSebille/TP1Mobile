@@ -96,25 +96,39 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.setMyLocationEnabled(true);
         mMap.setOnMyLocationButtonClickListener((GoogleMap.OnMyLocationButtonClickListener) this);
         mMap.setOnMyLocationClickListener((GoogleMap.OnMyLocationClickListener) this);
+
         final LatLng[] userPosition = new LatLng[1];
        fusedLocationProviderClient.getLastLocation()
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
                     @Override
                     public void onSuccess(Location location) {
                         if (location != null) {
-                            Log.d("TEST", "onSuccess: " + location.getLatitude() + ", " + location.getLongitude());
+                            Log.d("USERLOCATION", "onSuccess: " + location.getLatitude() + ", " + location.getLongitude());
 
                             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 10));
                         }
                     }
                 });
 
-
+        ajoutMarcker();
         //LatLng position = getPosition("10739 rue berri, Montreal, H3L 2H3");
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney").icon(BitmapDescriptorFactory.fromResource(R.drawable.france)));
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+    }
+
+    private void ajoutMarcker() {
+        Log.d("AJOUTMARCKER", "ajoutMarcker: avant addMarcker");
+        if(entreprises != null){
+            for (Entreprise entreprise :entreprises) {
+                LatLng position = getPosition(entreprise.getAdresse());
+                Log.d("AJOUTMARCKER", "position: " + position);
+
+                mMap.addMarker(new MarkerOptions().position(position).title(entreprise.getNom()).icon(BitmapDescriptorFactory.fromResource(R.drawable.france)));
+            }
+        }
 
     }
 
