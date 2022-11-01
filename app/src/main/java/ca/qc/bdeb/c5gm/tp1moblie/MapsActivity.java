@@ -42,6 +42,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -57,6 +58,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
     private FusedLocationProviderClient fusedLocationProviderClient;
+    private Stockage stockage;
+    private static ArrayList<Entreprise> entreprises;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +70,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         setContentView(binding.getRoot());
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -83,7 +88,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     .findFragmentById(R.id.map_frame);
             mapFragment.getMapAsync(this);
         }
+
     }
+
 
     /**
      * Manipulates the map once available.
@@ -94,6 +101,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+
+
     @SuppressLint("MissingPermission")
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -102,7 +111,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.setOnMyLocationButtonClickListener((GoogleMap.OnMyLocationButtonClickListener) this);
         mMap.setOnMyLocationClickListener((GoogleMap.OnMyLocationClickListener) this);
         final LatLng[] userPosition = new LatLng[1];
-        fusedLocationProviderClient.getLastLocation()
+       fusedLocationProviderClient.getLastLocation()
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
                     @Override
                     public void onSuccess(Location location) {
@@ -114,46 +123,33 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     }
                 });
 
+
         //LatLng position = getPosition("10739 rue berri, Montreal, H3L 2H3");
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney").icon(BitmapDescriptorFactory.fromResource(R.drawable.france)));
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
     }
 
-    /**
-     * Methode pour recuperer des coordonées a partir d'une adresse
-     *
-     * @param adresse L'adresse dont on veut les coordonées
-     * @return Les cordonées de l'adresse
-     */
     public LatLng getPosition(String adresse) {
         LatLng position = null;
-        if (Geocoder.isPresent()) {
-            Geocoder geocoder = new Geocoder(this);
-            List<Address> adresses;
+        if (Geocoder.isPresent()){
+       Geocoder geocoder = new Geocoder(this);
+       List<Address> adresses;
             try {
-                adresses = geocoder.getFromLocationName(adresse, 2);
-                if (adresses.size() > 0) {
-                    Address resultAdrresse = adresses.get(0);
-                    position = new LatLng(resultAdrresse.getLatitude(), resultAdrresse.getLongitude());
-                    Log.d(TAG, "getPosition: " + position.toString());
-                }
-            } catch (IOException e) {
+               adresses = geocoder.getFromLocationName(adresse,2);
+               if (adresses.size()>0){
+                   Address resultAdrresse = adresses.get(0);
+                   position = new LatLng(resultAdrresse.getLatitude(),resultAdrresse.getLongitude());
+                   Log.d(TAG, "getPosition: " + position.toString());
+               }
+            }catch (IOException e){
                 e.printStackTrace();
             }
         }
 
         return position;
-    }
-
-    private BitmapDescriptor vectorToBitmap(@DrawableRes int id, @ColorInt int color) {
-        Drawable vectorDrawable = ResourcesCompat.getDrawable(getResources(), id, null);
-        Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        vectorDrawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-        DrawableCompat.setTint(vectorDrawable, color);
-        return BitmapDescriptorFactory.fromBitmap(bitmap);
     }
 
     @Override
@@ -162,13 +158,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (requestCode == LOCATION_REQUEST_CODE) {
             if (isPermissionAuth(permissions, grantResults, Manifest.permission.ACCESS_FINE_LOCATION) ||
                     isPermissionAuth(permissions, grantResults, Manifest.permission.ACCESS_COARSE_LOCATION)) {
-                activerLocalisation();
+
             }
         }
     }
 
-    private void activerLocalisation() {
-    }
+
 
     private boolean isPermissionAuth(String[] permissions, int[] grantResults, String accessFineLocation) {
         for (int i = 0; i < permissions.length; i++) {
