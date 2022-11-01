@@ -63,16 +63,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},LOCATION_PERMISSION_REQUEST_CODE);
-        }else{
-// Obtain the SupportMapFragment and get notified when the map is ready to be used.
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_PERMISSION_REQUEST_CODE);
+        } else {
+            // Obtain the SupportMapFragment and get notified when the map is ready to be used.
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.map_frame);
             mapFragment.getMapAsync(this);
         }
+
 
     }
 
@@ -96,8 +97,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.setOnMyLocationClickListener((GoogleMap.OnMyLocationClickListener) this);
 
 
-
-        //LatLng position = getPosition("10739 rue berri, Montreal, H3L 2H3");
+        LatLng position = getPosition("10739 rue berri, Montreal, H3L 2H3");
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney").icon(BitmapDescriptorFactory.fromResource(R.drawable.france)));
@@ -105,19 +105,19 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     }
 
-    public LatLng getPosition(String adresse){
+    public LatLng getPosition(String adresse) {
         LatLng position = null;
-        if (Geocoder.isPresent()){
-       Geocoder geocoder = new Geocoder(this);
-       List<Address> adresses;
+        if (Geocoder.isPresent()) {
+            Geocoder geocoder = new Geocoder(this);
+            List<Address> adresses;
             try {
-               adresses = geocoder.getFromLocationName(adresse,2);
-               if (adresses.size()>0){
-                   Address resultAdrresse = adresses.get(0);
-                   position = new LatLng(resultAdrresse.getLatitude(),resultAdrresse.getLongitude());
-                   Log.d(TAG, "getPosition: " + position.toString());
-               }
-            }catch (IOException e){
+                adresses = geocoder.getFromLocationName(adresse, 2);
+                if (adresses.size() > 0) {
+                    Address resultAdrresse = adresses.get(0);
+                    position = new LatLng(resultAdrresse.getLatitude(), resultAdrresse.getLongitude());
+                    Log.d(TAG, "getPosition: " + position.toString());
+                }
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -125,14 +125,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         return position;
     }
 
-    private BitmapDescriptor vectorToBitmap(@DrawableRes int id, @ColorInt int color){
-        Drawable vectorDrawable = ResourcesCompat.getDrawable(getResources(),id,null);
-        Bitmap bitmap  = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(),vectorDrawable.getIntrinsicHeight(),Bitmap.Config.ARGB_8888);
+    private BitmapDescriptor vectorToBitmap(@DrawableRes int id, @ColorInt int color) {
+        Drawable vectorDrawable = ResourcesCompat.getDrawable(getResources(), id, null);
+        Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
-        vectorDrawable.setBounds(0,0,canvas.getWidth(),canvas.getHeight());
-        DrawableCompat.setTint(vectorDrawable,color);
+        vectorDrawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        DrawableCompat.setTint(vectorDrawable, color);
         return BitmapDescriptorFactory.fromBitmap(bitmap);
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -148,7 +149,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private boolean isPermissionAuth(String[] permissions, int[] grantResults, String accessFineLocation) {
-        for (int i = 0; i <permissions.length;i++){
+        for (int i = 0; i < permissions.length; i++) {
             return (grantResults[i] == PackageManager.PERMISSION_GRANTED);
         }
         return false;
@@ -156,12 +157,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public boolean onMyLocationButtonClick() {
-        Toast.makeText(this,"MyLocationButton Clicked", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "MyLocationButton Clicked", Toast.LENGTH_SHORT).show();
         return false;
     }
 
     @Override
     public void onMyLocationClick(@NonNull Location location) {
-        Toast.makeText(this,"Ma LocationButton \n" + location, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Ma LocationButton \n" + location, Toast.LENGTH_LONG).show();
     }
 }
