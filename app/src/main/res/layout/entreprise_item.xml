@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -18,7 +19,7 @@
             android:paddingBottom="5dp">
 
             <ImageView
-                android:id="@+id/entreprise_icone"
+                android:id="@+id/ic_entreprise"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
@@ -32,7 +33,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:text="Nouvelle Entreprise"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -44,7 +44,8 @@
                 android:layout_weight="0"
                 android:backgroundTint="#00FFFFFF"
                 android:scaleType="centerCrop"
-                app:srcCompat="@mipmap/ic_favorite_border_24px" />
+                app:srcCompat="@mipmap/ic_favorite_border_24px"
+                tools:ignore="SpeakableTextPresentCheck" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

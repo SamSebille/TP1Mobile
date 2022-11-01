@@ -35,7 +35,7 @@ public class EntrepriseActivity extends AppCompatActivity {
     private Stockage stockage;
 
     private TextView nomEntreprise;
-    private static EditText[] saisies = new EditText[6];
+    private static final EditText[] saisies = new EditText[6];
     private static TextView date;
 
     // Si l'activité est une activité de modification
@@ -80,7 +80,7 @@ public class EntrepriseActivity extends AppCompatActivity {
 
         // L'affichage est adapté en foncton du type d'activité (creation ou modification)
         if (isModifier) {
-            getSupportActionBar().setTitle("Modifier entreprise");
+            getSupportActionBar().setTitle(R.string.title_activity_modifier_entreprise);
 
             System.out.println(extras.getInt("ENTREPRISE_ID"));
             entreprise_id = extras.getInt("ENTREPRISE_ID");
@@ -98,7 +98,7 @@ public class EntrepriseActivity extends AppCompatActivity {
             saisies[0].setVisibility(View.GONE);
 
         } else {
-            getSupportActionBar().setTitle("Ajouter entreprise");
+            getSupportActionBar().setTitle(R.string.title_activity_ajouter_entreprise);
 
             findViewById(R.id.btn_supprimer).setVisibility(View.GONE);
         }

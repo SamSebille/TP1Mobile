@@ -53,15 +53,17 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
-        tools:layout_editor_absoluteX="1dp">
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2">
 
         <ImageButton
-            android:id="@+id/btn_affichage_toutes"
+            android:id="@+id/btn_toutes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#00FFFFFF"
             app:srcCompat="@mipmap/btn_toutes"
+            tools:ignore="SpeakableTextPresentCheck"
             tools:srcCompat="@mipmap/btn_toutes" />
 
         <ImageButton
@@ -78,7 +80,7 @@
             android:layout_weight="1"
             android:backgroundTint="#00FFFFFF"
             android:onClick="onClickTriNom"
-            app:srcCompat="@android:drawable/ic_menu_sort_alphabetically" />
+            app:srcCompat="@mipmap/ic_az_sort" />
 
         <ImageButton
             android:id="@+id/btn_tri_date"
@@ -87,7 +89,7 @@
             android:layout_weight="1"
             android:backgroundTint="#00FFFFFF"
             android:onClick="onClickTriDate"
-            app:srcCompat="@android:drawable/ic_menu_sort_by_size" />
+            app:srcCompat="@mipmap/ic_date_sort" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

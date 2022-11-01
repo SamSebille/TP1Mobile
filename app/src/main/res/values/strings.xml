@@ -1,4 +1,23 @@
 <resources>
-    <string name="app_name">TP1moblie</string>
-    <string name="title_activity_maps">MapsActivity</string>
+    <string name="app_name">TP1mobile</string>
+    // Nom dans la ToolBar
+    <string name="title_activity_maps">Localisation entreprises</string>
+    <string name="title_activity_modifier_entreprise">Modifier entreprise</string>
+    <string name="title_activity_ajouter_entreprise">Ajouter entreprise</string>
+    <string name="title_activity_menu">Entreprises</string>
+    // String dans les layouts
+    <string name="login_username_hint">Nom d\'utilisateur</string>
+    <string name="login_password_hint">Mot de passe</string>
+    <string name="login_connexion">Connexion</string>
+    <string name="edit_entreprise_nouvelle">Nouvelle Entreprise</string>
+    <string name="edit_entreprise_nom_hint">Nom de l\'entreprise</string>
+    <string name="edit_entreprise_contact_hint">Nom du contact</string>
+    <string name="edit_entreprise_courriel_hint">Courriel</string>
+    <string name="edit_entreprise_telephone_hint">Telephone</string>
+    <string name="edit_entreprise_web_hint">Site Web</string>
+    <string name="edit_entreprise_adresse_hint">Adresse</string>
+    <string name="edit_entreprise_date_hint">Date du contact</string>
+    <string name="edit_entreprise_btn_date">Choisir date</string>
+    <string name="edit_entreprise_btn_valider">Valider</string>
+    <string name="edit_entreprise_btn_supprimer">Supprimer</string>
 </resources>

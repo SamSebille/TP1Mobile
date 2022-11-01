@@ -17,7 +17,6 @@ public class Stockage extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "TP1_entreprises.db"; // Nom du fichier de BD
     public static final int DB_VERSION = 1; // Numéro actuel de version de BD
-    private Context context;
     private static Stockage instance = null; //L’unique instance de DbHelper possible
 
     public static Stockage getInstance(Context context) {
@@ -29,7 +28,6 @@ public class Stockage extends SQLiteOpenHelper {
 
     private Stockage(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
-        this.context = context;
     }
 
     @Override
