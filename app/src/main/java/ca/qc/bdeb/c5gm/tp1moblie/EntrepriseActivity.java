@@ -43,6 +43,8 @@ public class EntrepriseActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         stockage = Stockage.getInstance(getApplicationContext());
 
@@ -54,7 +56,10 @@ public class EntrepriseActivity extends AppCompatActivity {
         saisies[4] = findViewById(R.id.sai_web);
         saisies[5] = findViewById(R.id.sai_adresse);
         date = findViewById(R.id.sai_date);
+
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(@NonNull Menu menu) {
@@ -71,7 +76,7 @@ public class EntrepriseActivity extends AppCompatActivity {
         isModifier = extras.getBoolean("ISMODIFIER");
 
         if (isModifier){
-            getSupportActionBar().setTitle(" Modifier entreprise");
+            getSupportActionBar().setTitle("Modifier entreprise");
 
             System.out.println(extras.getInt("ENTREPRISE_ID"));
             entreprise_id = extras.getInt("ENTREPRISE_ID");
