@@ -1,6 +1,7 @@
 package ca.qc.bdeb.c5gm.tp1moblie;
 
 import java.util.Comparator;
+import java.util.Locale;
 
 public class Entreprise {
     private int id;
@@ -80,7 +81,8 @@ public class Entreprise {
 
 class SortByName implements Comparator<Entreprise> {
     public int compare(Entreprise a, Entreprise b) {
-        return a.getNom().compareTo(b.getNom());
+        return a.getNom().toLowerCase(Locale.ROOT)
+                .compareTo(b.getNom().toLowerCase(Locale.ROOT));
     }
 }
 
