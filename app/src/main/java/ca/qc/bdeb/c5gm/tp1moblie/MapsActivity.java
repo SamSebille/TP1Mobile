@@ -4,18 +4,26 @@ import static android.content.ContentValues.TAG;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -32,8 +40,10 @@ import java.util.Locale;
 
 import ca.qc.bdeb.c5gm.tp1moblie.databinding.ActivityMapsBinding;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback{
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener {
 
+    private static final int LOCATION_REQUEST_CODE = 0;
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 0;
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
 
@@ -44,11 +54,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map_frame);
-        mapFragment.getMapAsync(this);
+
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},LOCATION_PERMISSION_REQUEST_CODE);
+        }else{
+// Obtain the SupportMapFragment and get notified when the map is ready to be used.
+            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                    .findFragmentById(R.id.map_frame);
+            mapFragment.getMapAsync(this);
+        }
     }
+
 
     /**
      * Manipulates the map once available.
@@ -60,9 +79,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * installed Google Play services and returned to the app.
      */
 
+    @SuppressLint("MissingPermission")
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.setMyLocationEnabled(true);
+        mMap.setOnMyLocationButtonClickListener((GoogleMap.OnMyLocationButtonClickListener) this);
+        mMap.setOnMyLocationClickListener((GoogleMap.OnMyLocationClickListener) this);
+
+
+
        // LatLng position = getPosition("Montreal");
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
@@ -99,6 +125,35 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DrawableCompat.setTint(vectorDrawable,color);
         return BitmapDescriptorFactory.fromBitmap(bitmap);
     }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == LOCATION_REQUEST_CODE) {
+            if (isPermissionAuth(permissions, grantResults, Manifest.permission.ACCESS_FINE_LOCATION) ||
+                    isPermissionAuth(permissions, grantResults, Manifest.permission.ACCESS_COARSE_LOCATION)) {
+                activerLocalisation();
+            }
+        }
+    }
 
+    private void activerLocalisation() {
+    }
 
+    private boolean isPermissionAuth(String[] permissions, int[] grantResults, String accessFineLocation) {
+        for (int i = 0; i <permissions.length;i++){
+            return (grantResults[i] == PackageManager.PERMISSION_GRANTED);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean onMyLocationButtonClick() {
+        Toast.makeText(this,"MyLocationButton Clicked", Toast.LENGTH_SHORT).show();
+        return false;
+    }
+
+    @Override
+    public void onMyLocationClick(@NonNull Location location) {
+        Toast.makeText(this,"Ma LocationButton \n" + location, Toast.LENGTH_LONG).show();
+    }
 }
