@@ -3,6 +3,9 @@ package ca.qc.bdeb.c5gm.tp1moblie;
 import java.util.Comparator;
 import java.util.Locale;
 
+/**
+ * Classe representant une entreprise ajoutée et modifiable par l'utilisateur.
+ */
 public class Entreprise {
     private int id;
     private String nom;
@@ -79,6 +82,9 @@ public class Entreprise {
 
 }
 
+/**
+ * Classe implémentant l'interface Comparator pour le tri par nom des entreprises
+ */
 class SortByName implements Comparator<Entreprise> {
     public int compare(Entreprise a, Entreprise b) {
         return a.getNom().toLowerCase(Locale.ROOT)
@@ -86,6 +92,9 @@ class SortByName implements Comparator<Entreprise> {
     }
 }
 
+/**
+ * Classe implémentant l'interface Comparator pour le tri par date de contact des entreprises
+ */
 class SortByDate implements Comparator<Entreprise> {
     public int compare(Entreprise a, Entreprise b) {
         int dateA, dateB;

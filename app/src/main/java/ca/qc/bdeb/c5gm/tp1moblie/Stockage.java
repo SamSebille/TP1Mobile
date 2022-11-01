@@ -10,10 +10,13 @@ import android.provider.BaseColumns;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+/**
+ * Classe qui implemente SQLiteOpenHelper afin de manipuler la bd locale.
+ */
 public class Stockage extends SQLiteOpenHelper {
 
-    private static final String DB_NAME = "app.db"; // Votre nom de fichier de BD
-    public static final int DB_VERSION = 1; // Votre numéro actuel de version de BD
+    private static final String DB_NAME = "TP1_entreprises.db"; // Nom du fichier de BD
+    public static final int DB_VERSION = 1; // Numéro actuel de version de BD
     private Context context;
     private static Stockage instance = null; //L’unique instance de DbHelper possible
 
@@ -191,5 +194,4 @@ public class Stockage extends SQLiteOpenHelper {
         public static final String ENTREPRISE_ADRESSE = "adresse";
         public static final String ENTREPRISE_DATE = "date";
     }
-
 }

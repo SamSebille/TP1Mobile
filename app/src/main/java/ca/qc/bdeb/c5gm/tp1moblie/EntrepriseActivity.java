@@ -23,17 +23,22 @@ import android.widget.Toast;
 import java.util.Calendar;
 import java.util.regex.Pattern;
 
+/**
+ * Classe pour les activités de création et de modification d'entreprise.
+ */
 public class EntrepriseActivity extends AppCompatActivity {
 
+    // L'entreprise a modifier
     private int entreprise_id;
-    private Stockage stockage;
-
     private Entreprise entreprise;
 
+    private Stockage stockage;
+
+    private TextView nomEntreprise;
     private static EditText[] saisies = new EditText[6];
     private static TextView date;
-    private TextView nomEntreprise;
 
+    // Si l'activité est une activité de modification
     private static boolean isModifier;
 
     @Override
@@ -56,10 +61,7 @@ public class EntrepriseActivity extends AppCompatActivity {
         saisies[4] = findViewById(R.id.sai_web);
         saisies[5] = findViewById(R.id.sai_adresse);
         date = findViewById(R.id.sai_date);
-
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(@NonNull Menu menu) {
@@ -72,10 +74,12 @@ public class EntrepriseActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        // On recupere l'entreprise cliquée
         Bundle extras = getIntent().getExtras();
         isModifier = extras.getBoolean("ISMODIFIER");
 
-        if (isModifier){
+        // L'affichage est adapté en foncton du type d'activité (creation ou modification)
+        if (isModifier) {
             getSupportActionBar().setTitle("Modifier entreprise");
 
             System.out.println(extras.getInt("ENTREPRISE_ID"));
@@ -98,29 +102,32 @@ public class EntrepriseActivity extends AppCompatActivity {
 
             findViewById(R.id.btn_supprimer).setVisibility(View.GONE);
         }
-
-
     }
 
-    public void onClickCourriel(View view){
+    // Intent pour l'envoi de courriel
+    public void onClickCourriel(View view) {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:"));
         intent.putExtra(Intent.EXTRA_EMAIL, saisies[2].getText().toString());
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
-
     }
-    public void onClickTelephone(View view){
+
+    // Intent pour les appels telephoniques
+    public void onClickTelephone(View view) {
         Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse("tel:" + saisies[3].getText().toString()));
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
     }
-    public void onClickWeb(View view){
+
+    // Intent pour l'ouverture d'une page web
+    public void onClickWeb(View view) {
         Uri webpage;
 
+        // Si l'utilisateur n'as pas ajouté le http://, on le rajoute
         if (saisies[4].getText().toString().startsWith("http://")
                 || saisies[4].getText().toString().startsWith("https://"))
             webpage = Uri.parse(saisies[4].getText().toString());
@@ -136,21 +143,28 @@ public class EntrepriseActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Methode pour valider les changements ou la creation d'une entreprise
+     *
+     * @param view
+     */
     public void onClickValider(View view) {
 
         boolean isChampVide = false;
 
-        for (EditText champ : saisies){
-            if (champ.getText().toString().trim().length() == 0 && !(isModifier && champ == saisies[0])){
+        // On vérifie si un champ est vide
+        for (EditText champ : saisies) {
+            if (champ.getText().toString().trim().length() == 0 && !(isModifier && champ == saisies[0])) {
                 isChampVide = true;
                 break;
             }
         }
 
+        // format DD/MM/YYYY
         Pattern dateRegex = Pattern.compile("\\d{2}/\\d{2}/\\d{4}");
 
-        if (!isChampVide && dateRegex.matcher(date.getText().toString()).matches()){
-            if (isModifier){
+        if (!isChampVide && dateRegex.matcher(date.getText().toString()).matches()) {
+            if (isModifier) {
                 Entreprise entreprise = new Entreprise(
                         entreprise_id, nomEntreprise.getText().toString(), saisies[1].getText().toString(),
                         saisies[2].getText().toString(), saisies[3].getText().toString(),
@@ -187,6 +201,11 @@ public class EntrepriseActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Methode pour la suppression de l'entreprise en cours de modification
+     *
+     * @param view
+     */
     public void onClickSupprimer(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);

@@ -19,6 +19,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+/**
+ * Classe pour le menu principal de l'application, affichant la liste d'entreprise
+ * et redirigant vers les autres pages.
+ */
 public class MenuActivity extends AppCompatActivity {
 
     private Stockage stockage;
@@ -28,6 +32,7 @@ public class MenuActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private StringListAdapter entrepriseListAdapter;
 
+    // Si les entreprise doivent être triées par date, triées par nom par defaut.
     private static boolean triParDate;
 
     @Override
@@ -41,8 +46,6 @@ public class MenuActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Entreprises");
 
         stockage = Stockage.getInstance(getApplicationContext());
-
-        entreprises = stockage.getEntreprises();
 
         // initialiser le recyclerView
         recyclerView = findViewById(R.id.liste_entreprises);
@@ -64,9 +67,13 @@ public class MenuActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        // On met la liste a jour a chaque lancement de l'activité.
         majListBDEntreprise();
     }
 
+    /**
+     * Met a jour le tableau d'entreprise et actualise RecycleView.
+     */
     public void majListBDEntreprise() {
         entreprises = stockage.getEntreprises();
 
@@ -79,7 +86,6 @@ public class MenuActivity extends AppCompatActivity {
 
         if (entreprises != null)
             entrepriseListAdapter.notifyDataSetChanged();
-
     }
 
     public void onClickTriNom(View view) {
@@ -103,6 +109,9 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Adapter pour la RecycleView
+     */
     public class StringListAdapter extends
             RecyclerView.Adapter<StringListAdapter.StringViewHolder> {
 
@@ -153,17 +162,13 @@ public class MenuActivity extends AppCompatActivity {
                 // Accède l'item dans stringList avec l'info de position.
                 Entreprise element = entreprises.get(mPosition);
 
+                // On passe les informations de l'entreprise a l'activité de modification.
                 Intent intent = new Intent(getBaseContext(), EntrepriseActivity.class);
                 intent.putExtra("ENTREPRISE_ID", element.getId());
                 intent.putExtra("ISMODIFIER", true);
                 startActivity(intent);
-
-                majListBDEntreprise();
             }
-
-
         }
-
     }
 }
 

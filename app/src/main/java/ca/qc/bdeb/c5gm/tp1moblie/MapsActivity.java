@@ -47,6 +47,9 @@ import java.util.Locale;
 
 import ca.qc.bdeb.c5gm.tp1moblie.databinding.ActivityMapsBinding;
 
+/**
+ * Classe qui implemente le fragment de Google Map afin d'afficher une carte interactive
+ */
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener {
 
     private static final int LOCATION_REQUEST_CODE = 0;
@@ -54,7 +57,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
     private FusedLocationProviderClient fusedLocationProviderClient;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +66,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         setContentView(binding.getRoot());
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -82,9 +83,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     .findFragmentById(R.id.map_frame);
             mapFragment.getMapAsync(this);
         }
-
     }
-
 
     /**
      * Manipulates the map once available.
@@ -95,8 +94,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
-
-
     @SuppressLint("MissingPermission")
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -105,40 +102,44 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.setOnMyLocationButtonClickListener((GoogleMap.OnMyLocationButtonClickListener) this);
         mMap.setOnMyLocationClickListener((GoogleMap.OnMyLocationClickListener) this);
         final LatLng[] userPosition = new LatLng[1];
-       fusedLocationProviderClient.getLastLocation()
+        fusedLocationProviderClient.getLastLocation()
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-            @Override
-            public void onSuccess(Location location) {
-                if (location != null) {
-                    Log.d("TEST", "onSuccess: " + location.getLatitude() +", " + location.getLongitude());
+                    @Override
+                    public void onSuccess(Location location) {
+                        if (location != null) {
+                            Log.d("TEST", "onSuccess: " + location.getLatitude() + ", " + location.getLongitude());
 
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()),10));
-                }
-            }
-        });
-
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 10));
+                        }
+                    }
+                });
 
         //LatLng position = getPosition("10739 rue berri, Montreal, H3L 2H3");
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney").icon(BitmapDescriptorFactory.fromResource(R.drawable.france)));
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-
     }
 
+    /**
+     * Methode pour recuperer des coordonées a partir d'une adresse
+     *
+     * @param adresse L'adresse dont on veut les coordonées
+     * @return Les cordonées de l'adresse
+     */
     public LatLng getPosition(String adresse) {
         LatLng position = null;
-        if (Geocoder.isPresent()){
-       Geocoder geocoder = new Geocoder(this);
-       List<Address> adresses;
+        if (Geocoder.isPresent()) {
+            Geocoder geocoder = new Geocoder(this);
+            List<Address> adresses;
             try {
-               adresses = geocoder.getFromLocationName(adresse,2);
-               if (adresses.size()>0){
-                   Address resultAdrresse = adresses.get(0);
-                   position = new LatLng(resultAdrresse.getLatitude(),resultAdrresse.getLongitude());
-                   Log.d(TAG, "getPosition: " + position.toString());
-               }
-            }catch (IOException e){
+                adresses = geocoder.getFromLocationName(adresse, 2);
+                if (adresses.size() > 0) {
+                    Address resultAdrresse = adresses.get(0);
+                    position = new LatLng(resultAdrresse.getLatitude(), resultAdrresse.getLongitude());
+                    Log.d(TAG, "getPosition: " + position.toString());
+                }
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -146,14 +147,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         return position;
     }
 
-    private BitmapDescriptor vectorToBitmap(@DrawableRes int id, @ColorInt int color){
-        Drawable vectorDrawable = ResourcesCompat.getDrawable(getResources(),id,null);
-        Bitmap bitmap  = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(),vectorDrawable.getIntrinsicHeight(),Bitmap.Config.ARGB_8888);
+    private BitmapDescriptor vectorToBitmap(@DrawableRes int id, @ColorInt int color) {
+        Drawable vectorDrawable = ResourcesCompat.getDrawable(getResources(), id, null);
+        Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
-        vectorDrawable.setBounds(0,0,canvas.getWidth(),canvas.getHeight());
-        DrawableCompat.setTint(vectorDrawable,color);
+        vectorDrawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        DrawableCompat.setTint(vectorDrawable, color);
         return BitmapDescriptorFactory.fromBitmap(bitmap);
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
