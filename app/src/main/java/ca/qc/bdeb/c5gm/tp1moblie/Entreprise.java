@@ -1,5 +1,7 @@
 package ca.qc.bdeb.c5gm.tp1moblie;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.Comparator;
 import java.util.Locale;
 
@@ -15,6 +17,7 @@ public class Entreprise {
     private String web;
     private String adresse;
     private String date;
+    private LatLng position;
     private boolean favori;
 
     public Entreprise(String nom, String contact, String courriel, String telephone, String web, String adresse, String date) {
