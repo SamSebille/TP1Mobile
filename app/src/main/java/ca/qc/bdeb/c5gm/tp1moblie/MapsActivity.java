@@ -1,12 +1,5 @@
 package ca.qc.bdeb.c5gm.tp1moblie;
 
-import static android.content.ContentValues.TAG;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
@@ -15,7 +8,11 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -28,8 +25,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,20 +95,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_PERMISSION_REQUEST_CODE);
         } else {
-            localisationUser();
             mMap.setMyLocationEnabled(true);
+            localisationUser();
+
         }
-
-
-        //Log.d("onMapReady", "onMapReady: " + getPosition("YUL"));
         ajoutMarcker();
-
-        //LatLng position = getPosition("10739 rue berri, Montreal, H3L 2H3");
-        // Add a marker in Sydney and move the camera
-        // LatLng sydney = new LatLng(-34, 151);
-        // mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney").icon(BitmapDescriptorFactory.fromResource(R.drawable.france)));
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-
     }
 
     @SuppressLint("MissingPermission")
@@ -136,11 +122,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private void ajoutMarcker() {
         Log.d("AJOUTMARCKER", "ajoutMarcker: avant addMarcker");
+        Geocoder geocoder = new Geocoder(this);
         if (entreprises != null) {
             for (Entreprise entreprise : entreprises) {
-                LatLng position = getPosition(entreprise.getAdresse());
+                LatLng position = getPosition(entreprise.getAdresse(),geocoder);
                 Log.d("AJOUTMARCKER", "position: " + position);
-                if (position != null){
+                if (position != null) {
                     mMap.addMarker(new MarkerOptions().position(position).title(entreprise.getNom()).icon(BitmapDescriptorFactory.fromResource(R.drawable.france)));
                 }
             }
@@ -148,30 +135,25 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     }
 
-    public LatLng getPosition(String adresse) {
+    public LatLng getPosition(String adresse, Geocoder geocoder) {
         LatLng position = null;
         if (Geocoder.isPresent()) {
-            Geocoder geocoder = new Geocoder(this);
             List<Address> adresses = null;
             try {
-                adresses = geocoder.getFromLocationName(adresse, 2);
+                adresses = geocoder.getFromLocationName(adresse,1);
                 Log.d("GETPOSITION", "getPosition: " + adresses);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
                 if (adresses != null) {
                     if (adresses.size() > 0) {
                         Address resultAdrresse = adresses.get(0);
                         position = new LatLng(resultAdrresse.getLatitude(), resultAdrresse.getLongitude());
-                        Log.d("GETPOSITION", "getPosition: " + position.toString());
+                        Log.d("GETPOSITION", "getPosition: " + resultAdrresse.toString());
                     }
                 }
-
-                Log.d("GETPOSITION", "getPosition: " + adresses);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
+            Log.d("GETPOSITION", "getPosition: " + adresses);
         }
-
         return position;
     }
 
