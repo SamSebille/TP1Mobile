@@ -196,12 +196,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public boolean onMyLocationButtonClick() {
-        Toast.makeText(this, "MyLocationButton Clicked", Toast.LENGTH_SHORT).show();
         return false;
     }
 
     @Override
     public void onMyLocationClick(@NonNull Location location) {
-        Toast.makeText(this, "Ma LocationButton \n" + location, Toast.LENGTH_LONG).show();
     }
 }
