@@ -254,6 +254,7 @@ public class EntrepriseActivity extends AppCompatActivity {
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
             // On veut le format DD/MM/YYYY
+            month++;
             String sday = day < 10 ? "0" + day : "" + day;
             String smonth = month < 10 ? "0" + month : "" + month;
 
