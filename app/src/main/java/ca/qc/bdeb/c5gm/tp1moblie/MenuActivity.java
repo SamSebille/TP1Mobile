@@ -82,6 +82,7 @@ public class MenuActivity extends AppCompatActivity {
         else
             entreprises.sort(new SortByName());
 
+        // Ne marche pas sans actualiser la liste de l'adapter à la main
         entrepriseListAdapter.entreprises = entreprises;
 
         if (entreprises != null)
