@@ -109,18 +109,14 @@ public class EntrepriseActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:"));
         intent.putExtra(Intent.EXTRA_EMAIL, saisies[2].getText().toString());
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivity(intent);
-        }
+        startActivity(intent);
     }
 
     // Intent pour les appels telephoniques
     public void onClickTelephone(View view) {
         Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse("tel:" + saisies[3].getText().toString()));
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivity(intent);
-        }
+        startActivity(intent);
     }
 
     // Intent pour l'ouverture d'une page web
@@ -135,12 +131,7 @@ public class EntrepriseActivity extends AppCompatActivity {
             webpage = Uri.parse("http://" + saisies[4].getText().toString());
 
         Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivity(intent);
-        } else {
-            Toast.makeText(this,
-                    "Le format web est incorrect.", Toast.LENGTH_LONG).show();
-        }
+        startActivity(intent);
     }
 
     /**
