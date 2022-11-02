@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FromageStage</string>
+    <string name="app_name">Stage Fromage</string>
     // Nom dans la ToolBar
     <string name="title_activity_maps">Localisation entreprises</string>
     <string name="title_activity_modifier_entreprise">Modifier entreprise</string>
