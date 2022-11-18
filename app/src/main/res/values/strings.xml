@@ -5,10 +5,18 @@
     <string name="title_activity_modifier_entreprise">Modifier entreprise</string>
     <string name="title_activity_ajouter_entreprise">Ajouter entreprise</string>
     <string name="title_activity_menu">Entreprises</string>
-    // String dans les layouts
+    // Page de connexion
     <string name="login_username_hint">Nom d\'utilisateur</string>
     <string name="login_password_hint">Mot de passe</string>
     <string name="login_connexion">Connexion</string>
+    <string name="login_inscription">Vous n’avez pas de compte ? Inscrivez-vous</string>
+    // Page d'inscription
+    <string name="inscr_titre">Inscription</string>
+    <string name="inscr_prenom_hint">Prenom</string>
+    <string name="inscr_nom_hint">Nom</string>
+    <string name="inscr_email_hint">Courriel</string>
+    <string name="inscr_password_hint">Mot de passe</string>
+    // Ajout et modification d'entreprise
     <string name="edit_entreprise_nouvelle">Nouvelle Entreprise</string>
     <string name="edit_entreprise_nom_hint">Nom de l\'entreprise</string>
     <string name="edit_entreprise_contact_hint">Nom du contact</string>

@@ -31,6 +31,10 @@ public interface LoginAPI {
     Call<ResponseBody> testerConnexion
             (@Header("Authorization") String token, @Body HashMap<String, Object> userId);
 
+    @POST("/auth/inscription")
+    Call<ResponseBody> inscription
+            (@Header("Authorization") String token, @Body String[] userInfos);
+
     @GET("/compte/getcomptesetudiantsactifs")
     Call<List<ComptePOJO>> getComptesEleves
             (@Header("Authorization") String token);
@@ -38,5 +42,4 @@ public interface LoginAPI {
     @DELETE("/stage/{idStage}")
     Call<ResponseBody> supprStage
             (@Header("Authorization") String token, @Path("idStage") String idStage);
-
 }

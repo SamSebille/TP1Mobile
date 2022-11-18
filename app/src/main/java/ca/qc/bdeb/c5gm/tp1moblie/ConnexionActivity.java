@@ -19,6 +19,10 @@ public class ConnexionActivity extends AppCompatActivity {
         startActivity(new Intent(ConnexionActivity.this, MenuActivity.class));
     }
 
+    public void onClickInscription(View view) {
+        startActivity(new Intent(ConnexionActivity.this, InscriptionActivity.class));
+    }
+
     @Override
     public void onBackPressed() {
 

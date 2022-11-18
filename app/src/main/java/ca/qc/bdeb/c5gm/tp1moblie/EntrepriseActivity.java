@@ -1,11 +1,5 @@
 package ca.qc.bdeb.c5gm.tp1moblie;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.DialogFragment;
-
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -19,6 +13,12 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.DialogFragment;
 
 import java.util.Calendar;
 import java.util.regex.Pattern;
@@ -141,55 +141,50 @@ public class EntrepriseActivity extends AppCompatActivity {
      */
     public void onClickValider(View view) {
 
-        boolean isChampVide = false;
-
         // On vérifie si un champ est vide
         for (EditText champ : saisies) {
             if (champ.getText().toString().trim().length() == 0 && !(isModifier && champ == saisies[0])) {
-                isChampVide = true;
-                break;
+                Toast.makeText(this,
+                        "Veuillez remplir tout les champs.", Toast.LENGTH_LONG).show();
+                return;
             }
         }
 
         // format DD/MM/YYYY
         Pattern dateRegex = Pattern.compile("\\d{2}/\\d{2}/\\d{4}");
 
-        if (!isChampVide && dateRegex.matcher(date.getText().toString()).matches()) {
-            if (isModifier) {
-                Entreprise entreprise = new Entreprise(
-                        entreprise_id, nomEntreprise.getText().toString(), saisies[1].getText().toString(),
-                        saisies[2].getText().toString(), saisies[3].getText().toString(),
-                        saisies[4].getText().toString(), saisies[5].getText().toString(),
-                        date.getText().toString());
-
-                stockage.updateEntreprise(entreprise);
-
-                Toast.makeText(this,
-                        "Modifications enregistrée.", Toast.LENGTH_LONG).show();
-                finish();
-
-            } else {
-                Entreprise entreprise = new Entreprise(
-                        saisies[0].getText().toString(), saisies[1].getText().toString(),
-                        saisies[2].getText().toString(), saisies[3].getText().toString(),
-                        saisies[4].getText().toString(), saisies[5].getText().toString(),
-                        date.getText().toString());
-
-                stockage.ajouterEntreprise(entreprise);
-
-                Toast.makeText(this,
-                        "Entreprise enregistrée.", Toast.LENGTH_LONG).show();
-                finish();
-            }
-
-        } else if (isChampVide) {
+        if (!dateRegex.matcher(date.getText().toString()).matches()) {
             Toast.makeText(this,
-                    "Veuillez remplir tout les champs.", Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(this,
-                    "Veuillez insérer un bon format de date (DD/MM/YYYY)",
-                    Toast.LENGTH_LONG).show();
+                    "Veuillez insérer un bon format de date (DD/MM/YYYY)", Toast.LENGTH_LONG).show();
+            return;
         }
+
+        Entreprise entreprise;
+        if (isModifier) {
+            entreprise = new Entreprise(
+                    entreprise_id, nomEntreprise.getText().toString(), saisies[1].getText().toString(),
+                    saisies[2].getText().toString(), saisies[3].getText().toString(),
+                    saisies[4].getText().toString(), saisies[5].getText().toString(),
+                    date.getText().toString());
+
+            stockage.updateEntreprise(entreprise);
+
+            Toast.makeText(this,
+                    "Modifications enregistrée.", Toast.LENGTH_LONG).show();
+
+        } else {
+            entreprise = new Entreprise(
+                    saisies[0].getText().toString(), saisies[1].getText().toString(),
+                    saisies[2].getText().toString(), saisies[3].getText().toString(),
+                    saisies[4].getText().toString(), saisies[5].getText().toString(),
+                    date.getText().toString());
+
+            stockage.ajouterEntreprise(entreprise);
+
+            Toast.makeText(this,
+                    "Entreprise enregistrée.", Toast.LENGTH_LONG).show();
+        }
+        finish();
     }
 
     /**

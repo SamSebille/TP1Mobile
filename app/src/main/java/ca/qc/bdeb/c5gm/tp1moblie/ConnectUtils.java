@@ -86,4 +86,26 @@ public class ConnectUtils {
                     }
                 });
     }
+
+    public static boolean signIn(String[] body){
+        final boolean[] connexionReussie = new boolean[1];
+
+        client.inscription(ConnectUtils.authToken, body).enqueue(
+                new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.code() != 200) {
+                            connexionReussie[0] = true;
+                        }
+                        connexionReussie[0] =  false;
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        connexionReussie[0] =  false;
+                    }
+                }
+        );
+        return connexionReussie[0];
+    }
 }
