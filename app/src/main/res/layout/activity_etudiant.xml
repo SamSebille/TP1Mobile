@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EntrepriseActivity">
+    tools:context=".EtudiantActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,7 +27,8 @@
                 android:orientation="vertical"
                 android:paddingLeft="15dp"
                 android:paddingTop="20dp"
-                android:paddingRight="15dp">
+                android:paddingRight="15dp"
+                >
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -35,7 +36,7 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:id="@+id/ic_entreprise"
+                        android:id="@+id/ic_etudiant"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_marginRight="5dp"
@@ -53,7 +54,7 @@
                         android:textStyle="bold" />
                 </LinearLayout>
 
-                <EditText
+                <TextView
                     android:id="@+id/sai_nom_entreprise"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -65,7 +66,7 @@
                     android:minHeight="48dp"
                     android:textColorHint="#757575" />
 
-                <EditText
+                <TextView
                     android:id="@+id/sai_contact"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -83,7 +84,7 @@
                     android:layout_marginTop="20dp"
                     android:orientation="horizontal">
 
-                    <EditText
+                    <TextView
                         android:id="@+id/sai_courriel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -112,7 +113,7 @@
                     android:layout_marginTop="20dp"
                     android:orientation="horizontal">
 
-                    <EditText
+                    <TextView
                         android:id="@+id/sai_telephone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -140,7 +141,7 @@
                     android:layout_marginTop="20dp"
                     android:orientation="horizontal">
 
-                    <EditText
+                    <TextView
                         android:id="@+id/sai_web"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -162,7 +163,7 @@
                         tools:ignore="SpeakableTextPresentCheck" />
                 </LinearLayout>
 
-                <EditText
+                <TextView
                     android:id="@+id/sai_adresse"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -174,49 +175,7 @@
                     android:minHeight="48dp"
                     android:textColorHint="#757575" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="20dp"
-                    android:orientation="horizontal">
 
-                    <Button
-                        android:id="@+id/btn_date"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
-                        android:onClick="showDatePickerDialog"
-                        android:text="@string/edit_entreprise_btn_date" />
-
-                    <TextView
-                        android:id="@+id/sai_date"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:text="@string/edit_entreprise_date_hint"
-                        android:textColorHint="#757575"
-                        android:textSize="20sp" />
-
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/btn_valider"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:onClick="onClickValider"
-                    android:text="@string/edit_entreprise_btn_valider" />
-
-                <Button
-                    android:id="@+id/btn_supprimer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="15dp"
-                    android:backgroundTint="#D11818"
-                    android:onClick="onClickSupprimer"
-                    android:text="@string/edit_entreprise_btn_supprimer" />
 
             </LinearLayout>
         </ScrollView>

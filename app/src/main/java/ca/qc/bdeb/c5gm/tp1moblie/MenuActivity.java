@@ -1,12 +1,5 @@
 package ca.qc.bdeb.c5gm.tp1moblie;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
-
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +9,12 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
@@ -151,7 +150,7 @@ public class MenuActivity extends AppCompatActivity {
 
             public StringViewHolder(@NonNull View itemView, StringListAdapter adapter) {
                 super(itemView);
-                tv = (TextView) itemView.findViewById(R.id.menu_nom_entreprise);
+                tv = (TextView) itemView.findViewById(R.id.menu_nom_etudiant);
                 tv.setOnClickListener(this);
                 this.adapter = adapter;
             }
