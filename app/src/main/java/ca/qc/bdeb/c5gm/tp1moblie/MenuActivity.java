@@ -1,12 +1,5 @@
 package ca.qc.bdeb.c5gm.tp1moblie;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
-
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +8,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
@@ -136,7 +136,7 @@ public class MenuActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(@NonNull StringViewHolder holder, int position) {
             Entreprise entreprise = entreprises.get(position);
-            holder.tv.setText(entreprise.getNom());
+            holder.tv_entreprise.setText(entreprise.getNom());
         }
 
         @Override
@@ -144,30 +144,50 @@ public class MenuActivity extends AppCompatActivity {
             return entreprises.size();
         }
 
-        public class StringViewHolder extends RecyclerView.ViewHolder
-                implements View.OnClickListener {
-            TextView tv;
+        public class StringViewHolder extends RecyclerView.ViewHolder {
+
+            private TextView tv_entreprise;
+            private ImageButton ib_favori;
+
+            private View.OnClickListener onClickEntreprise = new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Récupère la position de l'item item clické.
+                    int mPosition = getLayoutPosition();
+                    // Accède l'item dans stringList avec l'info de position.
+                    Entreprise element = entreprises.get(mPosition);
+
+                    // On passe les informations de l'entreprise a l'activité de modification.
+                    Intent intent = new Intent(getBaseContext(), EntrepriseActivity.class);
+                    intent.putExtra("ENTREPRISE_ID", element.getId());
+                    intent.putExtra("ISMODIFIER", true);
+                    startActivity(intent);
+                }
+            };
+
+            private View.OnClickListener onClickFavori = new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Récupère la position de l'item item clické.
+                    int mPosition = getLayoutPosition();
+                    // Accède l'item dans stringList avec l'info de position.
+                    Entreprise element = entreprises.get(mPosition);
+
+                    element.setFavori(true);
+                    ib_favori.setImageResource(R.mipmap.btn_favoris);
+                }
+            };
             final StringListAdapter adapter;
 
             public StringViewHolder(@NonNull View itemView, StringListAdapter adapter) {
                 super(itemView);
-                tv = (TextView) itemView.findViewById(R.id.menu_nom_entreprise);
-                tv.setOnClickListener(this);
+                tv_entreprise = (TextView) itemView.findViewById(R.id.menu_nom_entreprise);
+                tv_entreprise.setOnClickListener(onClickEntreprise);
+
+                ib_favori = itemView.findViewById(R.id.btn_favori);
+                ib_favori.setOnClickListener(onClickFavori);
+
                 this.adapter = adapter;
-            }
-
-            @Override
-            public void onClick(View view) {
-                // Récupère la position de l'item item clické.
-                int mPosition = getLayoutPosition();
-                // Accède l'item dans stringList avec l'info de position.
-                Entreprise element = entreprises.get(mPosition);
-
-                // On passe les informations de l'entreprise a l'activité de modification.
-                Intent intent = new Intent(getBaseContext(), EntrepriseActivity.class);
-                intent.putExtra("ENTREPRISE_ID", element.getId());
-                intent.putExtra("ISMODIFIER", true);
-                startActivity(intent);
             }
         }
     }
