@@ -28,7 +28,7 @@
                 app:srcCompat="@mipmap/btn_profil" />
 
             <TextView
-                android:id="@+id/menu_nom_etudiant"
+                android:id="@+id/menu_nom_entreprise"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
