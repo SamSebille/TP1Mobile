@@ -53,7 +53,7 @@ public class EntrepriseActivity extends AppCompatActivity {
 
         stockage = Stockage.getInstance(getApplicationContext());
 
-        nomEntreprise = findViewById(R.id.menu_nom_entreprise);
+        nomEntreprise = findViewById(R.id.menu_nom_etudiant);
         saisies[0] = findViewById(R.id.sai_nom_entreprise);
         saisies[1] = findViewById(R.id.sai_contact);
         saisies[2] = findViewById(R.id.sai_courriel);

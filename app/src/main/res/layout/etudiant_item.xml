@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -29,7 +29,16 @@
 
             <TextView
                 android:id="@+id/menu_nom_etudiant"
-                android:layout_width="wrap_content"
+                android:layout_width="214dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/nombre_entreprise"
+                android:layout_width="78dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
@@ -44,9 +53,10 @@
                 android:layout_weight="0"
                 android:backgroundTint="#00FFFFFF"
                 android:scaleType="centerCrop"
-                app:srcCompat="@mipmap/ic_favorite_border_24px"
+                app:srcCompat="@mipmap/ic_close_24px"
                 tools:ignore="SpeakableTextPresentCheck" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
