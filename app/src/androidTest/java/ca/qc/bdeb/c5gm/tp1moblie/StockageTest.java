@@ -31,7 +31,7 @@ public class StockageTest {
 
     @Test
     public void ajouterEntreprise() {
-        Entreprise entreprise = new Entreprise("", "", "", "", "", "", "");
+        Entreprise entreprise = new Entreprise("", "", "", "", "", "", "", false);
         boolean ajout = true;
         try {
             stockage.ajouterEntreprise(entreprise);
@@ -43,7 +43,7 @@ public class StockageTest {
 
     @Test
     public void getEntreprises() {
-        Entreprise entreprise1 = new Entreprise("", "", "", "", "", "", "");
+        Entreprise entreprise1 = new Entreprise("", "", "", "", "", "", "", false);
         stockage.ajouterEntreprise(entreprise1);
         ArrayList<Entreprise> entreprises = stockage.getEntreprises();
         Truth.assertThat(entreprises).isNotNull();
@@ -51,7 +51,7 @@ public class StockageTest {
 
     @Test
     public void getEntreprise() {
-        Entreprise entreprise1 = new Entreprise("", "", "", "", "", "", "");
+        Entreprise entreprise1 = new Entreprise("", "", "", "", "", "", "", false);
         stockage.ajouterEntreprise(entreprise1);
         Entreprise entreprises = stockage.getEntreprise(1);
         Truth.assertThat(entreprises).isNotNull();
@@ -59,10 +59,10 @@ public class StockageTest {
 
     @Test
     public void updateEntreprise() {
-        Entreprise entreprise = new Entreprise("", "", "", "", "", "", "");
+        Entreprise entreprise = new Entreprise("", "", "", "", "", "", "", false);
         stockage.ajouterEntreprise(entreprise);
         int id = entreprise.getId();
-        entreprise = new Entreprise(id, "test", "test", "test", "test", "test", "yul", "?");
+        entreprise = new Entreprise(id, "test", "test", "test", "test", "test", "yul", "?", false);
         stockage.updateEntreprise(entreprise);
 
         Entreprise entreprise1 = stockage.getEntreprise(id);
@@ -80,7 +80,7 @@ public class StockageTest {
 
     @Test
     public void deleteEntreprise() {
-        Entreprise entreprise = new Entreprise("", "", "", "", "", "", "");
+        Entreprise entreprise = new Entreprise("", "", "", "", "", "", "", false);
         stockage.ajouterEntreprise(entreprise);
         int id = entreprise.getId();
         boolean isSupr = false;

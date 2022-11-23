@@ -137,6 +137,10 @@ public class MenuActivity extends AppCompatActivity {
         public void onBindViewHolder(@NonNull StringViewHolder holder, int position) {
             Entreprise entreprise = entreprises.get(position);
             holder.tv_entreprise.setText(entreprise.getNom());
+            if (entreprise.isFavori())
+                holder.ib_favori.setImageResource(R.mipmap.ic_favorite_24px);
+            else
+                holder.ib_favori.setImageResource(R.mipmap.ic_favorite_border_24px);
         }
 
         @Override
@@ -173,8 +177,15 @@ public class MenuActivity extends AppCompatActivity {
                     // Accède l'item dans stringList avec l'info de position.
                     Entreprise element = entreprises.get(mPosition);
 
-                    element.setFavori(true);
-                    ib_favori.setImageResource(R.mipmap.btn_favoris);
+                    if (element.isFavori()){
+                        element.setFavori(false);
+                        ib_favori.setImageResource(R.mipmap.ic_favorite_border_24px);
+                        stockage.updateFavori(element);
+                    } else {
+                        element.setFavori(true);
+                        ib_favori.setImageResource(R.mipmap.ic_favorite_24px);
+                        stockage.updateFavori(element);
+                    }
                 }
             };
             final StringListAdapter adapter;

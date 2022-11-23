@@ -57,20 +57,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2">
 
-        <ImageButton
-            android:id="@+id/btn_toutes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#00FFFFFF"
-            app:srcCompat="@mipmap/btn_toutes"
-            tools:srcCompat="@mipmap/btn_toutes" />
+        <RadioGroup
+            android:id="@+id/toggle"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/black_out_line"
+            android:checkedButton="@+id/btn_toutes"
+            android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/btn_favoris"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#00FFFFFF"
-            app:srcCompat="@mipmap/btn_favoris" />
+            <RadioButton
+                android:id="@+id/btn_toutes"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:background="@drawable/toggle_widget_background"
+                android:button="@null"
+                android:gravity="center"
+                android:text="Toutes"
+                android:textColor="@drawable/toggle_widget_text" />
+
+            <RadioButton
+                android:id="@+id/btn_favoris"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:background="@drawable/toggle_widget_background"
+                android:button="@null"
+                android:gravity="center"
+                android:text="Favoris"
+                android:textColor="@drawable/toggle_widget_text" />
+        </RadioGroup>
 
         <ImageButton
             android:id="@+id/btn_tri_nom"
@@ -89,6 +115,7 @@
             android:backgroundTint="#00FFFFFF"
             android:onClick="onClickTriDate"
             app:srcCompat="@mipmap/ic_date_sort" />
+
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

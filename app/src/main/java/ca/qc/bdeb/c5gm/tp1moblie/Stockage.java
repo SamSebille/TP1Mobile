@@ -51,7 +51,8 @@ public class Stockage extends SQLiteOpenHelper {
                 Entreprises.ENTREPRISE_TELEPHONE,
                 Entreprises.ENTREPRISE_WEB,
                 Entreprises.ENTREPRISE_ADRESSE,
-                Entreprises.ENTREPRISE_DATE
+                Entreprises.ENTREPRISE_DATE,
+                Entreprises.ENTREPRISE_FAVORI
         };
 
         String selection = Entreprises._ID + " = ?";
@@ -67,7 +68,8 @@ public class Stockage extends SQLiteOpenHelper {
                         cursor.getInt(0), cursor.getString(1),
                         cursor.getString(2), cursor.getString(3),
                         cursor.getString(4), cursor.getString(5),
-                        cursor.getString(6), cursor.getString(7)));
+                        cursor.getString(6), cursor.getString(7),
+                        cursor.getInt(8) == 1));
             } while (cursor.moveToNext());
             cursor.close();
         }
@@ -86,7 +88,8 @@ public class Stockage extends SQLiteOpenHelper {
                 Entreprises.ENTREPRISE_TELEPHONE,
                 Entreprises.ENTREPRISE_WEB,
                 Entreprises.ENTREPRISE_ADRESSE,
-                Entreprises.ENTREPRISE_DATE
+                Entreprises.ENTREPRISE_DATE,
+                Entreprises.ENTREPRISE_FAVORI
         };
 
         String selection = Entreprises._ID + " = ?";
@@ -105,7 +108,8 @@ public class Stockage extends SQLiteOpenHelper {
                     cursor.getInt(0), cursor.getString(1),
                     cursor.getString(2), cursor.getString(3),
                     cursor.getString(4), cursor.getString(5),
-                    cursor.getString(6), cursor.getString(7));
+                    cursor.getString(6), cursor.getString(7),
+                    cursor.getInt(8) == 1);
         }
 
         cursor.close();
@@ -134,6 +138,21 @@ public class Stockage extends SQLiteOpenHelper {
         return (nbMAJ > 0); // True si update, false sinon
     }
 
+    public boolean updateFavori(Entreprise entreprise) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(Entreprises.ENTREPRISE_FAVORI, entreprise.isFavori());
+
+        String whereClause = Entreprises._ID + " = ?";
+        String[] whereArgs = {String.valueOf(entreprise.getId())};
+
+        // MAJ de l’enregistrement
+        int nbMAJ = db.update(Entreprises.NOM_TABLE, values, whereClause, whereArgs);
+
+        return (nbMAJ > 0); // True si update, false sinon
+    }
+
     public void ajouterEntreprise(Entreprise entreprise) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -145,6 +164,7 @@ public class Stockage extends SQLiteOpenHelper {
         values.put(Entreprises.ENTREPRISE_WEB, entreprise.getWeb());
         values.put(Entreprises.ENTREPRISE_ADRESSE, entreprise.getAdresse());
         values.put(Entreprises.ENTREPRISE_DATE, entreprise.getDate());
+        values.put(Entreprises.ENTREPRISE_FAVORI, entreprise.isFavori());
 
         long id = db.insert(Entreprises.NOM_TABLE, null, values);
 
@@ -159,7 +179,7 @@ public class Stockage extends SQLiteOpenHelper {
     }
 
     public void dropTable() {
-        SQLiteDatabase db = this.getWritableDatabase(); // On veut écrire dans la B
+        SQLiteDatabase db = this.getWritableDatabase(); // On veut écrire dans la BD
         db.execSQL(SQL_DELETE_CLIENTS);
     }
 
@@ -172,7 +192,8 @@ public class Stockage extends SQLiteOpenHelper {
                     Entreprises.ENTREPRISE_TELEPHONE + " TEXT," +
                     Entreprises.ENTREPRISE_WEB + " TEXT," +
                     Entreprises.ENTREPRISE_ADRESSE + " TEXT," +
-                    Entreprises.ENTREPRISE_DATE + " TEXT)";
+                    Entreprises.ENTREPRISE_DATE + " TEXT," +
+                    Entreprises.ENTREPRISE_FAVORI + " INTEGER)";
 
     private static final String SQL_DELETE_CLIENTS =
             "DROP TABLE IF EXISTS " + Entreprises.NOM_TABLE;
@@ -190,5 +211,7 @@ public class Stockage extends SQLiteOpenHelper {
         public static final String ENTREPRISE_WEB = "web";
         public static final String ENTREPRISE_ADRESSE = "adresse";
         public static final String ENTREPRISE_DATE = "date";
+        public static final String ENTREPRISE_FAVORI = "favori";
+
     }
 }

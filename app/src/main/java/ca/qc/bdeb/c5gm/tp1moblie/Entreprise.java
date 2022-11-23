@@ -20,6 +20,17 @@ public class Entreprise {
     private LatLng position;
     private boolean favori;
 
+    public Entreprise(String nom, String contact, String courriel, String telephone, String web, String adresse, String date, boolean favori) {
+        this.nom = nom;
+        this.contact = contact;
+        this.courriel = courriel;
+        this.telephone = telephone;
+        this.web = web;
+        this.adresse = adresse;
+        this.date = date;
+        this.favori = favori;
+    }
+
     public Entreprise(String nom, String contact, String courriel, String telephone, String web, String adresse, String date) {
         this.nom = nom;
         this.contact = contact;
@@ -29,6 +40,18 @@ public class Entreprise {
         this.adresse = adresse;
         this.date = date;
         this.favori = false;
+    }
+
+    public Entreprise(int id, String nom, String contact, String courriel, String telephone, String web, String adresse, String date, boolean favori) {
+        this.id = id;
+        this.nom = nom;
+        this.contact = contact;
+        this.courriel = courriel;
+        this.telephone = telephone;
+        this.web = web;
+        this.adresse = adresse;
+        this.date = date;
+        this.favori = favori;
     }
 
     public Entreprise(int id, String nom, String contact, String courriel, String telephone, String web, String adresse, String date) {
@@ -49,6 +72,10 @@ public class Entreprise {
 
     public void setFavori(boolean favori) {
         this.favori = favori;
+    }
+
+    public boolean isFavori() {
+        return favori;
     }
 
     public int getId() {
