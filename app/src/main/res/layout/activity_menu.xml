@@ -80,8 +80,9 @@
                 android:background="@drawable/toggle_widget_background"
                 android:button="@null"
                 android:gravity="center"
-                android:text="Toutes"
-                android:textColor="@drawable/toggle_widget_text" />
+                android:text="@string/selec_toutes"
+                android:textColor="@drawable/toggle_widget_text"
+                android:textSize="20sp" />
 
             <RadioButton
                 android:id="@+id/btn_favoris"
@@ -94,8 +95,9 @@
                 android:background="@drawable/toggle_widget_background"
                 android:button="@null"
                 android:gravity="center"
-                android:text="Favoris"
-                android:textColor="@drawable/toggle_widget_text" />
+                android:text="@string/selec_favories"
+                android:textColor="@drawable/toggle_widget_text"
+                android:textSize="20sp" />
         </RadioGroup>
 
         <ImageButton
@@ -105,7 +107,8 @@
             android:layout_weight="1"
             android:backgroundTint="#00FFFFFF"
             android:onClick="onClickTriNom"
-            app:srcCompat="@mipmap/ic_az_sort" />
+            app:srcCompat="@mipmap/ic_az_sort"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageButton
             android:id="@+id/btn_tri_date"
@@ -114,7 +117,8 @@
             android:layout_weight="1"
             android:backgroundTint="#00FFFFFF"
             android:onClick="onClickTriDate"
-            app:srcCompat="@mipmap/ic_date_sort" />
+            app:srcCompat="@mipmap/ic_date_sort"
+            tools:ignore="SpeakableTextPresentCheck" />
 
     </LinearLayout>
 
@@ -139,7 +143,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
         app:layout_constraintVertical_bias="0.425"
-        app:srcCompat="@mipmap/btn_map" />
+        app:srcCompat="@mipmap/btn_map"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageView
         android:id="@+id/btn_ajouter"
