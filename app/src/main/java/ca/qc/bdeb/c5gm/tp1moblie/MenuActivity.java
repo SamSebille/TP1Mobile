@@ -35,6 +35,8 @@ public class MenuActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private EntrepriseListAdapter entrepriseListAdapter;
 
+    SearchView searchView;
+
     RadioGroup radioGroupFavori;
     RadioGroup radioGroupTri;
 
@@ -67,9 +69,7 @@ public class MenuActivity extends AppCompatActivity {
         radioGroupFavori = findViewById(R.id.toggle_favori);
         radioGroupTri = findViewById(R.id.toggle_date);
 
-
-        // below line is to get our menu item.
-        SearchView searchView = findViewById(R.id.sai_recherche);
+        searchView = findViewById(R.id.sai_recherche);
 
         // below line is to call set on query text listener method.
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -77,13 +77,19 @@ public class MenuActivity extends AppCompatActivity {
             public boolean onQueryTextSubmit(String query) {
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String newText) {
                 // inside on query text change method we are
                 // calling a method to filter our recycler view.
                 filter(newText);
                 return false;
+            }
+        });
+
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchView.setIconified(false);
             }
         });
     }
