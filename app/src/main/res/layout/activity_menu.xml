@@ -58,7 +58,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline2">
 
         <RadioGroup
-            android:id="@+id/toggle"
+            android:id="@+id/toggle_favori"
             android:layout_width="200dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
@@ -80,6 +80,7 @@
                 android:background="@drawable/toggle_widget_background"
                 android:button="@null"
                 android:gravity="center"
+                android:onClick="onClickTriToutes"
                 android:text="@string/selec_toutes"
                 android:textColor="@drawable/toggle_widget_text"
                 android:textSize="20sp" />
@@ -95,6 +96,7 @@
                 android:background="@drawable/toggle_widget_background"
                 android:button="@null"
                 android:gravity="center"
+                android:onClick="onClickTriFavorites"
                 android:text="@string/selec_favories"
                 android:textColor="@drawable/toggle_widget_text"
                 android:textSize="20sp" />

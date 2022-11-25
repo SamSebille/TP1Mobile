@@ -35,6 +35,8 @@ public class MenuActivity extends AppCompatActivity {
     // Si les entreprise doivent être triées par date, triées par nom par defaut.
     private static boolean triParDate;
 
+    private static boolean triParFavori;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +77,16 @@ public class MenuActivity extends AppCompatActivity {
      * Met a jour le tableau d'entreprise et actualise RecycleView.
      */
     public void majListBDEntreprise() {
-        entreprises = stockage.getEntreprises();
+        ArrayList<Entreprise> entreprisesTemp = stockage.getEntreprises();
+
+        if (triParFavori){
+            entreprises.clear();
+            for (Entreprise entreprise: entreprisesTemp) {
+                if (entreprise.isFavori())
+                    entreprises.add(entreprise);
+            }
+        } else
+            entreprises = entreprisesTemp;
 
         if (triParDate)
             entreprises.sort(new SortByDate());
@@ -96,6 +107,16 @@ public class MenuActivity extends AppCompatActivity {
 
     public void onClickTriDate(View view) {
         triParDate = true;
+        majListBDEntreprise();
+    }
+
+    public void onClickTriToutes(View view) {
+        triParFavori = false;
+        majListBDEntreprise();
+    }
+
+    public void onClickTriFavorites(View view) {
+        triParFavori = true;
         majListBDEntreprise();
     }
 
