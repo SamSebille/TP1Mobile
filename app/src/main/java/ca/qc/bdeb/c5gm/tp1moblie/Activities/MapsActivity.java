@@ -1,4 +1,4 @@
-package ca.qc.bdeb.c5gm.tp1moblie;
+package ca.qc.bdeb.c5gm.tp1moblie.Activities;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -28,6 +28,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import ca.qc.bdeb.c5gm.tp1moblie.BD.Stockage;
+import ca.qc.bdeb.c5gm.tp1moblie.R;
 import ca.qc.bdeb.c5gm.tp1moblie.databinding.ActivityMapsBinding;
 
 /**

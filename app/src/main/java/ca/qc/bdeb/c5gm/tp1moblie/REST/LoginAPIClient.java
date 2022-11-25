@@ -1,4 +1,4 @@
-package ca.qc.bdeb.c5gm.tp1moblie;
+package ca.qc.bdeb.c5gm.tp1moblie.REST;
 
 import java.util.concurrent.TimeUnit;
 
@@ -10,8 +10,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class LoginAPIClient {
     private static Retrofit retrofit = null;
     private static OkHttpClient client = null;
-    private static final String adresse = "10.144.22.88";
-    private static String server_url = "http://" + adresse + ":8888/";
+    private static final String adresse = "127.0.0.1";
+    private static String server_url = "http://" + adresse + ":2202/";
 
     public static Retrofit getRetrofit() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();

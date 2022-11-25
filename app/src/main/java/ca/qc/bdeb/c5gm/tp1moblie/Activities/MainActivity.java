@@ -1,4 +1,4 @@
-package ca.qc.bdeb.c5gm.tp1moblie;
+package ca.qc.bdeb.c5gm.tp1moblie.Activities;
 
 
 import android.content.Intent;
@@ -8,6 +8,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import java.util.HashMap;
+
+import ca.qc.bdeb.c5gm.tp1moblie.R;
+import ca.qc.bdeb.c5gm.tp1moblie.REST.ConnectUtils;
+import ca.qc.bdeb.c5gm.tp1moblie.REST.LoginAPI;
+import ca.qc.bdeb.c5gm.tp1moblie.REST.LoginAPIClient;
 
 /**
  * Futur écran de connexion

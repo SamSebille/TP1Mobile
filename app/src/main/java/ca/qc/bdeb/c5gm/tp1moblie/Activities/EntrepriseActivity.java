@@ -1,4 +1,4 @@
-package ca.qc.bdeb.c5gm.tp1moblie;
+package ca.qc.bdeb.c5gm.tp1moblie.Activities;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -22,6 +22,9 @@ import androidx.fragment.app.DialogFragment;
 
 import java.util.Calendar;
 import java.util.regex.Pattern;
+
+import ca.qc.bdeb.c5gm.tp1moblie.BD.Stockage;
+import ca.qc.bdeb.c5gm.tp1moblie.R;
 
 /**
  * Classe pour les activités de création et de modification d'entreprise.

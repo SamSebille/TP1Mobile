@@ -1,6 +1,5 @@
-package ca.qc.bdeb.c5gm.tp1moblie;
+package ca.qc.bdeb.c5gm.tp1moblie.REST;
 
-import java.util.HashMap;
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -9,19 +8,13 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface LoginAPI {
 
     @POST("/auth/connexion")
-    @Headers({
-            "Content-Type:application/json",
-            "Authorization:Token"
-    })
-    Call<ResponseBody> connecter
-            (@Body HashMap<String, Object> loginData);
+    Call<ComptePOJO> connecter(@Body LoginData loginData);
 
     @POST("/auth/deconnexion")
     Call<ResponseBody> deconnecter
@@ -29,7 +22,7 @@ public interface LoginAPI {
 
     @POST("/auth/testerconnexion")
     Call<ResponseBody> testerConnexion
-            (@Header("Authorization") String token, @Body HashMap<String, Object> userId);
+            (@Header("Authorization") String token, @Body LoginData userId);
 
     @POST("/auth/inscription")
     Call<ResponseBody> inscription
@@ -42,4 +35,5 @@ public interface LoginAPI {
     @DELETE("/stage/{idStage}")
     Call<ResponseBody> supprStage
             (@Header("Authorization") String token, @Path("idStage") String idStage);
+
 }

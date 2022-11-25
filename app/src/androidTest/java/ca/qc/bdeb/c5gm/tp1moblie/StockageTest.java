@@ -13,6 +13,9 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
+import ca.qc.bdeb.c5gm.tp1moblie.Activities.Entreprise;
+import ca.qc.bdeb.c5gm.tp1moblie.BD.Stockage;
+
 
 public class StockageTest {
     private Stockage stockage;

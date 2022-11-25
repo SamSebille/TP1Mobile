@@ -1,10 +1,12 @@
-package ca.qc.bdeb.c5gm.tp1moblie;
+package ca.qc.bdeb.c5gm.tp1moblie.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import ca.qc.bdeb.c5gm.tp1moblie.R;
 
 public class ConnexionActivity extends AppCompatActivity {
 

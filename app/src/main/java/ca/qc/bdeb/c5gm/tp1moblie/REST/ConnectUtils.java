@@ -1,10 +1,8 @@
-package ca.qc.bdeb.c5gm.tp1moblie;
+package ca.qc.bdeb.c5gm.tp1moblie.REST;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -20,7 +18,7 @@ public class ConnectUtils {
 
 
     public static LoginAPI client;
-    public static HashMap<String, Object> user;
+    public static LoginData user;
 
     public static boolean testerConnexion(){
         final boolean[] connexionReussie = new boolean[1];
@@ -45,24 +43,25 @@ public class ConnectUtils {
 
     public static void connecter() {
 
-        client.connecter(user).enqueue(new Callback<ResponseBody>() {
+        client.connecter(user).enqueue(new Callback() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call call, Response response) {
                 if (response.code() == 200){
                     try {
-                        JSONObject json = new JSONObject(response.body().string());
+                        JSONObject json = new JSONObject(response.body().toString());
                         authToken = json.getString("access_token");
                         authId = json.getString("id");
-                    } catch (JSONException | IOException e) {
+                    } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call call, Throwable t) {
 
             }
+
         });
     }
 

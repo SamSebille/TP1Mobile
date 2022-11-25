@@ -1,4 +1,4 @@
-package ca.qc.bdeb.c5gm.tp1moblie;
+package ca.qc.bdeb.c5gm.tp1moblie.Activities;
 
 import com.google.android.gms.maps.model.LatLng;
 

@@ -1,4 +1,4 @@
-package ca.qc.bdeb.c5gm.tp1moblie;
+package ca.qc.bdeb.c5gm.tp1moblie.Activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -21,6 +21,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+
+import ca.qc.bdeb.c5gm.tp1moblie.BD.Stockage;
+import ca.qc.bdeb.c5gm.tp1moblie.R;
 
 /**
  * Classe pour le menu principal de l'application, affichant la liste d'entreprise

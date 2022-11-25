@@ -1,4 +1,4 @@
-package ca.qc.bdeb.c5gm.tp1moblie;
+package ca.qc.bdeb.c5gm.tp1moblie.BD;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 
 import java.util.ArrayList;
+
+import ca.qc.bdeb.c5gm.tp1moblie.Activities.Entreprise;
 
 /**
  * Classe qui implemente SQLiteOpenHelper afin de manipuler la bd locale.

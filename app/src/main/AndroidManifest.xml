@@ -20,19 +20,19 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".EtudiantActivity"
+            android:name=".Activities.EtudiantActivity"
             android:exported="false" />
         <activity
-            android:name=".InscriptionActivity"
+            android:name=".Activities.InscriptionActivity"
             android:exported="false"
-            android:parentActivityName=".ConnexionActivity" />
+            android:parentActivityName=".Activities.ConnexionActivity" />
         <activity
-            android:name=".ConnexionActivity"
+            android:name=".Activities.ConnexionActivity"
             android:exported="false" />
         <activity
-            android:name=".EntrepriseActivity"
+            android:name=".Activities.EntrepriseActivity"
             android:exported="false"
-            android:parentActivityName=".MenuActivity">
+            android:parentActivityName=".Activities.MenuActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -43,15 +43,15 @@
             android:value="${MAPS_API_KEY}" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name=".Activities.MapsActivity"
             android:exported="false"
             android:label="@string/title_activity_maps"
-            android:parentActivityName=".MenuActivity" />
+            android:parentActivityName=".Activities.MenuActivity" />
         <activity
-            android:name=".MenuActivity"
+            android:name=".Activities.MenuActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,4 +1,4 @@
-package ca.qc.bdeb.c5gm.tp1moblie;
+package ca.qc.bdeb.c5gm.tp1moblie.Activities;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -9,6 +9,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import ca.qc.bdeb.c5gm.tp1moblie.R;
+import ca.qc.bdeb.c5gm.tp1moblie.REST.ConnectUtils;
 
 public class InscriptionActivity extends AppCompatActivity {
 
