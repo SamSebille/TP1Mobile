@@ -9,7 +9,10 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.RadioGroup;
+import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,11 +33,14 @@ public class MenuActivity extends AppCompatActivity {
     private static ArrayList<Entreprise> entreprises;
 
     private RecyclerView recyclerView;
-    private StringListAdapter entrepriseListAdapter;
+    private EntrepriseListAdapter entrepriseListAdapter;
+
+    RadioGroup radioGroupFavori;
+    RadioGroup radioGroupTri;
 
     // Si les entreprise doivent être triées par date, triées par nom par defaut.
     private static boolean triParDate;
-
+    // Si seules les entreprise favorites doivent être affichées, toutes par defaut.
     private static boolean triParFavori;
 
     @Override
@@ -52,15 +58,38 @@ public class MenuActivity extends AppCompatActivity {
         // initialiser le recyclerView
         recyclerView = findViewById(R.id.liste_entreprises);
         // Créer l'adapter et lui fournir les données.
-        entrepriseListAdapter = new StringListAdapter(this, entreprises);
+        entrepriseListAdapter = new EntrepriseListAdapter(this, entreprises);
         // Connecter l'adapter au RecyclerView.
         recyclerView.setAdapter(entrepriseListAdapter);
         // Donner au RecyclerView un layout manager par défaut.
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        radioGroupFavori = findViewById(R.id.toggle_favori);
+        radioGroupTri = findViewById(R.id.toggle_date);
+
+
+        // below line is to get our menu item.
+        SearchView searchView = findViewById(R.id.sai_recherche);
+
+        // below line is to call set on query text listener method.
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                // inside on query text change method we are
+                // calling a method to filter our recycler view.
+                filter(newText);
+                return false;
+            }
+        });
     }
 
     @Override
-    public boolean onCreateOptionsMenu(@NonNull Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.activity_main_menu, menu);
         return true;
@@ -69,45 +98,49 @@ public class MenuActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        // On met la liste a jour a chaque lancement de l'activité.
+        // On met la liste a jour avec la bd a chaque lancement de l'activité.
         majListBDEntreprise();
+
+        if (triParFavori)
+            radioGroupFavori.check(R.id.btn_favoris);
+        if (triParDate)
+            radioGroupTri.check(R.id.btn_tri_date);
     }
 
     /**
-     * Met a jour le tableau d'entreprise et actualise RecycleView.
+     * Met a jour le tableau d'entreprise avec la bd et actualise le RecycleView.
      */
     public void majListBDEntreprise() {
-        ArrayList<Entreprise> entreprisesTemp = stockage.getEntreprises();
+        entreprises = stockage.getEntreprises();
+        entrepriseListAdapter.entreprises = entreprises;
+        majListEntreprise();
+    }
+
+    /**
+     * Actualise la liste du RecycleView selon les tris.
+     */
+    public void majListEntreprise() {
 
         if (triParFavori){
-            entreprises.clear();
-            for (Entreprise entreprise: entreprisesTemp) {
-                if (entreprise.isFavori())
-                    entreprises.add(entreprise);
-            }
-        } else
-            entreprises = entreprisesTemp;
+            entrepriseListAdapter.entreprises.removeIf(entreprise -> !entreprise.isFavori());
+        }
 
         if (triParDate)
-            entreprises.sort(new SortByDate());
+            entrepriseListAdapter.entreprises.sort(new SortByDate());
         else
-            entreprises.sort(new SortByName());
+            entrepriseListAdapter.entreprises.sort(new SortByName());
 
-        // Ne marche pas sans actualiser la liste de l'adapter à la main
-        entrepriseListAdapter.entreprises = entreprises;
-
-        if (entreprises != null)
-            entrepriseListAdapter.notifyDataSetChanged();
+        entrepriseListAdapter.notifyDataSetChanged();
     }
 
     public void onClickTriNom(View view) {
         triParDate = false;
-        majListBDEntreprise();
+        majListEntreprise();
     }
 
     public void onClickTriDate(View view) {
         triParDate = true;
-        majListBDEntreprise();
+        majListEntreprise();
     }
 
     public void onClickTriToutes(View view) {
@@ -117,7 +150,7 @@ public class MenuActivity extends AppCompatActivity {
 
     public void onClickTriFavorites(View view) {
         triParFavori = true;
-        majListBDEntreprise();
+        majListEntreprise();
     }
 
     public void onClickMaps(View view) {
@@ -131,31 +164,52 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void filter(String text) {
+        ArrayList<Entreprise> filteredlist = new ArrayList<Entreprise>();
+
+        for (Entreprise item : entreprises) {
+            if (item.getNom().toLowerCase().contains(text.toLowerCase())) {
+                filteredlist.add(item);
+            }
+        }
+        if (filteredlist.isEmpty()) {
+            Toast.makeText(this, "Aucune entreprise trouvée", Toast.LENGTH_SHORT).show();
+        } else {
+            entrepriseListAdapter.filterList(filteredlist);
+        }
+    }
+
     /**
      * Adapter pour la RecycleView
      */
-    public class StringListAdapter extends
-            RecyclerView.Adapter<StringListAdapter.StringViewHolder> {
+    public class EntrepriseListAdapter extends
+            RecyclerView.Adapter<EntrepriseListAdapter.EntrepriseViewHolder> {
 
         private ArrayList<Entreprise> entreprises;
         private LayoutInflater inflater;
 
-        public StringListAdapter(Context context,
-                                 ArrayList<Entreprise> entreprises) {
+        public EntrepriseListAdapter(Context context,
+                                     ArrayList<Entreprise> entreprises) {
             inflater = LayoutInflater.from(context);
             this.entreprises = entreprises;
         }
 
+        // method for filtering our recyclerview items.
+        public void filterList(ArrayList<Entreprise> filterList) {
+            entreprises = filterList;
+            notifyDataSetChanged();
+        }
+
         @NonNull
         @Override
-        public StringViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        public EntrepriseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View mItemView = inflater.inflate(R.layout.entreprise_item,
                     parent, false);
-            return new StringViewHolder(mItemView, this);
+            return new EntrepriseViewHolder(mItemView, this);
         }
 
         @Override
-        public void onBindViewHolder(@NonNull StringViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull EntrepriseViewHolder holder, int position) {
             Entreprise entreprise = entreprises.get(position);
             holder.tv_entreprise.setText(entreprise.getNom());
             if (entreprise.isFavori())
@@ -169,10 +223,10 @@ public class MenuActivity extends AppCompatActivity {
             return entreprises.size();
         }
 
-        public class StringViewHolder extends RecyclerView.ViewHolder {
+        public class EntrepriseViewHolder extends RecyclerView.ViewHolder {
 
-            private TextView tv_entreprise;
-            private ImageButton ib_favori;
+            private final TextView tv_entreprise;
+            private final ImageButton ib_favori;
 
             private View.OnClickListener onClickEntreprise = new View.OnClickListener() {
                 @Override
@@ -209,9 +263,9 @@ public class MenuActivity extends AppCompatActivity {
                     }
                 }
             };
-            final StringListAdapter adapter;
+            final EntrepriseListAdapter adapter;
 
-            public StringViewHolder(@NonNull View itemView, StringListAdapter adapter) {
+            public EntrepriseViewHolder(@NonNull View itemView, EntrepriseListAdapter adapter) {
                 super(itemView);
                 tv_entreprise = (TextView) itemView.findViewById(R.id.menu_nom_entreprise);
                 tv_entreprise.setOnClickListener(onClickEntreprise);
