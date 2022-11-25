@@ -5,6 +5,74 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <SearchView
+        android:id="@+id/sai_recherche"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2">
+
+    </SearchView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline10"
+        app:layout_constraintTop_toTopOf="@+id/guideline2">
+
+        <RadioGroup
+            android:id="@+id/toggle_date"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/black_out_line"
+            android:checkedButton="@+id/btn_tri_nom"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/btn_tri_nom"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:background="@drawable/toggle_widget_background"
+                android:button="@null"
+                android:gravity="center"
+                android:onClick="onClickTriNom"
+                android:text="@string/selec_nom"
+                android:textColor="@drawable/toggle_widget_text"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/btn_tri_date"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:background="@drawable/toggle_widget_background"
+                android:button="@null"
+                android:gravity="center"
+                android:onClick="onClickTriDate"
+                android:text="@string/selec_date"
+                android:textColor="@drawable/toggle_widget_text"
+                android:textSize="20sp" />
+        </RadioGroup>
+    </LinearLayout>
+
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar"
@@ -28,34 +96,6 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="180dp" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/guideline3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2">
-
-        <ImageButton
-            android:id="@+id/btn_tri_nom"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:backgroundTint="#00FFFFFF"
-            android:onClick="onClickTriNom"
-            app:srcCompat="@mipmap/ic_az_sort" />
-
-        <ImageButton
-            android:id="@+id/btn_tri_date"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:backgroundTint="#00FFFFFF"
-            android:onClick="onClickTriDate"
-            app:srcCompat="@mipmap/ic_date_sort" />
-    </LinearLayout>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/liste_etudiant"
         android:layout_width="0dp"
@@ -66,19 +106,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
-    <LinearLayout
-        android:layout_width="586dp"
-        android:layout_height="74dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/guideline3"
-        app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2">
-
-        <SearchView
-            android:id="@+id/sai_recherche"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="510dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
