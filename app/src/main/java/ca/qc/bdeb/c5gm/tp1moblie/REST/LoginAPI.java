@@ -1,6 +1,7 @@
 package ca.qc.bdeb.c5gm.tp1moblie.REST;
 
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -26,7 +27,7 @@ public interface LoginAPI {
 
     @POST("/auth/inscription")
     Call<ResponseBody> inscription
-            (@Header("Authorization") String token, @Body String[] userInfos);
+            (@Header("Authorization") String token, @Body Map<String, String> userInfos);
 
     @GET("/compte/getcomptesetudiantsactifs")
     Call<List<ComptePOJO>> getComptesEleves

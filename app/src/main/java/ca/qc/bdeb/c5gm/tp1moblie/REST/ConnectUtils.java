@@ -4,6 +4,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
+import java.util.Map;
+
+import javax.xml.transform.Result;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -18,35 +21,14 @@ public class ConnectUtils {
 
 
     public static LoginAPI client;
-    public static LoginData user;
-
-    public static boolean testerConnexion(){
-        final boolean[] connexionReussie = new boolean[1];
-        client.testerConnexion(authToken, user).enqueue(
-                new Callback<ResponseBody>() {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if (response.code() != 200) {
-                            connexionReussie[0] = true;
-                        }
-                        connexionReussie[0] =  false;
-                    }
-
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        connexionReussie[0] =  false;
-                    }
-                }
-        );
-        return connexionReussie[0];
-    }
+    public static LoginData user = new LoginData(authEmail, authPassword);
 
     public static void connecter() {
 
         client.connecter(user).enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
-                if (response.code() == 200){
+                if (response.code() == 200) {
                     try {
                         JSONObject json = new JSONObject(response.body().toString());
                         authToken = json.getString("access_token");
@@ -65,7 +47,7 @@ public class ConnectUtils {
         });
     }
 
-    private void getData(){
+    private void getData() {
         client.getComptesEleves(ConnectUtils.authToken).enqueue(
                 new Callback<List<ComptePOJO>>() {
                     @Override
@@ -86,22 +68,40 @@ public class ConnectUtils {
                 });
     }
 
-    public static boolean signIn(String[] body){
+    public static boolean signIn(Map<String, String> body) {
         final boolean[] connexionReussie = new boolean[1];
 
-        client.inscription(ConnectUtils.authToken, body).enqueue(
+        //client.inscription(ConnectUtils.authToken, body).execute(
+                new Callback<Response>() {
+                    @Override
+                    public void onResponse(Call call, Response response) {
+                        connexionReussie[0] = true;
+                    }
+
+                    @Override
+                    public void onFailure(Call call, Throwable t) {
+                        connexionReussie[0] = false;
+                    }
+                };
+        //);
+        return connexionReussie[0];
+    }
+
+    public static boolean testerConnexion() {
+        final boolean[] connexionReussie = new boolean[1];
+        client.testerConnexion(authToken, user).enqueue(
                 new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (response.code() != 200) {
                             connexionReussie[0] = true;
                         }
-                        connexionReussie[0] =  false;
+                        connexionReussie[0] = false;
                     }
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        connexionReussie[0] =  false;
+                        connexionReussie[0] = false;
                     }
                 }
         );

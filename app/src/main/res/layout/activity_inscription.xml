@@ -102,6 +102,19 @@
                 android:importantForAutofill="no"
                 android:inputType="textPassword"
                 android:minHeight="48dp"
+                android:textColorHint="#757575"
+                tools:ignore="DuplicateSpeakableTextCheck" />
+
+            <EditText
+                android:id="@+id/inscr_password_confirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:hint="@string/inscr_password_confirm_hint"
+                android:importantForAutofill="no"
+                android:inputType="textPassword"
+                android:minHeight="48dp"
                 android:textColorHint="#757575" />
 
             <Button
