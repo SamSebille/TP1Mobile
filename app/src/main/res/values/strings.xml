@@ -16,6 +16,7 @@
     <string name="inscr_nom_hint">Nom</string>
     <string name="inscr_email_hint">Courriel</string>
     <string name="inscr_password_hint">Mot de passe</string>
+    <string name="inscr_password_confirm_hint">Confirmer le mot de passe</string>
     // Page de menu
     <string name="selec_toutes">Toutes</string>
     <string name="selec_favories">Favorites</string>
