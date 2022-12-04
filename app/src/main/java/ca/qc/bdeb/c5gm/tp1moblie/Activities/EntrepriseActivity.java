@@ -110,9 +110,11 @@ public class EntrepriseActivity extends AppCompatActivity {
     // Intent pour l'envoi de courriel
     public void onClickCourriel(View view) {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
-        intent.setData(Uri.parse("mailto:"));
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
         intent.putExtra(Intent.EXTRA_EMAIL, saisies[2].getText().toString());
-        startActivity(intent);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
 
     // Intent pour les appels telephoniques
@@ -153,14 +155,23 @@ public class EntrepriseActivity extends AppCompatActivity {
             }
         }
 
-        // format DD/MM/YYYY
-        Pattern dateRegex = Pattern.compile("\\d{2}/\\d{2}/\\d{4}");
+        // On verifie que le courriel est au bon format
+        Pattern emailRegex = Pattern.compile(".+@.+\\..+");
+        if (!emailRegex.matcher(saisies[2].getText().toString()).matches()) {
+            Toast.makeText(this,
+                    "Veuillez insérer un bon format pour l'adresse couriel (exemple@test.com)",
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
 
+        // On verifie que la date correspond au format DD/MM/YYYY
+        Pattern dateRegex = Pattern.compile("\\d{2}/\\d{2}/\\d{4}");
         if (!dateRegex.matcher(date.getText().toString()).matches()) {
             Toast.makeText(this,
                     "Veuillez insérer un bon format de date (DD/MM/YYYY)", Toast.LENGTH_LONG).show();
             return;
         }
+
 
         Entreprise entreprise;
         if (isModifier) {
