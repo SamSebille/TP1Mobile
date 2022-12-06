@@ -1,13 +1,10 @@
 package ca.qc.bdeb.c5gm.tp1moblie.REST;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.xml.transform.Result;
-
+import ca.qc.bdeb.c5gm.tp1moblie.Activities.MainActivity;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -16,56 +13,55 @@ import retrofit2.Response;
 public class ConnectUtils {
     public static String authEmail = "prof1@test.com";
     public static String authPassword = "secret";
-    public static String authToken = "";
     public static String authId = "";
+    public static String authToken = "";
 
+    private static final LoginAPI client = LoginAPIClient.getRetrofit().create(LoginAPI.class);
+    private static LoginData user = new LoginData(authEmail, authPassword);
 
-    public static LoginAPI client;
-    public static LoginData user = new LoginData(authEmail, authPassword);
+    private List<ComptePOJO> comptes;
 
     public static void connecter() {
 
-        client.connecter(user).enqueue(new Callback() {
+        LoginData loginData = new LoginData("prof1@test.com", "secret");
+
+        client.connecter(loginData).enqueue(new Callback<CompteResult>() {
             @Override
-            public void onResponse(Call call, Response response) {
-                if (response.code() == 200) {
-                    try {
-                        JSONObject json = new JSONObject(response.body().toString());
-                        authToken = json.getString("access_token");
-                        authId = json.getString("id");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+            public void onResponse(Call<CompteResult> call, Response<CompteResult> response) {
+                if (response.isSuccessful()) {
+                    CompteResult json = response.body();
+                    ConnectUtils.authToken = json.getAccessToken();
+                    ConnectUtils.authId = json.getId();
                 }
             }
 
             @Override
-            public void onFailure(Call call, Throwable t) {
+            public void onFailure(Call<CompteResult> call, Throwable t) {
 
             }
-
         });
+
     }
 
-    private void getData() {
+    private List<ComptePOJO> getEtudiants() {
+
         client.getComptesEleves(ConnectUtils.authToken).enqueue(
                 new Callback<List<ComptePOJO>>() {
                     @Override
                     public void onResponse(Call<List<ComptePOJO>> call, Response<List<ComptePOJO>> response) {
-                        if (response.code() == 200) {
-                            List<ComptePOJO> eleves = response.body();
-                            String display = "Réponse OK\n";
-                            for (int i = 0; i < eleves.size(); i++) {
-                                display += eleves.get(i).toString() + "\n";
 
-                            }
+                        if (response.isSuccessful()) {
+                            comptes = response.body();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<List<ComptePOJO>> call, Throwable t) {
                     }
-                });
+                }
+        );
+
+        return comptes;
     }
 
     public static boolean signIn(Map<String, String> body) {
@@ -87,24 +83,25 @@ public class ConnectUtils {
         return connexionReussie[0];
     }
 
-    public static boolean testerConnexion() {
-        final boolean[] connexionReussie = new boolean[1];
-        client.testerConnexion(authToken, user).enqueue(
+    public static void testerConnexion(MainActivity mainActivity) {
+        HashMap<String, Object> user = new HashMap<>();
+        user.put("id_compte", ConnectUtils.authId);
+
+        client.testerConnexion(ConnectUtils.authToken, user).enqueue(
                 new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if (response.code() != 200) {
-                            connexionReussie[0] = true;
+                        if (!response.isSuccessful()) {
+                            connecter();
+                            mainActivity.startActivity(true);
                         }
-                        connexionReussie[0] = false;
                     }
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        connexionReussie[0] = false;
+                        mainActivity.startActivity(false);
                     }
                 }
         );
-        return connexionReussie[0];
     }
 }

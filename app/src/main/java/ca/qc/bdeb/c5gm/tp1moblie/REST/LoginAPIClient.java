@@ -10,18 +10,20 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class LoginAPIClient {
     private static Retrofit retrofit = null;
     private static OkHttpClient client = null;
-    private static final String adresse = "127.0.0.1";
-    private static String server_url = "http://" + adresse + ":2202/";
+    private static final String adresse = "192.168.56.1";
+    private static final String server_url = "http://" + adresse + ":8888/";
 
     public static Retrofit getRetrofit() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
         if (client == null) {
             client = new OkHttpClient.Builder()
-                    .readTimeout(60, TimeUnit.SECONDS)
-                    .writeTimeout(60, TimeUnit.SECONDS)
+                    .readTimeout(5, TimeUnit.SECONDS)
+                    .writeTimeout(5, TimeUnit.SECONDS)
                     .addInterceptor(interceptor).build();
         }
+
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(server_url)
@@ -29,6 +31,7 @@ public class LoginAPIClient {
                     .client(client)
                     .build();
         }
+
         return retrofit;
     }
 }

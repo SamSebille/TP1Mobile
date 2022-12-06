@@ -86,7 +86,7 @@
                 android:onClick="onClickTriToutes"
                 android:text="@string/selec_toutes"
                 android:textColor="@drawable/toggle_widget_text"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
             <RadioButton
                 android:id="@+id/btn_favoris"
@@ -102,7 +102,7 @@
                 android:onClick="onClickTriFavorites"
                 android:text="@string/selec_favories"
                 android:textColor="@drawable/toggle_widget_text"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
         </RadioGroup>
 
 
@@ -144,7 +144,7 @@
                 android:onClick="onClickTriNom"
                 android:text="@string/selec_nom"
                 android:textColor="@drawable/toggle_widget_text"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
             <RadioButton
                 android:id="@+id/btn_tri_date"
@@ -160,7 +160,7 @@
                 android:onClick="onClickTriDate"
                 android:text="@string/selec_date"
                 android:textColor="@drawable/toggle_widget_text"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
         </RadioGroup>
     </LinearLayout>
 
