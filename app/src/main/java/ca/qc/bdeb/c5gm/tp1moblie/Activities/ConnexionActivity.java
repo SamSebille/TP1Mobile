@@ -2,6 +2,7 @@ package ca.qc.bdeb.c5gm.tp1moblie.Activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -11,6 +12,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import ca.qc.bdeb.c5gm.tp1moblie.R;
+import ca.qc.bdeb.c5gm.tp1moblie.REST.ComptePOJO;
 import ca.qc.bdeb.c5gm.tp1moblie.REST.ConnectUtils;
 import ca.qc.bdeb.c5gm.tp1moblie.REST.LoginData;
 
@@ -45,7 +47,16 @@ public class ConnexionActivity extends AppCompatActivity {
         builder.setCancelable(true);
         switch (is_reussie){
             case 1 :{
-                startActivity(new Intent(ConnexionActivity.this, MenuActivity.class));
+                SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString("token_compte", ConnectUtils.authToken);
+                editor.putString("id_compte", ConnectUtils.authId);
+                editor.putString("type_utilisateur", ConnectUtils.typeCompte.toString());
+                editor.apply();
+                if (ConnectUtils.typeCompte == ComptePOJO.TypeUtilisateur.ETUDIANT)
+                    startActivity(new Intent(ConnexionActivity.this, MenuActivity.class));
+                else
+                    startActivity(new Intent(ConnexionActivity.this, MenuActivity.class));
                 break;
             }
             case 0 :{

@@ -1,5 +1,7 @@
 package ca.qc.bdeb.c5gm.tp1moblie.REST;
 
+import android.util.Log;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -16,6 +18,7 @@ public class ConnectUtils {
     public static String authPassword = "secret";
     public static String authId = "";
     public static String authToken = "";
+    public static ComptePOJO.TypeUtilisateur typeCompte;
 
     private static final LoginAPI client = LoginAPIClient.getRetrofit().create(LoginAPI.class);
     private static LoginData user = new LoginData(authEmail, authPassword);
@@ -29,8 +32,12 @@ public class ConnectUtils {
             public void onResponse(Call<CompteResult> call, Response<CompteResult> response) {
                 if (response.isSuccessful()) {
                     CompteResult json = response.body();
+                    System.out.println( json.getAccessToken());
+                    Log.d("TAG", json.getId());
+                    Log.d("TAG", json.getTypeCompte().toString());
                     ConnectUtils.authToken = json.getAccessToken();
                     ConnectUtils.authId = json.getId();
+                    ConnectUtils.typeCompte = json.getTypeCompte();
                     connexionActivity.connexionReussie(1);
                 } else {
                     connexionActivity.connexionReussie(0);
@@ -51,12 +58,10 @@ public class ConnectUtils {
                 new Callback<List<ComptePOJO>>() {
                     @Override
                     public void onResponse(Call<List<ComptePOJO>> call, Response<List<ComptePOJO>> response) {
-
                         if (response.isSuccessful()) {
                             comptes = response.body();
                         }
                     }
-
                     @Override
                     public void onFailure(Call<List<ComptePOJO>> call, Throwable t) {
                     }
@@ -85,19 +90,20 @@ public class ConnectUtils {
     public static void testerConnexion(MainActivity mainActivity) {
         HashMap<String, Object> user = new HashMap<>();
         user.put("id_compte", ConnectUtils.authId);
-
         client.testerConnexion(ConnectUtils.authToken, user).enqueue(
                 new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if (!response.isSuccessful()) {
-                            mainActivity.startActivity(true);
+                        if (response.isSuccessful()) {
+                            mainActivity.startActivity(1);
+                        } else {
+                            mainActivity.startActivity(0);
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        mainActivity.startActivity(false);
+                        mainActivity.startActivity(-1);
                     }
                 }
         );
