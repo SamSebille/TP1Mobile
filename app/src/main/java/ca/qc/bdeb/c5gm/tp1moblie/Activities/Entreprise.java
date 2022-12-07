@@ -4,12 +4,13 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.Comparator;
 import java.util.Locale;
+import java.util.UUID;
 
 /**
  * Classe representant une entreprise ajoutée et modifiable par l'utilisateur.
  */
 public class Entreprise {
-    private int id;
+    private UUID id;
     private String nom;
     private String contact;
     private String courriel;
@@ -32,6 +33,7 @@ public class Entreprise {
     }
 
     public Entreprise(String nom, String contact, String courriel, String telephone, String web, String adresse, String date) {
+        this.id = UUID.randomUUID();
         this.nom = nom;
         this.contact = contact;
         this.courriel = courriel;
@@ -42,7 +44,7 @@ public class Entreprise {
         this.favori = false;
     }
 
-    public Entreprise(int id, String nom, String contact, String courriel, String telephone, String web, String adresse, String date, boolean favori) {
+    public Entreprise(UUID id, String nom, String contact, String courriel, String telephone, String web, String adresse, String date, boolean favori) {
         this.id = id;
         this.nom = nom;
         this.contact = contact;
@@ -54,7 +56,7 @@ public class Entreprise {
         this.favori = favori;
     }
 
-    public Entreprise(int id, String nom, String contact, String courriel, String telephone, String web, String adresse, String date) {
+    public Entreprise(UUID id, String nom, String contact, String courriel, String telephone, String web, String adresse, String date) {
         this.id = id;
         this.nom = nom;
         this.contact = contact;
@@ -66,7 +68,7 @@ public class Entreprise {
         this.favori = false;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -78,7 +80,7 @@ public class Entreprise {
         return favori;
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 

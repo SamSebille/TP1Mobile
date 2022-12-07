@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import ca.qc.bdeb.c5gm.tp1moblie.Activities.Entreprise;
 import ca.qc.bdeb.c5gm.tp1moblie.BD.Stockage;
@@ -20,6 +21,7 @@ import ca.qc.bdeb.c5gm.tp1moblie.BD.Stockage;
 public class StockageTest {
     private Stockage stockage;
     private Context context = ApplicationProvider.getApplicationContext();
+    private UUID id = UUID.randomUUID();
 
 
     @Before
@@ -34,7 +36,7 @@ public class StockageTest {
 
     @Test
     public void ajouterEntreprise() {
-        Entreprise entreprise = new Entreprise("", "", "", "", "", "", "", false);
+        Entreprise entreprise = new Entreprise(id,"", "", "", "", "", "", "", false);
         boolean ajout = true;
         try {
             stockage.ajouterEntreprise(entreprise);
@@ -56,7 +58,7 @@ public class StockageTest {
     public void getEntreprise() {
         Entreprise entreprise1 = new Entreprise("", "", "", "", "", "", "", false);
         stockage.ajouterEntreprise(entreprise1);
-        Entreprise entreprises = stockage.getEntreprise(1);
+        Entreprise entreprises = stockage.getEntreprise(id);
         Truth.assertThat(entreprises).isNotNull();
     }
 
@@ -64,7 +66,7 @@ public class StockageTest {
     public void updateEntreprise() {
         Entreprise entreprise = new Entreprise("", "", "", "", "", "", "", false);
         stockage.ajouterEntreprise(entreprise);
-        int id = entreprise.getId();
+        UUID id = entreprise.getId();
         entreprise = new Entreprise(id, "test", "test", "test", "test", "test", "yul", "?", false);
         stockage.updateEntreprise(entreprise);
 
@@ -85,7 +87,7 @@ public class StockageTest {
     public void deleteEntreprise() {
         Entreprise entreprise = new Entreprise("", "", "", "", "", "", "", false);
         stockage.ajouterEntreprise(entreprise);
-        int id = entreprise.getId();
+        UUID id = entreprise.getId();
         boolean isSupr = false;
         stockage.deleteEntreprise(entreprise);
         try {

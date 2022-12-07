@@ -21,6 +21,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
 
 import java.util.Calendar;
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 import ca.qc.bdeb.c5gm.tp1moblie.BD.Stockage;
@@ -32,7 +33,7 @@ import ca.qc.bdeb.c5gm.tp1moblie.R;
 public class EntrepriseActivity extends AppCompatActivity {
 
     // L'entreprise a modifier
-    private int entreprise_id;
+    private UUID entreprise_id;
     private Entreprise entreprise;
 
     private Stockage stockage;
@@ -85,8 +86,7 @@ public class EntrepriseActivity extends AppCompatActivity {
         if (isModifier) {
             getSupportActionBar().setTitle(R.string.title_activity_modifier_entreprise);
 
-            System.out.println(extras.getInt("ENTREPRISE_ID"));
-            entreprise_id = extras.getInt("ENTREPRISE_ID");
+            entreprise_id = UUID.fromString(extras.getString("ENTREPRISE_ID"));
 
             entreprise = stockage.getEntreprise(entreprise_id);
 

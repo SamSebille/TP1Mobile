@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import ca.qc.bdeb.c5gm.tp1moblie.Activities.Entreprise;
 
@@ -67,7 +68,7 @@ public class Stockage extends SQLiteOpenHelper {
             cursor.moveToFirst();
             do {
                 entreprises.add(new Entreprise(
-                        cursor.getInt(0), cursor.getString(1),
+                        UUID.fromString(cursor.getString(0)), cursor.getString(1),
                         cursor.getString(2), cursor.getString(3),
                         cursor.getString(4), cursor.getString(5),
                         cursor.getString(6), cursor.getString(7),
@@ -79,7 +80,7 @@ public class Stockage extends SQLiteOpenHelper {
         return entreprises;
     }
 
-    public Entreprise getEntreprise(int id) {
+    public Entreprise getEntreprise(UUID id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         String[] columns = {
@@ -96,7 +97,7 @@ public class Stockage extends SQLiteOpenHelper {
 
         String selection = Entreprises._ID + " = ?";
 
-        String[] selectionArgs = {String.valueOf(id)};
+        String[] selectionArgs = {id.toString()};
 
         Cursor cursor = db.query(Entreprises.NOM_TABLE, columns, selection, selectionArgs,
                 null, null, null, null);
@@ -107,7 +108,7 @@ public class Stockage extends SQLiteOpenHelper {
             cursor.moveToFirst();
 
             entreprise = new Entreprise(
-                    cursor.getInt(0), cursor.getString(1),
+                    UUID.fromString(cursor.getString(0)), cursor.getString(1),
                     cursor.getString(2), cursor.getString(3),
                     cursor.getString(4), cursor.getString(5),
                     cursor.getString(6), cursor.getString(7),
@@ -159,6 +160,7 @@ public class Stockage extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
+        values.put(Entreprises._ID, entreprise.getId().toString());
         values.put(Entreprises.ENTREPRISE_NOM, entreprise.getNom());
         values.put(Entreprises.ENTREPRISE_CONTACT, entreprise.getContact());
         values.put(Entreprises.ENTREPRISE_COURRIEL, entreprise.getCourriel());
@@ -168,9 +170,7 @@ public class Stockage extends SQLiteOpenHelper {
         values.put(Entreprises.ENTREPRISE_DATE, entreprise.getDate());
         values.put(Entreprises.ENTREPRISE_FAVORI, entreprise.isFavori());
 
-        long id = db.insert(Entreprises.NOM_TABLE, null, values);
-
-        entreprise.setId((int) id);
+        db.insert(Entreprises.NOM_TABLE, null, values);
     }
 
     public void deleteEntreprise(Entreprise entreprise) {
@@ -187,7 +187,7 @@ public class Stockage extends SQLiteOpenHelper {
 
     private static final String SQL_CREATE_ENTREPRISES =
             "CREATE TABLE " + Entreprises.NOM_TABLE + " (" +
-                    Entreprises._ID + " INTEGER PRIMARY KEY," +
+                    Entreprises._ID + " TEXT PRIMARY KEY," +
                     Entreprises.ENTREPRISE_NOM + " TEXT," +
                     Entreprises.ENTREPRISE_CONTACT + " TEXT," +
                     Entreprises.ENTREPRISE_COURRIEL + " TEXT," +
