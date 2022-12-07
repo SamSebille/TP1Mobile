@@ -4,11 +4,8 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.util.List;
 
-import ca.qc.bdeb.c5gm.tp1moblie.Activities.Entreprise;
-
-public class ComptePOJO implements Serializable
+public class CompteResult implements Serializable
 {
 
     @SerializedName("id")
@@ -23,38 +20,41 @@ public class ComptePOJO implements Serializable
     @SerializedName("email")
     @Expose
     private String email;
-    @SerializedName("typeCompte")
+    @SerializedName("type_compte")
     @Expose
-    private TypeUtilisateur typeCompte;
-    @SerializedName("entreprises")
+    private ComptePOJO.TypeUtilisateur typeCompte;
+    @SerializedName("access_token")
     @Expose
-    private List<Entreprise> entreprises = null;
-    private final static long serialVersionUID = -1412352379743458039L;
+    private String accessToken;
+    @SerializedName("expires_at")
+    @Expose
+    private String expiresAt;
+    private final static long serialVersionUID = -4644635962262338195L;
 
     /**
      * No args constructor for use in serialization
      *
      */
-    public ComptePOJO() {
+    public CompteResult() {
     }
 
     /**
      *
-     * @param entreprises
      * @param typeCompte
      * @param id
+     * @param accessToken
      * @param nom
      * @param prenom
      * @param email
      */
-    public ComptePOJO(String id, String nom, String prenom, String email, TypeUtilisateur typeCompte, List<Entreprise> entreprises) {
+    public CompteResult(String id, String nom, String prenom, String email, ComptePOJO.TypeUtilisateur typeCompte, String accessToken) {
         super();
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.typeCompte = typeCompte;
-        this.entreprises = entreprises;
+        this.accessToken = accessToken;
     }
 
     public String getId() {
@@ -89,36 +89,28 @@ public class ComptePOJO implements Serializable
         this.email = email;
     }
 
-    public TypeUtilisateur getTypeCompte() {
+    public ComptePOJO.TypeUtilisateur getTypeCompte() {
         return typeCompte;
     }
 
-    public void setTypeCompte(TypeUtilisateur typeCompte) {
+    public void setTypeCompte(ComptePOJO.TypeUtilisateur typeCompte) {
         this.typeCompte = typeCompte;
     }
 
-    public List<Entreprise> getEntreprises() {
-        return entreprises;
+    public String getAccessToken() {
+        return accessToken;
     }
 
-    public void setEntreprises(List<Entreprise> entreprises) {
-        this.entreprises = entreprises;
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
     }
 
-    @Override
-    public String toString() {
-        return "ComptePOJO{" +
-                "id='" + id + '\'' +
-                ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                ", email='" + email + '\'' +
-                ", typeCompte='" + typeCompte + '\'' +
-                ", entreprises=" + entreprises +
-                '}';
+    public String getExpiresAt() {
+        return expiresAt;
     }
 
-    public enum TypeUtilisateur {
-        PROFESSEUR,
-        ETUDIANT
+    public void setExpiresAt(String expiresAt) {
+        this.expiresAt = expiresAt;
     }
+
 }
