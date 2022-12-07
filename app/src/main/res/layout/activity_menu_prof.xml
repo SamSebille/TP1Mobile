@@ -63,10 +63,10 @@
                 android:onClick="onClickTriNom"
                 android:text="@string/selec_nom"
                 android:textColor="@drawable/toggle_widget_text"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
             <RadioButton
-                android:id="@+id/btn_tri_date"
+                android:id="@+id/btn_tri_stage"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="1dp"
@@ -77,9 +77,9 @@
                 android:button="@null"
                 android:gravity="center"
                 android:onClick="onClickTriDate"
-                android:text="@string/selec_date"
+                android:text="@string/selec_stage"
                 android:textColor="@drawable/toggle_widget_text"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
         </RadioGroup>
     </LinearLayout>
 

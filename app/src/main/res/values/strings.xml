@@ -22,6 +22,7 @@
     <string name="selec_favories">Favorites</string>
     <string name="selec_nom">Par nom</string>
     <string name="selec_date">Par date</string>
+    <string name="selec_stage">Par stage</string>
     // Ajout et modification d'entreprise
     <string name="edit_entreprise_nouvelle">Nouvelle Entreprise</string>
     <string name="edit_entreprise_nom_hint">Nom de l\'entreprise</string>
