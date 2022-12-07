@@ -28,4 +28,7 @@ public interface LoginAPI {
 
     @DELETE("/stage/{idStage}")
     Call<ResponseBody> supprStage(@Header("Authorization") String token, @Path("idStage") String idStage);
+
+    @POST("/inscription")
+    Call<ResponseBody> inscription(@Body HashMap<String, String> coord);
 }

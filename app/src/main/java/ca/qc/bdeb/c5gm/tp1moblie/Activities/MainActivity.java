@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
-        ConnectUtils.testerConnexion(this);
+
     }
 
     public void startActivity(boolean succesConnexion){
@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        ConnectUtils.testerConnexion(this);
     }
 
 

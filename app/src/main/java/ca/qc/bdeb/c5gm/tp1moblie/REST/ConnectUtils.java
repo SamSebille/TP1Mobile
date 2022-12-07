@@ -2,8 +2,9 @@ package ca.qc.bdeb.c5gm.tp1moblie.REST;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import ca.qc.bdeb.c5gm.tp1moblie.Activities.ConnexionActivity;
+import ca.qc.bdeb.c5gm.tp1moblie.Activities.InscriptionActivity;
 import ca.qc.bdeb.c5gm.tp1moblie.Activities.MainActivity;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -21,9 +22,7 @@ public class ConnectUtils {
 
     private List<ComptePOJO> comptes;
 
-    public static void connecter() {
-
-        LoginData loginData = new LoginData("prof1@test.com", "secret");
+    public static void connecter(ConnexionActivity connexionActivity, LoginData loginData) {
 
         client.connecter(loginData).enqueue(new Callback<CompteResult>() {
             @Override
@@ -32,12 +31,15 @@ public class ConnectUtils {
                     CompteResult json = response.body();
                     ConnectUtils.authToken = json.getAccessToken();
                     ConnectUtils.authId = json.getId();
+                    connexionActivity.connexionReussie(1);
+                } else {
+                    connexionActivity.connexionReussie(0);
                 }
             }
 
             @Override
             public void onFailure(Call<CompteResult> call, Throwable t) {
-
+                connexionActivity.connexionReussie(-1);
             }
         });
 
@@ -64,23 +66,20 @@ public class ConnectUtils {
         return comptes;
     }
 
-    public static boolean signIn(Map<String, String> body) {
-        final boolean[] connexionReussie = new boolean[1];
-
-        //client.inscription(ConnectUtils.authToken, body).execute(
-                new Callback<Response>() {
+    public static void Inscription(InscriptionActivity inscriptionActivity, HashMap<String, String> body) {
+        client.inscription(body).enqueue(
+                new Callback<ResponseBody>() {
                     @Override
-                    public void onResponse(Call call, Response response) {
-                        connexionReussie[0] = true;
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (!response.isSuccessful()) {
+                            inscriptionActivity.connexionReussie(true);
+                        }
                     }
-
                     @Override
-                    public void onFailure(Call call, Throwable t) {
-                        connexionReussie[0] = false;
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        inscriptionActivity.connexionReussie(false);
                     }
-                };
-        //);
-        return connexionReussie[0];
+                });
     }
 
     public static void testerConnexion(MainActivity mainActivity) {
@@ -92,7 +91,6 @@ public class ConnectUtils {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (!response.isSuccessful()) {
-                            connecter();
                             mainActivity.startActivity(true);
                         }
                     }

@@ -10,9 +10,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import java.util.Dictionary;
 import java.util.HashMap;
-import java.util.Map;
+import java.util.regex.Pattern;
 
 import ca.qc.bdeb.c5gm.tp1moblie.R;
 import ca.qc.bdeb.c5gm.tp1moblie.REST.ConnectUtils;
@@ -49,30 +48,38 @@ public class InscriptionActivity extends AppCompatActivity {
             reponse[i] = saisies[i].getText().toString();
         }
 
-        Map<String, String> body = new HashMap<>();
-        body.put("nom", "Jean");
-        body.put("prenom", "Dujardin");
-        body.put("email", "j.dujardin@test.com");
-        body.put("mot_de_passe", "motPasseTest");
-        body.put("mot_de_passe_confirmation", "motPasseTest");
+        // On verifie que le courriel est au bon format
+        Pattern emailRegex = Pattern.compile(".+@.+\\..+");
+        if (!emailRegex.matcher(saisies[2].getText().toString()).matches()) {
+            Toast.makeText(this,
+                    "Veuillez insérer un bon format pour l'adresse couriel (exemple@test.com)",
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
 
+        // On verifie que le mot de passe correspond a la confirmation
+        if (!saisies[3].getText().toString().matches(saisies[4].getText().toString())){
+            Toast.makeText(this,
+                    "Les mots de passe ne correspondent pas.",
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        HashMap<String, String> body = new HashMap<>();
+        body.put("nom", saisies[0].getText().toString());
+        body.put("prenom", saisies[1].getText().toString());
+        body.put("email", saisies[2].getText().toString());
+        body.put("mot_de_passe", saisies[3].getText().toString());
+        body.put("mot_de_passe_confirmation", saisies[4].getText().toString());
+
+        ConnectUtils.Inscription(this, body);
+    }
+
+    public void connexionReussie(boolean is_reussie) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
 
-        if (!ConnectUtils.signIn(body)){
-            builder.setTitle("Erreur");
-            builder.setMessage("L'inscription a échouée. Vérifiez votre connexion.");
-
-            builder.setPositiveButton("OK",
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            // RIENG
-                        }
-                    });
-            AlertDialog dialog = builder.create();
-            dialog.show();
-        } else {
+        if (is_reussie){
             builder.setTitle("Bravo");
             builder.setMessage("L'inscription a réussie.");
 
@@ -80,14 +87,26 @@ public class InscriptionActivity extends AppCompatActivity {
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            // RIENG
+                            finish();
                         }
                     });
             AlertDialog dialog = builder.create();
             dialog.show();
 
-        }
+        } else {
+            builder.setTitle("Erreur");
+            builder.setMessage("L'inscription a échouée. Vérifiez votre connexion internet.");
 
+            builder.setPositiveButton("OK",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // RIENG
+                        }
+                    });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
     }
 
 }
