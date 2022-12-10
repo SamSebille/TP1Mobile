@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
             }
             case -1: {
                 if (!ConnectUtils.authId.matches("")){
+                    Toast.makeText(this,
+                            "Passage en mode hors ligne.",
+                            Toast.LENGTH_LONG).show();
                     if (ConnectUtils.typeCompte == ComptePOJO.TypeUtilisateur.ETUDIANT)
                         startActivity(new Intent(MainActivity.this, MenuActivity.class));
                     else
