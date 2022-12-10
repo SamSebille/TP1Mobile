@@ -4,7 +4,6 @@
 
     <item
         android:icon="@android:drawable/ic_delete"
-        android:onClick="onClickConnexion"
         android:title="Item"
         app:showAsAction="always" />
 </menu>
