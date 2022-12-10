@@ -159,7 +159,7 @@ public class MenuProfActivity extends AppCompatActivity {
     }
 
     public void onClickPlus(View view) {
-        Intent intent = new Intent(getBaseContext(), EtudintActivity.class);
+        Intent intent = new Intent(getBaseContext(), EtudiantActivity.class);
         intent.putExtra("ISMODIFIER", false);
         startActivity(intent);
     }
