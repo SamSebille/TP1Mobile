@@ -27,10 +27,14 @@
             android:exported="false"
             android:parentActivityName=".Activities.ConnexionActivity" />
         <activity
+            android:name=".Activities.MenuProfActivity"
+            android:exported="false"
+            android:parentActivityName=".Activities.MainActivity" />
+        <activity
             android:name=".Activities.ConnexionActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.EntrepriseActivity"
+            android:name=".Activities.EtudintActivity"
             android:exported="false"
             android:parentActivityName=".Activities.MenuActivity">
             <meta-data

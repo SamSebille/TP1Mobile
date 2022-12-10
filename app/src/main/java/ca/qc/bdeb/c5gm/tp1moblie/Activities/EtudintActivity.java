@@ -30,7 +30,7 @@ import ca.qc.bdeb.c5gm.tp1moblie.R;
 /**
  * Classe pour les activités de création et de modification d'entreprise.
  */
-public class EntrepriseActivity extends AppCompatActivity {
+public class EtudintActivity extends AppCompatActivity {
 
     // L'entreprise a modifier
     private UUID entreprise_id;
@@ -231,7 +231,7 @@ public class EntrepriseActivity extends AppCompatActivity {
 
     // code from https://developer.android.com/develop/ui/views/components/pickers#DatePicker
     public void showDatePickerDialog(View v) {
-        DialogFragment newFragment = new EntrepriseActivity.DatePickerFragment();
+        DialogFragment newFragment = new EtudintActivity.DatePickerFragment();
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
