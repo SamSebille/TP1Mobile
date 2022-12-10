@@ -8,6 +8,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +31,7 @@ import java.util.List;
 
 import ca.qc.bdeb.c5gm.tp1moblie.BD.Stockage;
 import ca.qc.bdeb.c5gm.tp1moblie.R;
+import ca.qc.bdeb.c5gm.tp1moblie.REST.ConnectUtils;
 import ca.qc.bdeb.c5gm.tp1moblie.databinding.ActivityMapsBinding;
 
 /**
@@ -120,6 +122,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     }
                 });
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.menu_btn_deconnexion){
+            ConnectUtils.deconnexion(this);
+            return true;
+        }
+        else
+            return super.onOptionsItemSelected(item);
     }
 
     private void ajoutMarcker() {

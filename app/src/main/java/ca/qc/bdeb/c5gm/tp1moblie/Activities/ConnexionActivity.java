@@ -94,8 +94,4 @@ public class ConnexionActivity extends AppCompatActivity {
     public void onClickInscription(View view) {
         startActivity(new Intent(ConnexionActivity.this, InscriptionActivity.class));
     }
-
-    public void onClickDeconnexion(View view){
-
-    }
 }

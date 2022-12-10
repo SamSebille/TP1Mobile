@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -26,6 +27,7 @@ import java.util.regex.Pattern;
 
 import ca.qc.bdeb.c5gm.tp1moblie.BD.Stockage;
 import ca.qc.bdeb.c5gm.tp1moblie.R;
+import ca.qc.bdeb.c5gm.tp1moblie.REST.ConnectUtils;
 
 /**
  * Classe pour les activités de création et de modification d'entreprise.
@@ -65,6 +67,16 @@ public class EtudintActivity extends AppCompatActivity {
         saisies[4] = findViewById(R.id.sai_web);
         saisies[5] = findViewById(R.id.sai_adresse);
         date = findViewById(R.id.sai_date);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.menu_btn_deconnexion){
+            ConnectUtils.deconnexion(this);
+            return true;
+        }
+        else
+            return super.onOptionsItemSelected(item);
     }
 
     @Override
