@@ -20,7 +20,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".Activities.EtudiantActivity"
+            android:name=".Activities.EntrepriseActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.InscriptionActivity"
@@ -34,7 +34,7 @@
             android:name=".Activities.ConnexionActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.EtudintActivity"
+            android:name=".Activities.EtudiantActivity"
             android:exported="false"
             android:parentActivityName=".Activities.MenuActivity">
             <meta-data

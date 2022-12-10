@@ -255,11 +255,11 @@ public class MenuActivity extends AppCompatActivity {
                     // Récupère la position de l'item item clické.
                     int mPosition = getLayoutPosition();
                     // Accède l'item dans stringList avec l'info de position.
-                    Entreprise element = entreprises.get(mPosition);
+                    Entreprise entreprise = entreprises.get(mPosition);
 
                     // On passe les informations de l'entreprise a l'activité de modification.
                     Intent intent = new Intent(getBaseContext(), EntrepriseActivity.class);
-                    intent.putExtra("ENTREPRISE_ID", element.getId());
+                    intent.putExtra("ENTREPRISE_ID", entreprise.getId().toString());
                     intent.putExtra("ISMODIFIER", true);
                     startActivity(intent);
                 }

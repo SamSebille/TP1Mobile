@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import ca.qc.bdeb.c5gm.tp1moblie.Activities.ConnexionActivity;
+import ca.qc.bdeb.c5gm.tp1moblie.Activities.Entreprise;
 import ca.qc.bdeb.c5gm.tp1moblie.Activities.Etudiant;
 import ca.qc.bdeb.c5gm.tp1moblie.Activities.InscriptionActivity;
 import ca.qc.bdeb.c5gm.tp1moblie.Activities.MainActivity;
@@ -96,7 +97,34 @@ public class ConnectUtils {
 
     public static void chargerBDEntreprises(Activity activity) {
 
-        activity.startActivity(new Intent(activity, MenuActivity.class));
+        client.lireEntreprises(ConnectUtils.authToken).enqueue(
+                new Callback<List<Entreprise>>() {
+                    @Override
+                    public void onResponse(Call<List<Entreprise>> call, Response<List<Entreprise>> response) {
+                        if (response.isSuccessful()) {
+                            List<Entreprise> entreprises = response.body();
+                            Stockage stockage = Stockage.getInstance(activity.getApplicationContext());
+
+                            stockage.clearTables();
+
+                            for (Entreprise entreprise : entreprises) {
+                                stockage.ajouterEntreprise(entreprise);
+                            }
+
+                            activity.startActivity(new Intent(activity, MenuActivity.class));
+                        } else {
+                            Toast.makeText(activity,
+                                    "Une erreur inconnue est survenue, réessayez plus tard."
+                                    , Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Entreprise>> call, Throwable t) {
+                        activity.startActivity(new Intent(activity, MainActivity.class));
+                    }
+                }
+        );
     }
 
     public static void Inscription(InscriptionActivity inscriptionActivity, HashMap<String, String> body) {
