@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 if (ConnectUtils.typeCompte == ComptePOJO.TypeUtilisateur.ETUDIANT)
                     startActivity(new Intent(MainActivity.this, MenuActivity.class));
                 else
-                    startActivity(new Intent(MainActivity.this, MenuActivity.class));
+                    startActivity(new Intent(MainActivity.this, MenuProfActivity.class));
                 break;
             }
             case 0: {

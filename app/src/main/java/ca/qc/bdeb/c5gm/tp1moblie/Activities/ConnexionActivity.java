@@ -56,7 +56,7 @@ public class ConnexionActivity extends AppCompatActivity {
                 if (ConnectUtils.typeCompte == ComptePOJO.TypeUtilisateur.ETUDIANT)
                     startActivity(new Intent(ConnexionActivity.this, MenuActivity.class));
                 else
-                    startActivity(new Intent(ConnexionActivity.this, MenuActivity.class));
+                    startActivity(new Intent(ConnexionActivity.this, MenuProfActivity.class));
                 break;
             }
             case 0 :{

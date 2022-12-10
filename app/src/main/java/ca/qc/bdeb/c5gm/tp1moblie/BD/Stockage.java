@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import ca.qc.bdeb.c5gm.tp1moblie.Activities.Entreprise;
+import ca.qc.bdeb.c5gm.tp1moblie.Activities.Etudiant;
 
 /**
  * Classe qui implemente SQLiteOpenHelper afin de manipuler la bd locale.
@@ -36,6 +37,7 @@ public class Stockage extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         // Contient la création des tables
         sqLiteDatabase.execSQL(SQL_CREATE_ENTREPRISES);
+        sqLiteDatabase.execSQL(SQL_CREATE_ETUDIANT);
     }
 
     @Override
@@ -182,7 +184,78 @@ public class Stockage extends SQLiteOpenHelper {
 
     public void dropTable() {
         SQLiteDatabase db = this.getWritableDatabase(); // On veut écrire dans la BD
-        db.execSQL(SQL_DELETE_CLIENTS);
+        db.execSQL(SQL_DELETE_ENTREPRISE);
+        db.execSQL(SQL_DELETE_ETUDIENT);
+    }
+
+    public Etudiant getEtudiant(UUID id ) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] columns = {
+                Etudiants._ID,
+                Etudiants.ETUDIANT_NOM,
+                Etudiants.ETUDIANT_PRENOM,
+                Etudiants.ETUDIANT_COURRIEL,
+                Etudiants.ETUDIANT_STAGE,
+                Etudiants.ETUDIANT_NOMBRE_ENTREPRISE
+        };
+
+        String selection = Etudiants._ID + " = ?";
+
+        String[] selectionArgs = {id.toString()};
+
+        Cursor cursor = db.query(Etudiants.NOM_TABLE, columns, selection, selectionArgs,
+                null, null, null, null);
+
+        Etudiant etudiant = null;
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+
+            etudiant = new Etudiant(
+                    UUID.fromString(cursor.getString(0)), cursor.getString(1),
+                    cursor.getString(2), cursor.getString(3),
+                    cursor.getInt(4)==1, cursor.getInt(5));
+        }
+
+        cursor.close();
+
+        return etudiant;
+    }
+
+    public ArrayList<Etudiant> getEtudiants() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] columns = {
+                Etudiants._ID,
+                Etudiants.ETUDIANT_NOM,
+                Etudiants.ETUDIANT_PRENOM,
+                Etudiants.ETUDIANT_COURRIEL,
+                Etudiants.ETUDIANT_STAGE,
+                Etudiants.ETUDIANT_NOMBRE_ENTREPRISE
+        };
+
+
+        Cursor cursor = db.query(Etudiants.NOM_TABLE, columns, null, null,
+                null, null, null, null);
+
+        ArrayList<Etudiant> etudiant = new ArrayList<>();
+
+
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+        do{
+            etudiant.add( new Etudiant(
+                    UUID.fromString(cursor.getString(0)), cursor.getString(1),
+                    cursor.getString(2), cursor.getString(3),
+                    cursor.getInt(4)==1, cursor.getInt(5)));
+        } while (cursor.moveToNext());
+
+    }
+
+        cursor.close();
+
+        return etudiant;
     }
 
     private static final String SQL_CREATE_ENTREPRISES =
@@ -197,8 +270,21 @@ public class Stockage extends SQLiteOpenHelper {
                     Entreprises.ENTREPRISE_DATE + " TEXT," +
                     Entreprises.ENTREPRISE_FAVORI + " INTEGER)";
 
-    private static final String SQL_DELETE_CLIENTS =
+    private static final String SQL_DELETE_ENTREPRISE =
             "DROP TABLE IF EXISTS " + Entreprises.NOM_TABLE;
+
+
+    private static final String SQL_CREATE_ETUDIANT =
+            "CREATE TABLE " + Etudiants.NOM_TABLE + " (" +
+                    Etudiants._ID + " TEXT PRIMARY KEY," +
+                    Etudiants.ETUDIANT_NOM + " TEXT," +
+                    Etudiants.ETUDIANT_PRENOM + " TEXT," +
+                    Etudiants.ETUDIANT_COURRIEL + " TEXT," +
+                    Etudiants.ETUDIANT_STAGE + " INTEGER," +
+                    Etudiants.ETUDIANT_NOMBRE_ENTREPRISE+ " INTEGER)";
+
+    private static final String SQL_DELETE_ETUDIENT =
+            "DROP TABLE IF EXISTS " + Etudiants.NOM_TABLE;
 
     /**
      * Classe interne qui définit le contenu de notre table
@@ -214,6 +300,19 @@ public class Stockage extends SQLiteOpenHelper {
         public static final String ENTREPRISE_ADRESSE = "adresse";
         public static final String ENTREPRISE_DATE = "date";
         public static final String ENTREPRISE_FAVORI = "favori";
+
+    }
+    /**
+     * Classe interne qui définit le contenu de notre table
+     */
+    public static class Etudiants implements BaseColumns {
+        // Mettre ici toutes les constantes de noms de tables et de colonnes
+        public static final String NOM_TABLE = "etudiant";
+        public static final String ETUDIANT_NOM = "nom";
+        public static final String ETUDIANT_PRENOM = "contact";
+        public static final String ETUDIANT_COURRIEL = "courriel";
+        public static final String ETUDIANT_STAGE = "stage";
+        public static final String ETUDIANT_NOMBRE_ENTREPRISE = "entreprises";
 
     }
 }
