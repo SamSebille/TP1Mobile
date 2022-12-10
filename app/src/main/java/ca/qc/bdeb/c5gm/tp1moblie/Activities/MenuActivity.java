@@ -170,7 +170,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void onClickPlus(View view) {
-        Intent intent = new Intent(getBaseContext(), EtudintActivity.class);
+        Intent intent = new Intent(getBaseContext(), EntrepriseActivity.class);
         intent.putExtra("ISMODIFIER", false);
         startActivity(intent);
     }
@@ -258,7 +258,7 @@ public class MenuActivity extends AppCompatActivity {
                     Entreprise element = entreprises.get(mPosition);
 
                     // On passe les informations de l'entreprise a l'activité de modification.
-                    Intent intent = new Intent(getBaseContext(), EtudintActivity.class);
+                    Intent intent = new Intent(getBaseContext(), EntrepriseActivity.class);
                     intent.putExtra("ENTREPRISE_ID", element.getId());
                     intent.putExtra("ISMODIFIER", true);
                     startActivity(intent);
