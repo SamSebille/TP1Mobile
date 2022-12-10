@@ -19,8 +19,8 @@ public class LoginAPIClient {
 
         if (client == null) {
             client = new OkHttpClient.Builder()
-                    .readTimeout(5, TimeUnit.SECONDS)
-                    .writeTimeout(5, TimeUnit.SECONDS)
+                    .readTimeout(2, TimeUnit.SECONDS)
+                    .writeTimeout(2, TimeUnit.SECONDS)
                     .addInterceptor(interceptor).build();
         }
 

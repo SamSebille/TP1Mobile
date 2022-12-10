@@ -1,6 +1,12 @@
 package ca.qc.bdeb.c5gm.tp1moblie.REST;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.List;
@@ -104,6 +110,34 @@ public class ConnectUtils {
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
                         mainActivity.startActivity(-1);
+                    }
+                }
+        );
+    }
+
+    public static void deconnexion(Activity activity) {
+        HashMap<String, Object> user = new HashMap<>();
+        user.put("id_compte", ConnectUtils.authId);
+        client.deconnecter(ConnectUtils.authToken).enqueue(
+                new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        SharedPreferences prefs = activity.getSharedPreferences("prefs", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.putString("token_compte", "");
+                        editor.putString("id_compte", "");
+                        editor.apply();
+                        activity.startActivity(new Intent(activity, MainActivity.class));
+                        Toast.makeText(activity,
+                                "Deconnexion..."
+                                , Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Toast.makeText(activity,
+                                "Deconnexion impossible en mode hors ligne."
+                                , Toast.LENGTH_SHORT).show();
                     }
                 }
         );

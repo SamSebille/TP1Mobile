@@ -94,9 +94,4 @@ public class ConnexionActivity extends AppCompatActivity {
     public void onClickInscription(View view) {
         startActivity(new Intent(ConnexionActivity.this, InscriptionActivity.class));
     }
-
-    @Override
-    public void onBackPressed() {
-
-    }
 }
