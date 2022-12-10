@@ -2,6 +2,8 @@ package ca.qc.bdeb.c5gm.tp1moblie.REST;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,8 +14,12 @@ import java.util.HashMap;
 import java.util.List;
 
 import ca.qc.bdeb.c5gm.tp1moblie.Activities.ConnexionActivity;
+import ca.qc.bdeb.c5gm.tp1moblie.Activities.Etudiant;
 import ca.qc.bdeb.c5gm.tp1moblie.Activities.InscriptionActivity;
 import ca.qc.bdeb.c5gm.tp1moblie.Activities.MainActivity;
+import ca.qc.bdeb.c5gm.tp1moblie.Activities.MenuActivity;
+import ca.qc.bdeb.c5gm.tp1moblie.Activities.MenuProfActivity;
+import ca.qc.bdeb.c5gm.tp1moblie.BD.Stockage;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,8 +34,6 @@ public class ConnectUtils {
 
     private static final LoginAPI client = LoginAPIClient.getRetrofit().create(LoginAPI.class);
     private static LoginData user = new LoginData(authEmail, authPassword);
-
-    private List<ComptePOJO> comptes;
 
     public static void connecter(ConnexionActivity connexionActivity, LoginData loginData) {
 
@@ -58,23 +62,41 @@ public class ConnectUtils {
 
     }
 
-    private List<ComptePOJO> getEtudiants() {
-
+    public static void chargerBDEtudiants(Activity activity) {
         client.getComptesEleves(ConnectUtils.authToken).enqueue(
                 new Callback<List<ComptePOJO>>() {
                     @Override
                     public void onResponse(Call<List<ComptePOJO>> call, Response<List<ComptePOJO>> response) {
                         if (response.isSuccessful()) {
-                            comptes = response.body();
+                            List<ComptePOJO> etudiants = response.body();
+                            Stockage stockage = Stockage.getInstance(activity.getApplicationContext());
+
+                            stockage.clearTables();
+
+                            for (ComptePOJO comptePOJO : etudiants) {
+                                Etudiant etudiant = new Etudiant(comptePOJO);
+                                stockage.ajouterEtudiant(etudiant);
+                            }
+
+                            activity.startActivity(new Intent(activity, MenuProfActivity.class));
+                        } else {
+                            Toast.makeText(activity,
+                                    "Une erreur inconnue est survenue, réessayez plus tard."
+                                    , Toast.LENGTH_SHORT).show();
                         }
                     }
                     @Override
                     public void onFailure(Call<List<ComptePOJO>> call, Throwable t) {
+                        activity.startActivity(new Intent(activity, MainActivity.class));
                     }
                 }
         );
 
-        return comptes;
+    }
+
+    public static void chargerBDEntreprises(Activity activity) {
+
+        activity.startActivity(new Intent(activity, MenuActivity.class));
     }
 
     public static void Inscription(InscriptionActivity inscriptionActivity, HashMap<String, String> body) {
@@ -122,6 +144,7 @@ public class ConnectUtils {
                 new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        // Clear des preferences
                         SharedPreferences prefs = activity.getSharedPreferences("prefs", MODE_PRIVATE);
                         SharedPreferences.Editor editor = prefs.edit();
                         editor.putString("token_compte", "");

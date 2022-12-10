@@ -4,6 +4,8 @@ import java.util.Comparator;
 import java.util.Locale;
 import java.util.UUID;
 
+import ca.qc.bdeb.c5gm.tp1moblie.REST.ComptePOJO;
+
 public class Etudiant {
     UUID id;
     String nom;
@@ -19,6 +21,15 @@ public class Etudiant {
         this.email = email;
         this.stageTrouve = stageTrouve;
         this.nombreEntreprise = nombreEntreprise;
+    }
+
+    public Etudiant(ComptePOJO comptePOJO) {
+        this.id = UUID.fromString(comptePOJO.getId());
+        this.nom = comptePOJO.getNom();
+        this.prenom = comptePOJO.getPrenom();
+        this.email = comptePOJO.getEmail();
+        this.stageTrouve = comptePOJO.getStageTrouve();
+        this.nombreEntreprise = comptePOJO.getEntreprises().toArray().length;
     }
 
     public UUID getId() {

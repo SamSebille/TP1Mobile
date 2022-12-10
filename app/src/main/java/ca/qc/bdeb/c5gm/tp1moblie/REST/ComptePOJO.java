@@ -23,6 +23,9 @@ public class ComptePOJO implements Serializable
     @SerializedName("email")
     @Expose
     private String email;
+    @SerializedName("stageTrouve")
+    @Expose
+    private Boolean stageTrouve;
     @SerializedName("typeCompte")
     @Expose
     private TypeUtilisateur typeCompte;
@@ -47,12 +50,13 @@ public class ComptePOJO implements Serializable
      * @param prenom
      * @param email
      */
-    public ComptePOJO(String id, String nom, String prenom, String email, TypeUtilisateur typeCompte, List<Entreprise> entreprises) {
+    public ComptePOJO(String id, String nom, String prenom, String email,boolean stageTrouve, TypeUtilisateur typeCompte, List<Entreprise> entreprises) {
         super();
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
+        this.stageTrouve = stageTrouve;
         this.typeCompte = typeCompte;
         this.entreprises = entreprises;
     }
@@ -87,6 +91,16 @@ public class ComptePOJO implements Serializable
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean getStageTrouve() {
+        if (stageTrouve == null)
+            return false;
+        return stageTrouve;
+    }
+
+    public void setStageTrouve(boolean email) {
+        this.stageTrouve = stageTrouve;
     }
 
     public TypeUtilisateur getTypeCompte() {

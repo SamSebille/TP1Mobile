@@ -11,6 +11,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.List;
+
 import ca.qc.bdeb.c5gm.tp1moblie.R;
 import ca.qc.bdeb.c5gm.tp1moblie.REST.ComptePOJO;
 import ca.qc.bdeb.c5gm.tp1moblie.REST.ConnectUtils;
@@ -47,16 +49,11 @@ public class ConnexionActivity extends AppCompatActivity {
         builder.setCancelable(true);
         switch (is_reussie){
             case 1 :{
-                SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
-                SharedPreferences.Editor editor = prefs.edit();
-                editor.putString("token_compte", ConnectUtils.authToken);
-                editor.putString("id_compte", ConnectUtils.authId);
-                editor.putString("type_utilisateur", ConnectUtils.typeCompte.toString());
-                editor.apply();
+                setPreferences();
                 if (ConnectUtils.typeCompte == ComptePOJO.TypeUtilisateur.ETUDIANT)
-                    startActivity(new Intent(ConnexionActivity.this, MenuActivity.class));
+                    ConnectUtils.chargerBDEntreprises(this);
                 else
-                    startActivity(new Intent(ConnexionActivity.this, MenuProfActivity.class));
+                    ConnectUtils.chargerBDEtudiants(this);
                 break;
             }
             case 0 :{
@@ -89,6 +86,15 @@ public class ConnexionActivity extends AppCompatActivity {
                 break;
             }
         }
+    }
+
+    private void setPreferences(){
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("token_compte", ConnectUtils.authToken);
+        editor.putString("id_compte", ConnectUtils.authId);
+        editor.putString("type_utilisateur", ConnectUtils.typeCompte.toString());
+        editor.apply();
     }
 
     public void onClickInscription(View view) {

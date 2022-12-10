@@ -175,6 +175,20 @@ public class Stockage extends SQLiteOpenHelper {
         db.insert(Entreprises.NOM_TABLE, null, values);
     }
 
+    public void ajouterEtudiant(Etudiant etudiant) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(Etudiants._ID, etudiant.getId().toString());
+        values.put(Etudiants.ETUDIANT_NOM, etudiant.getNom());
+        values.put(Etudiants.ETUDIANT_PRENOM, etudiant.getPrenom());
+        values.put(Etudiants.ETUDIANT_COURRIEL, etudiant.getEmail());
+        values.put(Etudiants.ETUDIANT_STAGE, etudiant.isStageTrouve());
+        values.put(Etudiants.ETUDIANT_NOMBRE_ENTREPRISE, etudiant.getNombreEntreprise());
+
+        db.insert(Etudiants.NOM_TABLE, null, values);
+    }
+
     public void deleteEntreprise(Entreprise entreprise) {
         SQLiteDatabase db = this.getWritableDatabase(); // On veut écrire dans la BD
         String whereClause = Entreprises._ID + " = ?";
@@ -182,10 +196,29 @@ public class Stockage extends SQLiteOpenHelper {
         db.delete(Entreprises.NOM_TABLE, whereClause, whereArgs);
     }
 
-    public void dropTable() {
+    public void deleteEtudiant(Etudiant etudiant) {
+        SQLiteDatabase db = this.getWritableDatabase(); // On veut écrire dans la BD
+        String whereClause = Etudiants._ID + " = ?";
+        String[] whereArgs = {String.valueOf(etudiant.getId())};
+        db.delete(Etudiants.NOM_TABLE, whereClause, whereArgs);
+    }
+
+    public void dropTables() {
         SQLiteDatabase db = this.getWritableDatabase(); // On veut écrire dans la BD
         db.execSQL(SQL_DELETE_ENTREPRISE);
         db.execSQL(SQL_DELETE_ETUDIENT);
+    }
+
+    public void clearTables(){
+        ArrayList<Entreprise> entreprises = getEntreprises();
+        ArrayList<Etudiant> etudiants = getEtudiants();
+
+        for (Entreprise entreprise : entreprises) {
+            deleteEntreprise(entreprise);
+        }
+        for (Etudiant etudiant : etudiants) {
+            deleteEtudiant(etudiant);
+        }
     }
 
     public Etudiant getEtudiant(UUID id ) {
