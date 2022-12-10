@@ -118,9 +118,7 @@ public class MenuProfActivity extends AppCompatActivity {
         majListBDEtudiant();
 
         if (triParStage)
-            radioGroupStage.check(R.id.btn_favoris);
-        if (triParNom)
-            radioGroupTri.check(R.id.btn_tri_date);
+            radioGroupStage.check(R.id.btn_tri_stage);
     }
 
     /**
