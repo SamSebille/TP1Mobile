@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:icon="@mipmap/btn_profil"
+        android:icon="@android:drawable/ic_delete"
+        android:onClick="onClickConnexion"
         android:title="Item"
         app:showAsAction="always" />
 </menu>

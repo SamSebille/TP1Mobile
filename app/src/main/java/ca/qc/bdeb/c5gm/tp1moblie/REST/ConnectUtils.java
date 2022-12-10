@@ -1,5 +1,6 @@
 package ca.qc.bdeb.c5gm.tp1moblie.REST;
 
+import android.content.Intent;
 import android.util.Log;
 
 import java.util.HashMap;
@@ -104,6 +105,25 @@ public class ConnectUtils {
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
                         mainActivity.startActivity(-1);
+                    }
+                }
+        );
+    }
+
+    public static void deconnexion(ConnexionActivity connexionActivity) {
+        HashMap<String, Object> user = new HashMap<>();
+        user.put("id_compte", ConnectUtils.authId);
+        client.deconnecter(ConnectUtils.authToken).enqueue(
+                new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        ConnectUtils.authId = "";
+                        ConnectUtils.authToken = "";
+                        connexionActivity.startActivity(new Intent(connexionActivity, MainActivity.class));
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
                     }
                 }
         );
