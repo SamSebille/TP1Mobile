@@ -3,6 +3,7 @@ package ca.qc.bdeb.c5gm.tp1moblie.Activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,6 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import ca.qc.bdeb.c5gm.tp1moblie.BD.Stockage;
 import ca.qc.bdeb.c5gm.tp1moblie.R;
@@ -31,7 +33,7 @@ public class MenuProfActivity extends AppCompatActivity {
 
     private Stockage stockage;
 
-    private static ArrayList<Etudiant> etudiants;
+    private static ArrayList<Etudiant> etudiants = new ArrayList<>();
 
     private RecyclerView recyclerView;
     private EtudiantListAdapter etudiantListAdapter;
@@ -213,10 +215,11 @@ public class MenuProfActivity extends AppCompatActivity {
         public void onBindViewHolder(@NonNull EtudiantListAdapter.EtudiantViewHolder holder, int position) {
             Etudiant etudiant = etudiants.get(position);
             holder.tv_etudiant.setText(etudiant.getNom());
+            Log.d("test stage", "onBindViewHolder: " + etudiant.isStageTrouve());
             if (etudiant.isStageTrouve())
-                holder.ib_stage.setImageResource(R.mipmap.ic_favorite_24px);
+                holder.ib_stage.setImageResource(R.mipmap.ic_check_24px);
             else
-                holder.ib_stage.setImageResource(R.mipmap.ic_favorite_border_24px);
+                holder.ib_stage.setImageResource(R.mipmap.ic_close_24px);
         }
 
         @Override
