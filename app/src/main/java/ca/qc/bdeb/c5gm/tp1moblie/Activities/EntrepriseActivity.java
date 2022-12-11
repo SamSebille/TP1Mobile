@@ -181,7 +181,7 @@ public class EntrepriseActivity extends AppCompatActivity {
                     saisies[4].getText().toString(), saisies[5].getText().toString(),
                     date.getText().toString());
 
-            stockage.updateEntreprise(entreprise);
+            ConnectUtils.modifierEntreprise(this, entreprise);
 
             Toast.makeText(this,
                     "Modifications enregistrée.", Toast.LENGTH_LONG).show();
@@ -193,7 +193,7 @@ public class EntrepriseActivity extends AppCompatActivity {
                     saisies[4].getText().toString(), saisies[5].getText().toString(),
                     date.getText().toString());
 
-            stockage.ajouterEntreprise(entreprise);
+            ConnectUtils.ajouterEntreprise(this, entreprise);
 
             Toast.makeText(this,
                     "Entreprise enregistrée.", Toast.LENGTH_LONG).show();
@@ -216,7 +216,7 @@ public class EntrepriseActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        stockage.deleteEntreprise(entreprise);
+                        validerSupprimer(entreprise);
                         finish();
                     }
                 });
@@ -229,6 +229,10 @@ public class EntrepriseActivity extends AppCompatActivity {
         });
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    public void validerSupprimer(Entreprise entreprise){
+        ConnectUtils.supprimerEntreprise(this, entreprise);
     }
 
     @Override

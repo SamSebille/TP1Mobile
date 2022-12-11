@@ -193,4 +193,80 @@ public class ConnectUtils {
                 }
         );
     }
+
+    public static void supprimerEntreprise(Activity activity, Entreprise entreprise){
+        client.supprEntreprise(ConnectUtils.authToken, entreprise.getId().toString()).enqueue(
+                new Callback<Entreprise>() {
+                    @Override
+                    public void onResponse(Call<Entreprise> call, Response<Entreprise> response) {
+                        if (response.isSuccessful()) {
+                            Stockage stockage = Stockage.getInstance(activity.getApplicationContext());
+                            stockage.deleteEntreprise(entreprise);
+                        } else {
+                            Toast.makeText(activity,
+                                    "L'entreprise n'existe pas où a deja été supprimée."
+                                    , Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Entreprise> call, Throwable t) {
+                        Toast.makeText(activity,
+                                "Supression impossible en mode hors ligne."
+                                , Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+    }
+
+    public static void ajouterEntreprise(Activity activity, Entreprise entreprise){
+        client.creerEntreprise(ConnectUtils.authToken, entreprise).enqueue(
+                new Callback<Entreprise>() {
+                    @Override
+                    public void onResponse(Call<Entreprise> call, Response<Entreprise> response) {
+                        if (response.isSuccessful()) {
+                            Stockage stockage = Stockage.getInstance(activity.getApplicationContext());
+                            stockage.ajouterEntreprise(entreprise);
+                        } else {
+                            Toast.makeText(activity,
+                                    "L'entreprise existe déjà."
+                                    , Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Entreprise> call, Throwable t) {
+                        Toast.makeText(activity,
+                                "Ajout impossible en mode hors ligne."
+                                , Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+    }
+
+    public static void modifierEntreprise(Activity activity, Entreprise entreprise){
+        client.modifierEntreprise(ConnectUtils.authToken, entreprise.getId().toString(), entreprise).enqueue(
+                new Callback<Entreprise>() {
+                    @Override
+                    public void onResponse(Call<Entreprise> call, Response<Entreprise> response) {
+                        if (response.isSuccessful()) {
+                            Stockage stockage = Stockage.getInstance(activity.getApplicationContext());
+                            stockage.updateEntreprise(entreprise);
+                        } else {
+                            Toast.makeText(activity,
+                                    "L'entreprise n'as pas été trouvée."
+                                    , Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Entreprise> call, Throwable t) {
+                        Toast.makeText(activity,
+                                "Modification impossible en mode hors ligne."
+                                , Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+    }
+
 }
