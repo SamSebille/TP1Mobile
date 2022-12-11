@@ -132,7 +132,7 @@ public class Stockage extends SQLiteOpenHelper {
         values.put(Entreprises.ENTREPRISE_TELEPHONE, entreprise.getTelephone());
         values.put(Entreprises.ENTREPRISE_WEB, entreprise.getSiteWeb());
         values.put(Entreprises.ENTREPRISE_ADRESSE, entreprise.getAdresse());
-        values.put(Entreprises.ENTREPRISE_DATE, entreprise.getDate_contact());
+        values.put(Entreprises.ENTREPRISE_DATE, entreprise.getDateContact());
         values.put(Entreprises.ENTREPRISE_FAVORI, entreprise.estFavorite());
 
         String whereClause = Entreprises._ID + " = ?";
@@ -155,7 +155,7 @@ public class Stockage extends SQLiteOpenHelper {
         values.put(Entreprises.ENTREPRISE_TELEPHONE, entreprise.getTelephone());
         values.put(Entreprises.ENTREPRISE_WEB, entreprise.getSiteWeb());
         values.put(Entreprises.ENTREPRISE_ADRESSE, entreprise.getAdresse());
-        values.put(Entreprises.ENTREPRISE_DATE, entreprise.getDate_contact());
+        values.put(Entreprises.ENTREPRISE_DATE, entreprise.getDateContact());
         values.put(Entreprises.ENTREPRISE_FAVORI, entreprise.estFavorite());
 
         db.insert(Entreprises.NOM_TABLE, null, values);

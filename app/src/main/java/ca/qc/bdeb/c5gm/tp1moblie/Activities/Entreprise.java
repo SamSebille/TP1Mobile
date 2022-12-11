@@ -15,21 +15,21 @@ public class Entreprise {
     private String telephone;
     private String siteWeb;
     private String adresse;
-    private String date_contact;
+    private String dateContact;
     private boolean estFavorite;
 
-    public Entreprise(String nom, String contact, String email, String telephone, String siteWeb, String adresse, String date_contact, boolean estFavorite) {
+    public Entreprise(String nom, String contact, String email, String telephone, String siteWeb, String adresse, String dateContact, boolean estFavorite) {
         this.nom = nom;
         this.contact = contact;
         this.email = email;
         this.telephone = telephone;
         this.siteWeb = siteWeb;
         this.adresse = adresse;
-        this.date_contact = date_contact;
+        this.dateContact = dateContact;
         this.estFavorite = estFavorite;
     }
 
-    public Entreprise(String nom, String contact, String email, String telephone, String siteWeb, String adresse, String date_contact) {
+    public Entreprise(String nom, String contact, String email, String telephone, String siteWeb, String adresse, String dateContact) {
         this.id = UUID.randomUUID();
         this.nom = nom;
         this.contact = contact;
@@ -37,11 +37,11 @@ public class Entreprise {
         this.telephone = telephone;
         this.siteWeb = siteWeb;
         this.adresse = adresse;
-        this.date_contact = date_contact;
+        this.dateContact = dateContact;
         this.estFavorite = false;
     }
 
-    public Entreprise(UUID id, String nom, String contact, String email, String telephone, String siteWeb, String adresse, String date_contact, boolean estFavorite) {
+    public Entreprise(UUID id, String nom, String contact, String email, String telephone, String siteWeb, String adresse, String dateContact, boolean estFavorite) {
         this.id = id;
         this.nom = nom;
         this.contact = contact;
@@ -49,11 +49,11 @@ public class Entreprise {
         this.telephone = telephone;
         this.siteWeb = siteWeb;
         this.adresse = adresse;
-        this.date_contact = date_contact;
+        this.dateContact = dateContact;
         this.estFavorite = estFavorite;
     }
 
-    public Entreprise(UUID id, String nom, String contact, String email, String telephone, String siteWeb, String adresse, String date_contact) {
+    public Entreprise(UUID id, String nom, String contact, String email, String telephone, String siteWeb, String adresse, String dateContact) {
         this.id = id;
         this.nom = nom;
         this.contact = contact;
@@ -61,7 +61,7 @@ public class Entreprise {
         this.telephone = telephone;
         this.siteWeb = siteWeb;
         this.adresse = adresse;
-        this.date_contact = date_contact;
+        this.dateContact = dateContact;
         this.estFavorite = false;
     }
 
@@ -105,8 +105,8 @@ public class Entreprise {
         return adresse;
     }
 
-    public String getDate_contact() {
-        return date_contact;
+    public String getDateContact() {
+        return dateContact;
     }
 
 }
@@ -129,14 +129,14 @@ class SortByDate implements Comparator<Entreprise> {
 
         int dateA, dateB;
 
-        if (a.getDate_contact() == null || b.getDate_contact() == null)
+        if (a.getDateContact() == null || b.getDateContact() == null)
             return 0;
 
-        String[] tempA = a.getDate_contact().split("/");
+        String[] tempA = a.getDateContact().split("/");
         dateA = (Integer.parseInt(tempA[2]) * 10000) +
                 (Integer.parseInt(tempA[1]) * 100) + (Integer.parseInt(tempA[0]));
 
-        String[] tempB = b.getDate_contact().split("/");
+        String[] tempB = b.getDateContact().split("/");
         dateB = (Integer.parseInt(tempB[2]) * 10000) +
                 (Integer.parseInt(tempB[1]) * 100) + (Integer.parseInt(tempB[0]));
 

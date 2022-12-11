@@ -98,7 +98,7 @@ public class EntrepriseActivity extends AppCompatActivity {
             saisies[3].setText(entreprise.getTelephone());
             saisies[4].setText(entreprise.getSiteWeb());
             saisies[5].setText(entreprise.getAdresse());
-            date.setText(entreprise.getDate_contact());
+            date.setText(entreprise.getDateContact());
 
             saisies[0].setVisibility(View.GONE);
 
