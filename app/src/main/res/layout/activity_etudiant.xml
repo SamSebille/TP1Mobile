@@ -25,10 +25,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingLeft="15dp"
+                android:paddingLeft="20dp"
                 android:paddingTop="20dp"
-                android:paddingRight="15dp"
-                >
+                android:paddingRight="15dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -51,15 +50,15 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1"
-                        android:text="@string/fiche_etudiant"
+                        android:text="@string/view_etudiant_titre"
                         android:textSize="24sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/textView_nom"
@@ -67,78 +66,73 @@
                         android:layout_height="match_parent"
                         android:layout_marginTop="20dp"
                         android:layout_weight="0"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:text="Nom : " />
+                        android:text="@string/view_etudiant_nom"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/nom_etudiant"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:editable="false"
-                        android:ems="10"
-                        android:hint="@string/nom_etudiant"
                         android:importantForAutofill="no"
-                        android:inputType="textPersonName"
-                        android:minHeight="48dp"
-                        android:textColorHint="#757575" />
+                        android:textColor="#000000"
+                        android:gravity="center_vertical"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/textView_prenom"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="0"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:text="Prénom : " />
+                        android:text="@string/view_etudiant_prenom"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/prenom_etudiant"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:editable="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
                         android:ems="10"
-                        android:hint="@string/prenom_etudiant"
                         android:importantForAutofill="no"
-                        android:inputType="textPersonName"
-                        android:minHeight="48dp"
-                        android:textColorHint="#757575" />
+                        android:textColor="#000000"
+                        android:gravity="center_vertical"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/textView_email"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="0"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:text="Courriel : " />
+                        android:text="@string/view_etudiant_email"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/email_etudiant"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.9"
-                        android:editable="false"
-                        android:hint="@string/email_etudiant"
                         android:importantForAutofill="no"
-                        android:inputType="textEmailAddress"
-                        android:minHeight="48dp"
-                        android:textColorHint="#757575" />
+                        android:textColor="#000000"
+                        android:gravity="center_vertical"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -146,28 +140,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/textView_stage"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="0"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:text="Stage trouver : " />
+                        android:text="@string/view_etudiant_stage"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/stage"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.9"
-                        android:editable="false"
-                        android:hint="@string/stage_etudiant"
                         android:importantForAutofill="no"
-                        android:inputType="phone"
-                        android:minHeight="48dp"
-                        android:textColorHint="#757575" />
+                        android:textColor="#000000"
+                        android:gravity="center_vertical"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -175,28 +168,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/textView_entreprise"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="0"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:text="Nombre d \'entreprises : " />
+                        android:text="@string/view_etudiant_nombre_entreprises"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/entreprise"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.9"
-                        android:editable="false"
-                        android:hint="@string/entreprises_etudiant"
                         android:importantForAutofill="no"
-                        android:inputType="textPersonName"
-                        android:minHeight="48dp"
-                        android:textColorHint="#757575" />
+                        android:textColor="#000000"
+                        android:gravity="center_vertical"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 

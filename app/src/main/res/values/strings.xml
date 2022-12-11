@@ -36,12 +36,12 @@
     <string name="edit_entreprise_btn_valider">Valider</string>
     <string name="edit_entreprise_btn_supprimer">Supprimer</string>
     //visuel étudiant
-    <string name="fiche_etudiant">Fiche de renseignements</string>
-    <string name="nom_etudiant">Nom</string>
-    <string name="prenom_etudiant">Prénon</string>
-    <string name="email_etudiant">Courriel</string>
-    <string name="stage_etudiant">Stage trouver</string>
-    <string name="entreprises_etudiant">Nombre d\'entreprises</string>
+    <string name="view_etudiant_titre">Fiche de renseignements</string>
+    <string name="view_etudiant_nom">Nom : </string>
+    <string name="view_etudiant_prenom">Prénom : </string>
+    <string name="view_etudiant_email">Email : </string>
+    <string name="view_etudiant_stage">Stage trouvé : </string>
+    <string name="view_etudiant_nombre_entreprises">Nombre d\'entreprises contactées : </string>
 
 
 </resources>
