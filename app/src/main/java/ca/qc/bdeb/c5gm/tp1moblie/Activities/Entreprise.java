@@ -109,6 +109,20 @@ public class Entreprise {
         return dateContact;
     }
 
+    @Override
+    public String toString() {
+        return "Entreprise{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", contact='" + contact + '\'' +
+                ", email='" + email + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", siteWeb='" + siteWeb + '\'' +
+                ", adresse='" + adresse + '\'' +
+                ", dateContact='" + dateContact + '\'' +
+                ", estFavorite=" + estFavorite +
+                '}';
+    }
 }
 
 /**
@@ -142,4 +156,5 @@ class SortByDate implements Comparator<Entreprise> {
 
         return dateA - dateB;
     }
+
 }

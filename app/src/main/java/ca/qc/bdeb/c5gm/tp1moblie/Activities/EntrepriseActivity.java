@@ -165,7 +165,7 @@ public class EntrepriseActivity extends AppCompatActivity {
         }
 
         // On verifie que la date correspond au format DD/MM/YYYY
-        Pattern dateRegex = Pattern.compile("\\d{2}/\\d{2}/\\d{4}");
+        Pattern dateRegex = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
         if (!dateRegex.matcher(date.getText().toString()).matches()) {
             Toast.makeText(this,
                     "Veuillez insérer un bon format de date (DD/MM/YYYY)", Toast.LENGTH_LONG).show();
@@ -190,6 +190,7 @@ public class EntrepriseActivity extends AppCompatActivity {
                     saisies[4].getText().toString(), saisies[5].getText().toString(),
                     date.getText().toString());
 
+            System.out.println(entreprise);
             ConnectUtils.ajouterEntreprise(this, entreprise);
         }
     }
@@ -263,7 +264,7 @@ public class EntrepriseActivity extends AppCompatActivity {
             String sday = day < 10 ? "0" + day : "" + day;
             String smonth = month < 10 ? "0" + month : "" + month;
 
-            date.setText(sday + "/" + smonth + "/" + year);
+            date.setText(year + "-" + smonth + "-" + sday);
         }
     }
 }

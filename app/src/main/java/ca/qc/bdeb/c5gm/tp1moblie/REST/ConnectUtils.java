@@ -100,11 +100,11 @@ public class ConnectUtils {
     public static void chargerBDEntreprises(Activity activity) {
 
         client.getEtudiantConnecte(ConnectUtils.authToken).enqueue(
-                new Callback<List<ComptePOJO>>() {
+                new Callback<ComptePOJO>() {
                     @Override
-                    public void onResponse(Call<List<ComptePOJO>> call, Response<List<ComptePOJO>> response) {
+                    public void onResponse(Call<ComptePOJO> call, Response<ComptePOJO> response) {
                         if (response.isSuccessful()) {
-                            ComptePOJO etudiant = response.body().get(0);
+                            ComptePOJO etudiant = response.body();
                             List<Entreprise> entreprises = etudiant.getEntreprises();
                             Stockage stockage = Stockage.getInstance(activity.getApplicationContext());
 
@@ -123,7 +123,7 @@ public class ConnectUtils {
                     }
 
                     @Override
-                    public void onFailure(Call<List<ComptePOJO>> call, Throwable t) {
+                    public void onFailure(Call<ComptePOJO> call, Throwable t) {
                         activity.startActivity(new Intent(activity, MainActivity.class));
                     }
                 }
@@ -228,6 +228,7 @@ public class ConnectUtils {
                 new Callback<Entreprise>() {
                     @Override
                     public void onResponse(Call<Entreprise> call, Response<Entreprise> response) {
+                        System.out.println(response.body());
                         if (response.isSuccessful()) {
                             Stockage stockage = Stockage.getInstance(activity.getApplicationContext());
                             stockage.ajouterEntreprise(entreprise);

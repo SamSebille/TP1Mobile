@@ -29,7 +29,7 @@ public interface LoginAPI {
     Call<List<ComptePOJO>> getComptesEleves(@Header("Authorization") String token);
 
     @GET("/compte/getetudiant")
-    Call<List<ComptePOJO>> getEtudiantConnecte(@Header("Authorization") String token);
+    Call<ComptePOJO> getEtudiantConnecte(@Header("Authorization") String token);
 
     @DELETE("/stage/{idStage}")
     Call<ResponseBody> supprStage(@Header("Authorization") String token, @Path("idStage") String idStage);
