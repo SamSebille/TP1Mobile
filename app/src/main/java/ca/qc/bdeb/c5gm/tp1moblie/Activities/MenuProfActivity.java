@@ -140,31 +140,22 @@ public class MenuProfActivity extends AppCompatActivity {
 
         if (triParNom)
             etudiantListAdapter.etudiants.sort(new SortByStudentName());
-        else if (triParStage)
+        if (triParStage)
             etudiantListAdapter.etudiants.removeIf(etudiant -> !etudiant.isStageTrouve());
 
         etudiantListAdapter.notifyDataSetChanged();
     }
 
     public void onClickTriNom(View view) {
-        triParNom = false;
-        majListEtudiant();
+        triParNom = true;
+        triParStage= false;
+        majListBDEtudiant();
     }
 
     public void onClickTriStage(View view) {
-        triParNom = true;
+        triParNom = false;
+        triParStage = true;
         majListEtudiant();
-    }
-
-    public void onClickMaps(View view) {
-        startActivity(new Intent(this,
-                MapsActivity.class));
-    }
-
-    public void onClickPlus(View view) {
-        Intent intent = new Intent(getBaseContext(), EtudiantActivity.class);
-        intent.putExtra("ISMODIFIER", false);
-        startActivity(intent);
     }
 
     private void filter(String text) {
