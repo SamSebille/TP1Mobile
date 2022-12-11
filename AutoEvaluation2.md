@@ -13,11 +13,14 @@ Ce qui fonctionne :
 -	La BD et les CRUD;
 -	Affichage de la liste des entreprises;
 -	Écran d'ajout et de modification d’entreprise.
+
 Fonctionne sans être optimisé : 
 -	L’actualisation du RecycleView (entièrement update à chaque start);
 -	Le stockage des position (en adresse mais pas en position latitude/longitude).
+
 Fonctionne de manière étrange :
 -	L’affichage des adresses d’entreprises sur Google Maps via Geocoding.
+
 Pistes d’améliorations :
 -	Les couleurs;
 -	Les polices;
