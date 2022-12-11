@@ -1,7 +1,7 @@
 Quentin Gastaldo & 
 Sam Sebille
 
-# TP1 : Auto-évaluation
+# TP1 : Auto-évaluation 1
 
 ### Ce qui fonctionne :
 -	Navigation entre les différentes activités;
