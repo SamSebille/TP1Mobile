@@ -195,7 +195,7 @@ public class Stockage extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE_ETUDIENT);
     }
 
-    public void clearTables(){
+    public void clearTables() {
         ArrayList<Entreprise> entreprises = getEntreprises();
         ArrayList<Etudiant> etudiants = getEtudiants();
 
@@ -207,7 +207,7 @@ public class Stockage extends SQLiteOpenHelper {
         }
     }
 
-    public Etudiant getEtudiant(UUID id ) {
+    public Etudiant getEtudiant(UUID id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         String[] columns = {
@@ -234,7 +234,7 @@ public class Stockage extends SQLiteOpenHelper {
             etudiant = new Etudiant(
                     UUID.fromString(cursor.getString(0)), cursor.getString(1),
                     cursor.getString(2), cursor.getString(3),
-                    cursor.getInt(4)==1, cursor.getInt(5));
+                    cursor.getInt(4) == 1, cursor.getInt(5));
         }
 
         cursor.close();
@@ -263,14 +263,14 @@ public class Stockage extends SQLiteOpenHelper {
 
         if (cursor != null && cursor.getCount() > 0) {
             cursor.moveToFirst();
-        do{
-            etudiant.add( new Etudiant(
-                    UUID.fromString(cursor.getString(0)), cursor.getString(1),
-                    cursor.getString(2), cursor.getString(3),
-                    cursor.getInt(4)==1, cursor.getInt(5)));
-        } while (cursor.moveToNext());
+            do {
+                etudiant.add(new Etudiant(
+                        UUID.fromString(cursor.getString(0)), cursor.getString(1),
+                        cursor.getString(2), cursor.getString(3),
+                        cursor.getInt(4) == 1, cursor.getInt(5)));
+            } while (cursor.moveToNext());
 
-    }
+        }
 
         cursor.close();
 
@@ -300,7 +300,7 @@ public class Stockage extends SQLiteOpenHelper {
                     Etudiants.ETUDIANT_PRENOM + " TEXT," +
                     Etudiants.ETUDIANT_COURRIEL + " TEXT," +
                     Etudiants.ETUDIANT_STAGE + " INTEGER," +
-                    Etudiants.ETUDIANT_NOMBRE_ENTREPRISE+ " INTEGER)";
+                    Etudiants.ETUDIANT_NOMBRE_ENTREPRISE + " INTEGER)";
 
     private static final String SQL_DELETE_ETUDIENT =
             "DROP TABLE IF EXISTS " + Etudiants.NOM_TABLE;
@@ -321,6 +321,7 @@ public class Stockage extends SQLiteOpenHelper {
         public static final String ENTREPRISE_FAVORI = "favori";
 
     }
+
     /**
      * Classe interne qui définit le contenu de notre table
      */

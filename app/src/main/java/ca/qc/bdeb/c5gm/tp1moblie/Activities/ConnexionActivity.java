@@ -34,7 +34,7 @@ public class ConnexionActivity extends AppCompatActivity {
 
     public void onClickConnexion(View view) {
         if (et_username.getText().toString().trim().length() == 0 ||
-                et_password.getText().toString().trim().length() == 0){
+                et_password.getText().toString().trim().length() == 0) {
             Toast.makeText(this,
                     "Veuillez remplir tout les champs.", Toast.LENGTH_LONG).show();
             return;
@@ -44,11 +44,11 @@ public class ConnexionActivity extends AppCompatActivity {
                 et_password.getText().toString()));
     }
 
-    public void connexionReussie(int is_reussie){
+    public void connexionReussie(int is_reussie) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
-        switch (is_reussie){
-            case 1 :{
+        switch (is_reussie) {
+            case 1: {
                 setPreferences();
                 if (ConnectUtils.typeCompte == ComptePOJO.TypeUtilisateur.ETUDIANT)
                     ConnectUtils.chargerBDEntreprises(this);
@@ -56,7 +56,7 @@ public class ConnexionActivity extends AppCompatActivity {
                     ConnectUtils.chargerBDEtudiants(this);
                 break;
             }
-            case 0 :{
+            case 0: {
                 builder.setTitle("Erreur");
                 builder.setMessage("Les identifiants sont invalides.");
                 builder.setPositiveButton("OK",
@@ -70,7 +70,7 @@ public class ConnexionActivity extends AppCompatActivity {
                 dialog.show();
                 break;
             }
-            case -1 :{
+            case -1: {
                 builder.setTitle("Erreur");
                 builder.setMessage("La connexion a échouée. Vérifiez votre connexion internet.");
 
@@ -88,7 +88,7 @@ public class ConnexionActivity extends AppCompatActivity {
         }
     }
 
-    private void setPreferences(){
+    private void setPreferences() {
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("token_compte", ConnectUtils.authToken);

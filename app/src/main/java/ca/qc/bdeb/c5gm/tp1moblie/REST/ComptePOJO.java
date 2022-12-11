@@ -8,8 +8,7 @@ import java.util.List;
 
 import ca.qc.bdeb.c5gm.tp1moblie.Activities.Entreprise;
 
-public class ComptePOJO implements Serializable
-{
+public class ComptePOJO implements Serializable {
 
     @SerializedName("id")
     @Expose
@@ -36,13 +35,11 @@ public class ComptePOJO implements Serializable
 
     /**
      * No args constructor for use in serialization
-     *
      */
     public ComptePOJO() {
     }
 
     /**
-     *
      * @param entreprises
      * @param typeCompte
      * @param id
@@ -50,7 +47,7 @@ public class ComptePOJO implements Serializable
      * @param prenom
      * @param email
      */
-    public ComptePOJO(String id, String nom, String prenom, String email,boolean stageTrouve, TypeUtilisateur typeCompte, List<Entreprise> entreprises) {
+    public ComptePOJO(String id, String nom, String prenom, String email, boolean stageTrouve, TypeUtilisateur typeCompte, List<Entreprise> entreprises) {
         super();
         this.id = id;
         this.nom = nom;

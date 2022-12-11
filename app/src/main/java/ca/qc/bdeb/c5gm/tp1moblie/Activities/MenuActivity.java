@@ -82,6 +82,7 @@ public class MenuActivity extends AppCompatActivity {
             public boolean onQueryTextSubmit(String query) {
                 return false;
             }
+
             @Override
             public boolean onQueryTextChange(String newText) {
                 // inside on query text change method we are
@@ -132,7 +133,7 @@ public class MenuActivity extends AppCompatActivity {
      */
     public void majListEntreprise() {
 
-        if (triParFavori){
+        if (triParFavori) {
             entrepriseListAdapter.entreprises.removeIf(entreprise -> !entreprise.estFavorite());
         }
 
@@ -177,11 +178,10 @@ public class MenuActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_btn_deconnexion){
+        if (item.getItemId() == R.id.menu_btn_deconnexion) {
             ConnectUtils.deconnexion(this);
             return true;
-        }
-        else
+        } else
             return super.onOptionsItemSelected(item);
     }
 
@@ -200,8 +200,8 @@ public class MenuActivity extends AppCompatActivity {
         }
     }
 
-    public void updateFavori(ImageButton ib_favori, Entreprise entreprise){
-        if (entreprise.estFavorite()){
+    public void updateFavori(ImageButton ib_favori, Entreprise entreprise) {
+        if (entreprise.estFavorite()) {
             entreprise.setEstFavorite(false);
             ib_favori.setImageResource(R.mipmap.ic_favorite_border_24px);
             ConnectUtils.modifierEntreprise(this, entreprise, false);

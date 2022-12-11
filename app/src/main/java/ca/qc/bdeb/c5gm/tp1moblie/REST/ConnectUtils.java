@@ -43,7 +43,6 @@ public class ConnectUtils {
             public void onResponse(Call<CompteResult> call, Response<CompteResult> response) {
                 if (response.isSuccessful()) {
                     CompteResult json = response.body();
-                    System.out.println( json.getAccessToken());
                     Log.d("TAG", json.getId());
                     Log.d("TAG", json.getTypeCompte().toString());
                     ConnectUtils.authToken = json.getAccessToken();
@@ -76,7 +75,6 @@ public class ConnectUtils {
                             stockage.clearTables();
 
                             for (ComptePOJO comptePOJO : etudiants) {
-                                System.out.println(comptePOJO);
                                 Etudiant etudiant = new Etudiant(comptePOJO);
                                 stockage.ajouterEtudiant(etudiant);
                             }
@@ -88,6 +86,7 @@ public class ConnectUtils {
                                     , Toast.LENGTH_SHORT).show();
                         }
                     }
+
                     @Override
                     public void onFailure(Call<List<ComptePOJO>> call, Throwable t) {
                         activity.startActivity(new Intent(activity, MainActivity.class));
@@ -139,6 +138,7 @@ public class ConnectUtils {
                             inscriptionActivity.connexionReussie(true);
                         }
                     }
+
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
                         inscriptionActivity.connexionReussie(false);
@@ -197,7 +197,7 @@ public class ConnectUtils {
         );
     }
 
-    public static void supprimerEntreprise(Activity activity, Entreprise entreprise){
+    public static void supprimerEntreprise(Activity activity, Entreprise entreprise) {
         client.supprEntreprise(ConnectUtils.authToken, entreprise.getId().toString()).enqueue(
                 new Callback<Entreprise>() {
                     @Override
@@ -223,12 +223,11 @@ public class ConnectUtils {
         );
     }
 
-    public static void ajouterEntreprise(Activity activity, Entreprise entreprise){
+    public static void ajouterEntreprise(Activity activity, Entreprise entreprise) {
         client.creerEntreprise(ConnectUtils.authToken, entreprise).enqueue(
                 new Callback<Entreprise>() {
                     @Override
                     public void onResponse(Call<Entreprise> call, Response<Entreprise> response) {
-                        System.out.println(response.body());
                         if (response.isSuccessful()) {
                             Stockage stockage = Stockage.getInstance(activity.getApplicationContext());
                             stockage.ajouterEntreprise(entreprise);
@@ -252,7 +251,7 @@ public class ConnectUtils {
         );
     }
 
-    public static void modifierEntreprise(Activity activity, Entreprise entreprise, boolean finish){
+    public static void modifierEntreprise(Activity activity, Entreprise entreprise, boolean finish) {
         client.modifierEntreprise(ConnectUtils.authToken, entreprise.getId().toString(), entreprise).enqueue(
                 new Callback<Entreprise>() {
                     @Override

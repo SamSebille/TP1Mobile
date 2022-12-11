@@ -126,11 +126,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_btn_deconnexion){
+        if (item.getItemId() == R.id.menu_btn_deconnexion) {
             ConnectUtils.deconnexion(this);
             return true;
-        }
-        else
+        } else
             return super.onOptionsItemSelected(item);
     }
 
@@ -139,7 +138,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         Geocoder geocoder = new Geocoder(this);
         if (entreprises != null) {
             for (Entreprise entreprise : entreprises) {
-                LatLng position = getPosition(entreprise.getAdresse(),geocoder);
+                LatLng position = getPosition(entreprise.getAdresse(), geocoder);
                 Log.d("AJOUTMARCKER", "position: " + position);
                 if (position != null) {
                     mMap.addMarker(new MarkerOptions().position(position).title(entreprise.getNom()).icon(BitmapDescriptorFactory.fromResource(R.drawable.france)));
@@ -154,7 +153,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (Geocoder.isPresent()) {
             List<Address> adresses = null;
             try {
-                adresses = geocoder.getFromLocationName(adresse,1);
+                adresses = geocoder.getFromLocationName(adresse, 1);
                 Log.d("GETPOSITION", "getPosition: " + adresses);
                 if (adresses != null) {
                     if (adresses.size() > 0) {

@@ -45,6 +45,7 @@ public class MenuProfActivity extends AppCompatActivity {
     private static boolean triParNom;
     // Si seules les entreprise favorites doivent être affichées, toutes par defaut.
     private static boolean triParStage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +78,7 @@ public class MenuProfActivity extends AppCompatActivity {
             public boolean onQueryTextSubmit(String query) {
                 return false;
             }
+
             @Override
             public boolean onQueryTextChange(String newText) {
                 // inside on query text change method we are
@@ -103,11 +105,10 @@ public class MenuProfActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_btn_deconnexion){
+        if (item.getItemId() == R.id.menu_btn_deconnexion) {
             ConnectUtils.deconnexion(this);
             return true;
-        }
-        else
+        } else
             return super.onOptionsItemSelected(item);
     }
 

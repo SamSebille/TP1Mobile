@@ -18,11 +18,10 @@ public class EtudiantActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_btn_deconnexion){
+        if (item.getItemId() == R.id.menu_btn_deconnexion) {
             ConnectUtils.deconnexion(this);
             return true;
-        }
-        else
+        } else
             return super.onOptionsItemSelected(item);
     }
 }

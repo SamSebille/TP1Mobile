@@ -190,7 +190,6 @@ public class EntrepriseActivity extends AppCompatActivity {
                     saisies[4].getText().toString(), saisies[5].getText().toString(),
                     date.getText().toString());
 
-            System.out.println(entreprise);
             ConnectUtils.ajouterEntreprise(this, entreprise);
         }
     }
@@ -224,17 +223,16 @@ public class EntrepriseActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    public void validerSupprimer(Entreprise entreprise){
+    public void validerSupprimer(Entreprise entreprise) {
         ConnectUtils.supprimerEntreprise(this, entreprise);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_btn_deconnexion){
+        if (item.getItemId() == R.id.menu_btn_deconnexion) {
             ConnectUtils.deconnexion(this);
             return true;
-        }
-        else
+        } else
             return super.onOptionsItemSelected(item);
     }
 
@@ -243,6 +241,7 @@ public class EntrepriseActivity extends AppCompatActivity {
         DialogFragment newFragment = new EntrepriseActivity.DatePickerFragment();
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
+
     public static class DatePickerFragment extends DialogFragment
             implements DatePickerDialog.OnDateSetListener {
 

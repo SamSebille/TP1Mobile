@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
     }
 
-    public void startActivity(int is_reussie){
+    public void startActivity(int is_reussie) {
         switch (is_reussie) {
             case 1: {
                 if (ConnectUtils.typeCompte == ComptePOJO.TypeUtilisateur.ETUDIANT)
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
             case -1: {
-                if (!ConnectUtils.authId.matches("")){
+                if (!ConnectUtils.authId.matches("")) {
                     Toast.makeText(this,
                             "Passage en mode hors ligne.",
                             Toast.LENGTH_LONG).show();
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        SharedPreferences prefs= getSharedPreferences("prefs", MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         ConnectUtils.authId = prefs.getString("id_compte", "");
         ConnectUtils.authToken = prefs.getString("token_compte", "");
         ConnectUtils.typeCompte = ComptePOJO.TypeUtilisateur.valueOf(prefs.getString("type_utilisateur", "ETUDIANT"));

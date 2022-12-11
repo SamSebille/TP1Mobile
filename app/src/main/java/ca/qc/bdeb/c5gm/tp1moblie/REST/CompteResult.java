@@ -5,8 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class CompteResult implements Serializable
-{
+public class CompteResult implements Serializable {
 
     @SerializedName("id")
     @Expose
@@ -33,13 +32,11 @@ public class CompteResult implements Serializable
 
     /**
      * No args constructor for use in serialization
-     *
      */
     public CompteResult() {
     }
 
     /**
-     *
      * @param typeCompte
      * @param id
      * @param accessToken

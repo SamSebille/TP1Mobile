@@ -37,10 +37,10 @@ public class InscriptionActivity extends AppCompatActivity {
         saisies[4] = findViewById(R.id.inscr_password_confirm);
     }
 
-    public void onClickValider(View view){
+    public void onClickValider(View view) {
         String[] reponse = new String[saisies.length];
         for (int i = 0; i < saisies.length; i++) {
-            if (saisies[i].getText().toString().trim().length() == 0){
+            if (saisies[i].getText().toString().trim().length() == 0) {
                 Toast.makeText(this,
                         "Veuillez remplir tout les champs.", Toast.LENGTH_LONG).show();
                 return;
@@ -58,7 +58,7 @@ public class InscriptionActivity extends AppCompatActivity {
         }
 
         // On verifie que le mot de passe correspond a la confirmation
-        if (!saisies[3].getText().toString().matches(saisies[4].getText().toString())){
+        if (!saisies[3].getText().toString().matches(saisies[4].getText().toString())) {
             Toast.makeText(this,
                     "Les mots de passe ne correspondent pas.",
                     Toast.LENGTH_LONG).show();
@@ -79,7 +79,7 @@ public class InscriptionActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
 
-        if (is_reussie){
+        if (is_reussie) {
             builder.setTitle("Bravo");
             builder.setMessage("L'inscription a réussie.");
 
