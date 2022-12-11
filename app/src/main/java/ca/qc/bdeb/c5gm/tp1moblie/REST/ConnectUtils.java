@@ -70,11 +70,13 @@ public class ConnectUtils {
                     public void onResponse(Call<List<ComptePOJO>> call, Response<List<ComptePOJO>> response) {
                         if (response.isSuccessful()) {
                             List<ComptePOJO> etudiants = response.body();
+
                             Stockage stockage = Stockage.getInstance(activity.getApplicationContext());
 
                             stockage.clearTables();
 
                             for (ComptePOJO comptePOJO : etudiants) {
+                                System.out.println(comptePOJO);
                                 Etudiant etudiant = new Etudiant(comptePOJO);
                                 stockage.ajouterEtudiant(etudiant);
                             }
@@ -97,12 +99,13 @@ public class ConnectUtils {
 
     public static void chargerBDEntreprises(Activity activity) {
 
-        client.lireEntreprises(ConnectUtils.authToken).enqueue(
-                new Callback<List<Entreprise>>() {
+        client.getEtudiantConnecte(ConnectUtils.authToken).enqueue(
+                new Callback<List<ComptePOJO>>() {
                     @Override
-                    public void onResponse(Call<List<Entreprise>> call, Response<List<Entreprise>> response) {
+                    public void onResponse(Call<List<ComptePOJO>> call, Response<List<ComptePOJO>> response) {
                         if (response.isSuccessful()) {
-                            List<Entreprise> entreprises = response.body();
+                            ComptePOJO etudiant = response.body().get(0);
+                            List<Entreprise> entreprises = etudiant.getEntreprises();
                             Stockage stockage = Stockage.getInstance(activity.getApplicationContext());
 
                             stockage.clearTables();
@@ -120,7 +123,7 @@ public class ConnectUtils {
                     }
 
                     @Override
-                    public void onFailure(Call<List<Entreprise>> call, Throwable t) {
+                    public void onFailure(Call<List<ComptePOJO>> call, Throwable t) {
                         activity.startActivity(new Intent(activity, MainActivity.class));
                     }
                 }
