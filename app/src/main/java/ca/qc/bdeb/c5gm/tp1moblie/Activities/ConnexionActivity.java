@@ -18,6 +18,9 @@ import ca.qc.bdeb.c5gm.tp1moblie.REST.ComptePOJO;
 import ca.qc.bdeb.c5gm.tp1moblie.REST.ConnectUtils;
 import ca.qc.bdeb.c5gm.tp1moblie.REST.LoginData;
 
+/**
+ * Classe pour l'activité de connexion
+ */
 public class ConnexionActivity extends AppCompatActivity {
 
     private EditText et_username;
@@ -44,10 +47,16 @@ public class ConnexionActivity extends AppCompatActivity {
                 et_password.getText().toString()));
     }
 
+    /**
+     * Call par ConnectUtils lorsque la réponse a été reçue, et lance l'activité necessaire en fonction
+     *
+     * @param is_reussie Si la connexion a réussie, raté ou échouée
+     */
     public void connexionReussie(int is_reussie) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
         switch (is_reussie) {
+            // Connexion réussie et retour positif
             case 1: {
                 setPreferences();
                 if (ConnectUtils.typeCompte == ComptePOJO.TypeUtilisateur.ETUDIANT)
@@ -56,6 +65,7 @@ public class ConnexionActivity extends AppCompatActivity {
                     ConnectUtils.chargerBDEtudiants(this);
                 break;
             }
+            // Connexion réussie et retour negatif
             case 0: {
                 builder.setTitle("Erreur");
                 builder.setMessage("Les identifiants sont invalides.");
@@ -70,6 +80,7 @@ public class ConnexionActivity extends AppCompatActivity {
                 dialog.show();
                 break;
             }
+            // Connexion échouée
             case -1: {
                 builder.setTitle("Erreur");
                 builder.setMessage("La connexion a échouée. Vérifiez votre connexion internet.");
@@ -88,6 +99,9 @@ public class ConnexionActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Sauvegarde du token et de l'id pour les prochaines connexions
+     */
     private void setPreferences() {
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();

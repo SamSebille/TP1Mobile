@@ -116,18 +116,6 @@ public class ComptePOJO implements Serializable {
         this.entreprises = entreprises;
     }
 
-    @Override
-    public String toString() {
-        return "ComptePOJO{" +
-                "id='" + id + '\'' +
-                ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                ", email='" + email + '\'' +
-                ", typeCompte='" + typeCompte + '\'' +
-                ", entreprises=" + entreprises +
-                '}';
-    }
-
     public enum TypeUtilisateur {
         PROFESSEUR,
         ETUDIANT

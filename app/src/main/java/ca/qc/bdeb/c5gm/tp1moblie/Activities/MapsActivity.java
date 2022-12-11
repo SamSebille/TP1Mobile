@@ -103,7 +103,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             localisationUser();
 
         }
-        ajoutMarcker();
+        ajoutMarqueur();
     }
 
     @SuppressLint("MissingPermission")
@@ -133,13 +133,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             return super.onOptionsItemSelected(item);
     }
 
-    private void ajoutMarcker() {
-        Log.d("AJOUTMARCKER", "ajoutMarcker: avant addMarcker");
+    private void ajoutMarqueur() {
         Geocoder geocoder = new Geocoder(this);
         if (entreprises != null) {
             for (Entreprise entreprise : entreprises) {
                 LatLng position = getPosition(entreprise.getAdresse(), geocoder);
-                Log.d("AJOUTMARCKER", "position: " + position);
                 if (position != null) {
                     mMap.addMarker(new MarkerOptions().position(position).title(entreprise.getNom()).icon(BitmapDescriptorFactory.fromResource(R.drawable.france)));
                 }
@@ -154,18 +152,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             List<Address> adresses = null;
             try {
                 adresses = geocoder.getFromLocationName(adresse, 1);
-                Log.d("GETPOSITION", "getPosition: " + adresses);
                 if (adresses != null) {
                     if (adresses.size() > 0) {
                         Address resultAdrresse = adresses.get(0);
                         position = new LatLng(resultAdrresse.getLatitude(), resultAdrresse.getLongitude());
-                        Log.d("GETPOSITION", "getPosition: " + resultAdrresse.toString());
                     }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            Log.d("GETPOSITION", "getPosition: " + adresses);
         }
         return position;
     }

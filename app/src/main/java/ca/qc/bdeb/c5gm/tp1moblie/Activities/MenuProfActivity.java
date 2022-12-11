@@ -3,7 +3,6 @@ package ca.qc.bdeb.c5gm.tp1moblie.Activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,12 +22,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 import ca.qc.bdeb.c5gm.tp1moblie.BD.Stockage;
 import ca.qc.bdeb.c5gm.tp1moblie.R;
 import ca.qc.bdeb.c5gm.tp1moblie.REST.ConnectUtils;
 
+/**
+ * Classe pour le menu principal de l'application, affichant la liste d'etudiants
+ * et redirigant vers les autres pages.
+ */
 public class MenuProfActivity extends AppCompatActivity {
 
     private Stockage stockage;
@@ -148,7 +150,7 @@ public class MenuProfActivity extends AppCompatActivity {
 
     public void onClickTriNom(View view) {
         triParNom = true;
-        triParStage= false;
+        triParStage = false;
         majListBDEtudiant();
     }
 

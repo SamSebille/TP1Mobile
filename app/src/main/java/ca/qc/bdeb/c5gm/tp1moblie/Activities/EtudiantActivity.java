@@ -4,10 +4,12 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import java.util.UUID;
+
 import ca.qc.bdeb.c5gm.tp1moblie.BD.Stockage;
 import ca.qc.bdeb.c5gm.tp1moblie.R;
 import ca.qc.bdeb.c5gm.tp1moblie.REST.ConnectUtils;
@@ -21,6 +23,7 @@ public class EtudiantActivity extends AppCompatActivity {
 
     private TextView nomEntreprise;
     private static final TextView[] saisies = new TextView[5];
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

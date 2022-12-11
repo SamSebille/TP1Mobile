@@ -5,8 +5,6 @@ import static android.content.Context.MODE_PRIVATE;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.util.Log;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.util.HashMap;
@@ -20,22 +18,29 @@ import ca.qc.bdeb.c5gm.tp1moblie.Activities.MainActivity;
 import ca.qc.bdeb.c5gm.tp1moblie.Activities.MenuActivity;
 import ca.qc.bdeb.c5gm.tp1moblie.Activities.MenuProfActivity;
 import ca.qc.bdeb.c5gm.tp1moblie.BD.Stockage;
-import ca.qc.bdeb.c5gm.tp1moblie.R;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Classe contenant les données et methodes statique ayant rapport avec la connexion a l'API
+ */
 public class ConnectUtils {
-    public static String authEmail = "prof1@test.com";
-    public static String authPassword = "secret";
+
     public static String authId = "";
     public static String authToken = "";
+
     public static ComptePOJO.TypeUtilisateur typeCompte;
 
     private static final LoginAPI client = LoginAPIClient.getRetrofit().create(LoginAPI.class);
-    private static LoginData user = new LoginData(authEmail, authPassword);
 
+    /**
+     * Methode pour la premiere connexion d'un utilisateur
+     *
+     * @param connexionActivity L'activité de connexion
+     * @param loginData         Les identifiants de connexion entrées par l'utiilisateur
+     */
     public static void connecter(ConnexionActivity connexionActivity, LoginData loginData) {
 
         client.connecter(loginData).enqueue(new Callback<CompteResult>() {
@@ -43,8 +48,6 @@ public class ConnectUtils {
             public void onResponse(Call<CompteResult> call, Response<CompteResult> response) {
                 if (response.isSuccessful()) {
                     CompteResult json = response.body();
-                    Log.d("TAG", json.getId());
-                    Log.d("TAG", json.getTypeCompte().toString());
                     ConnectUtils.authToken = json.getAccessToken();
                     ConnectUtils.authId = json.getId();
                     ConnectUtils.typeCompte = json.getTypeCompte();
@@ -62,6 +65,9 @@ public class ConnectUtils {
 
     }
 
+    /**
+     * Methode pour charger la BD des etudiants via l'API
+     */
     public static void chargerBDEtudiants(Activity activity) {
         client.getComptesEleves(ConnectUtils.authToken).enqueue(
                 new Callback<List<ComptePOJO>>() {
@@ -96,6 +102,9 @@ public class ConnectUtils {
 
     }
 
+    /**
+     * Methode pour charger la BD des entreprises via l'API
+     */
     public static void chargerBDEntreprises(Activity activity) {
 
         client.getEtudiantConnecte(ConnectUtils.authToken).enqueue(
@@ -129,6 +138,9 @@ public class ConnectUtils {
         );
     }
 
+    /**
+     * Methode pour l'inscription d'un nouveau compte dans l'API
+     */
     public static void Inscription(InscriptionActivity inscriptionActivity, HashMap<String, String> body) {
         client.inscription(body).enqueue(
                 new Callback<ResponseBody>() {
@@ -146,6 +158,9 @@ public class ConnectUtils {
                 });
     }
 
+    /**
+     * Methode pour tester la connexion avec le token enregistré de la derniere connexion
+     */
     public static void testerConnexion(MainActivity mainActivity) {
         HashMap<String, Object> user = new HashMap<>();
         user.put("id_compte", ConnectUtils.authId);
@@ -168,6 +183,9 @@ public class ConnectUtils {
         );
     }
 
+    /**
+     * Methode pour la deconnexion du compte actif
+     */
     public static void deconnexion(Activity activity) {
         HashMap<String, Object> user = new HashMap<>();
         user.put("id_compte", ConnectUtils.authId);
@@ -197,6 +215,9 @@ public class ConnectUtils {
         );
     }
 
+    /**
+     * Methode pour supprimer une entreprise de l'API
+     */
     public static void supprimerEntreprise(Activity activity, Entreprise entreprise) {
         client.supprEntreprise(ConnectUtils.authToken, entreprise.getId().toString()).enqueue(
                 new Callback<Entreprise>() {
@@ -223,6 +244,9 @@ public class ConnectUtils {
         );
     }
 
+    /**
+     * Methode pour ajouter une entreprise a l'API
+     */
     public static void ajouterEntreprise(Activity activity, Entreprise entreprise) {
         client.creerEntreprise(ConnectUtils.authToken, entreprise).enqueue(
                 new Callback<Entreprise>() {
@@ -251,6 +275,9 @@ public class ConnectUtils {
         );
     }
 
+    /**
+     * Methode pour modifier une entreprise de l'API
+     */
     public static void modifierEntreprise(Activity activity, Entreprise entreprise, boolean finish) {
         client.modifierEntreprise(ConnectUtils.authToken, entreprise.getId().toString(), entreprise).enqueue(
                 new Callback<Entreprise>() {
