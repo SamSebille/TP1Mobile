@@ -133,7 +133,7 @@ public class MenuActivity extends AppCompatActivity {
     public void majListEntreprise() {
 
         if (triParFavori){
-            entrepriseListAdapter.entreprises.removeIf(entreprise -> !entreprise.isFavori());
+            entrepriseListAdapter.entreprises.removeIf(entreprise -> !entreprise.estFavorite());
         }
 
         if (triParDate)
@@ -200,6 +200,18 @@ public class MenuActivity extends AppCompatActivity {
         }
     }
 
+    public void updateFavori(ImageButton ib_favori, Entreprise entreprise){
+        if (entreprise.estFavorite()){
+            entreprise.setEstFavorite(false);
+            ib_favori.setImageResource(R.mipmap.ic_favorite_border_24px);
+            ConnectUtils.modifierEntreprise(this, entreprise, false);
+        } else {
+            entreprise.setEstFavorite(true);
+            ib_favori.setImageResource(R.mipmap.ic_favorite_24px);
+            ConnectUtils.modifierEntreprise(this, entreprise, false);
+        }
+    }
+
     /**
      * Adapter pour la RecycleView
      */
@@ -233,7 +245,7 @@ public class MenuActivity extends AppCompatActivity {
         public void onBindViewHolder(@NonNull EntrepriseViewHolder holder, int position) {
             Entreprise entreprise = entreprises.get(position);
             holder.tv_entreprise.setText(entreprise.getNom());
-            if (entreprise.isFavori())
+            if (entreprise.estFavorite())
                 holder.ib_favori.setImageResource(R.mipmap.ic_favorite_24px);
             else
                 holder.ib_favori.setImageResource(R.mipmap.ic_favorite_border_24px);
@@ -271,17 +283,9 @@ public class MenuActivity extends AppCompatActivity {
                     // Récupère la position de l'item item clické.
                     int mPosition = getLayoutPosition();
                     // Accède l'item dans stringList avec l'info de position.
-                    Entreprise element = entreprises.get(mPosition);
+                    Entreprise entreprise = entreprises.get(mPosition);
 
-                    if (element.isFavori()){
-                        element.setFavori(false);
-                        ib_favori.setImageResource(R.mipmap.ic_favorite_border_24px);
-                        stockage.updateFavori(element);
-                    } else {
-                        element.setFavori(true);
-                        ib_favori.setImageResource(R.mipmap.ic_favorite_24px);
-                        stockage.updateFavori(element);
-                    }
+                    updateFavori(ib_favori, entreprise);
                 }
             };
             final EntrepriseListAdapter adapter;

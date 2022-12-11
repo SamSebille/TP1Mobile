@@ -75,11 +75,11 @@ public class StockageTest {
         // test de tout les paramètres
         Truth.assertThat(entreprise.getNom()).isEqualTo(entreprise1.getNom());
         Truth.assertThat(entreprise.getAdresse()).isEqualTo(entreprise1.getAdresse());
-        Truth.assertThat(entreprise.getCourriel()).isEqualTo(entreprise1.getCourriel());
-        Truth.assertThat(entreprise.getDate()).isEqualTo(entreprise1.getDate());
+        Truth.assertThat(entreprise.getEmail()).isEqualTo(entreprise1.getEmail());
+        Truth.assertThat(entreprise.getDate_contact()).isEqualTo(entreprise1.getDate_contact());
         Truth.assertThat(entreprise.getContact()).isEqualTo(entreprise1.getContact());
         Truth.assertThat(entreprise.getTelephone()).isEqualTo(entreprise1.getTelephone());
-        Truth.assertThat(entreprise.getWeb()).isEqualTo(entreprise1.getWeb());
+        Truth.assertThat(entreprise.getSiteWeb()).isEqualTo(entreprise1.getSiteWeb());
 
     }
 

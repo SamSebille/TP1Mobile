@@ -128,26 +128,12 @@ public class Stockage extends SQLiteOpenHelper {
 
         values.put(Entreprises.ENTREPRISE_NOM, entreprise.getNom());
         values.put(Entreprises.ENTREPRISE_CONTACT, entreprise.getContact());
-        values.put(Entreprises.ENTREPRISE_COURRIEL, entreprise.getCourriel());
+        values.put(Entreprises.ENTREPRISE_COURRIEL, entreprise.getEmail());
         values.put(Entreprises.ENTREPRISE_TELEPHONE, entreprise.getTelephone());
-        values.put(Entreprises.ENTREPRISE_WEB, entreprise.getWeb());
+        values.put(Entreprises.ENTREPRISE_WEB, entreprise.getSiteWeb());
         values.put(Entreprises.ENTREPRISE_ADRESSE, entreprise.getAdresse());
-        values.put(Entreprises.ENTREPRISE_DATE, entreprise.getDate());
-
-        String whereClause = Entreprises._ID + " = ?";
-        String[] whereArgs = {String.valueOf(entreprise.getId())};
-
-        // MAJ de l’enregistrement
-        int nbMAJ = db.update(Entreprises.NOM_TABLE, values, whereClause, whereArgs);
-
-        return (nbMAJ > 0); // True si update, false sinon
-    }
-
-    public boolean updateFavori(Entreprise entreprise) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-
-        values.put(Entreprises.ENTREPRISE_FAVORI, entreprise.isFavori());
+        values.put(Entreprises.ENTREPRISE_DATE, entreprise.getDate_contact());
+        values.put(Entreprises.ENTREPRISE_FAVORI, entreprise.estFavorite());
 
         String whereClause = Entreprises._ID + " = ?";
         String[] whereArgs = {String.valueOf(entreprise.getId())};
@@ -165,12 +151,12 @@ public class Stockage extends SQLiteOpenHelper {
         values.put(Entreprises._ID, entreprise.getId().toString());
         values.put(Entreprises.ENTREPRISE_NOM, entreprise.getNom());
         values.put(Entreprises.ENTREPRISE_CONTACT, entreprise.getContact());
-        values.put(Entreprises.ENTREPRISE_COURRIEL, entreprise.getCourriel());
+        values.put(Entreprises.ENTREPRISE_COURRIEL, entreprise.getEmail());
         values.put(Entreprises.ENTREPRISE_TELEPHONE, entreprise.getTelephone());
-        values.put(Entreprises.ENTREPRISE_WEB, entreprise.getWeb());
+        values.put(Entreprises.ENTREPRISE_WEB, entreprise.getSiteWeb());
         values.put(Entreprises.ENTREPRISE_ADRESSE, entreprise.getAdresse());
-        values.put(Entreprises.ENTREPRISE_DATE, entreprise.getDate());
-        values.put(Entreprises.ENTREPRISE_FAVORI, entreprise.isFavori());
+        values.put(Entreprises.ENTREPRISE_DATE, entreprise.getDate_contact());
+        values.put(Entreprises.ENTREPRISE_FAVORI, entreprise.estFavorite());
 
         db.insert(Entreprises.NOM_TABLE, null, values);
     }

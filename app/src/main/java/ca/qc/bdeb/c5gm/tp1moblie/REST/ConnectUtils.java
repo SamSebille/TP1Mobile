@@ -2,12 +2,11 @@ package ca.qc.bdeb.c5gm.tp1moblie.REST;
 
 import static android.content.Context.MODE_PRIVATE;
 
-import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.util.HashMap;
@@ -21,6 +20,7 @@ import ca.qc.bdeb.c5gm.tp1moblie.Activities.MainActivity;
 import ca.qc.bdeb.c5gm.tp1moblie.Activities.MenuActivity;
 import ca.qc.bdeb.c5gm.tp1moblie.Activities.MenuProfActivity;
 import ca.qc.bdeb.c5gm.tp1moblie.BD.Stockage;
+import ca.qc.bdeb.c5gm.tp1moblie.R;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -202,6 +202,7 @@ public class ConnectUtils {
                         if (response.isSuccessful()) {
                             Stockage stockage = Stockage.getInstance(activity.getApplicationContext());
                             stockage.deleteEntreprise(entreprise);
+                            activity.finish();
                         } else {
                             Toast.makeText(activity,
                                     "L'entreprise n'existe pas où a deja été supprimée."
@@ -227,6 +228,9 @@ public class ConnectUtils {
                         if (response.isSuccessful()) {
                             Stockage stockage = Stockage.getInstance(activity.getApplicationContext());
                             stockage.ajouterEntreprise(entreprise);
+                            Toast.makeText(activity,
+                                    "Entreprise enregistrée.", Toast.LENGTH_LONG).show();
+                            activity.finish();
                         } else {
                             Toast.makeText(activity,
                                     "L'entreprise existe déjà."
@@ -244,7 +248,7 @@ public class ConnectUtils {
         );
     }
 
-    public static void modifierEntreprise(Activity activity, Entreprise entreprise){
+    public static void modifierEntreprise(Activity activity, Entreprise entreprise, boolean finish){
         client.modifierEntreprise(ConnectUtils.authToken, entreprise.getId().toString(), entreprise).enqueue(
                 new Callback<Entreprise>() {
                     @Override
@@ -252,6 +256,10 @@ public class ConnectUtils {
                         if (response.isSuccessful()) {
                             Stockage stockage = Stockage.getInstance(activity.getApplicationContext());
                             stockage.updateEntreprise(entreprise);
+                            Toast.makeText(activity,
+                                    "Modifications enregistrée.", Toast.LENGTH_SHORT).show();
+                            if (finish)
+                                activity.finish();
                         } else {
                             Toast.makeText(activity,
                                     "L'entreprise n'as pas été trouvée."

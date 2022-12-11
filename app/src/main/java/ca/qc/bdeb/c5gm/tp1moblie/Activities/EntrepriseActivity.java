@@ -94,11 +94,11 @@ public class EntrepriseActivity extends AppCompatActivity {
 
             nomEntreprise.setText(entreprise.getNom());
             saisies[1].setText(entreprise.getContact());
-            saisies[2].setText(entreprise.getCourriel());
+            saisies[2].setText(entreprise.getEmail());
             saisies[3].setText(entreprise.getTelephone());
-            saisies[4].setText(entreprise.getWeb());
+            saisies[4].setText(entreprise.getSiteWeb());
             saisies[5].setText(entreprise.getAdresse());
-            date.setText(entreprise.getDate());
+            date.setText(entreprise.getDate_contact());
 
             saisies[0].setVisibility(View.GONE);
 
@@ -181,10 +181,7 @@ public class EntrepriseActivity extends AppCompatActivity {
                     saisies[4].getText().toString(), saisies[5].getText().toString(),
                     date.getText().toString());
 
-            ConnectUtils.modifierEntreprise(this, entreprise);
-
-            Toast.makeText(this,
-                    "Modifications enregistrée.", Toast.LENGTH_LONG).show();
+            ConnectUtils.modifierEntreprise(this, entreprise, true);
 
         } else {
             entreprise = new Entreprise(
@@ -194,11 +191,7 @@ public class EntrepriseActivity extends AppCompatActivity {
                     date.getText().toString());
 
             ConnectUtils.ajouterEntreprise(this, entreprise);
-
-            Toast.makeText(this,
-                    "Entreprise enregistrée.", Toast.LENGTH_LONG).show();
         }
-        finish();
     }
 
     /**
@@ -217,7 +210,6 @@ public class EntrepriseActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         validerSupprimer(entreprise);
-                        finish();
                     }
                 });
 
