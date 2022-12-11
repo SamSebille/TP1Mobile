@@ -35,4 +35,13 @@
     <string name="edit_entreprise_btn_date">Choisir date</string>
     <string name="edit_entreprise_btn_valider">Valider</string>
     <string name="edit_entreprise_btn_supprimer">Supprimer</string>
+    //visuel étudiant
+    <string name="fiche_etudiant">Fiche de renseignements</string>
+    <string name="nom_etudiant">Nom</string>
+    <string name="prenom_etudiant">Prénon</string>
+    <string name="email_etudiant">Courriel</string>
+    <string name="stage_etudiant">Stage trouver</string>
+    <string name="entreprises_etudiant">Nombre d\'entreprises</string>
+
+
 </resources>

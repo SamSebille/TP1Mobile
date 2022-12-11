@@ -215,7 +215,6 @@ public class MenuProfActivity extends AppCompatActivity {
         public void onBindViewHolder(@NonNull EtudiantListAdapter.EtudiantViewHolder holder, int position) {
             Etudiant etudiant = etudiants.get(position);
             holder.tv_etudiant.setText(etudiant.getNom());
-            Log.d("test stage", "onBindViewHolder: " + etudiant.isStageTrouve());
             if (etudiant.isStageTrouve())
                 holder.ib_stage.setImageResource(R.mipmap.ic_check_24px);
             else
@@ -242,8 +241,7 @@ public class MenuProfActivity extends AppCompatActivity {
 
                     // On passe les informations de l'entreprise a l'activité de modification.
                     Intent intent = new Intent(getBaseContext(), EtudiantActivity.class);
-                    intent.putExtra("ENTREPRISE_ID", element.getId());
-                    intent.putExtra("ISMODIFIER", true);
+                    intent.putExtra("ETUDIANT_ID", element.getId().toString());
                     startActivity(intent);
                 }
             };
