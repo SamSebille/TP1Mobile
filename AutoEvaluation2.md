@@ -23,3 +23,4 @@ Sam Sebille
 
 ### Ce qui ne fonctionne pas :
 -	Il peut arriver certains bug en alternant le mode en ligne et hors ligne pendant l’utilisation, mais rien de critique normalement
+-	Tests utilisant le ResponseBody comme réponse
