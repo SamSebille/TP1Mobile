@@ -207,7 +207,7 @@ public class MenuProfActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(@NonNull EtudiantListAdapter.EtudiantViewHolder holder, int position) {
             Etudiant etudiant = etudiants.get(position);
-            holder.tv_etudiant.setText(etudiant.getNom());
+            holder.tv_etudiant.setText(String.format("%s %s", etudiant.getPrenom(), etudiant.getNom()));
             if (etudiant.isStageTrouve())
                 holder.ib_stage.setImageResource(R.mipmap.ic_check_24px);
             else
