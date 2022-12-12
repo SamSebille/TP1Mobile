@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
+
 import com.google.common.truth.Truth;
 
 import java.io.IOException;
@@ -37,29 +38,26 @@ public class LoginAPITest {
     private List<Entreprise> entreprises = new ArrayList<>();
     private List<ComptePOJO> etudiants = new ArrayList<>();
     private String id;
+
     @Before
-    public void setUp() throws Exception{
+    public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        
+
         id = UUID.randomUUID().toString();
 
-        Entreprise entreprise= new Entreprise("test","test","test","test","test","test","",false);
+        Entreprise entreprise = new Entreprise("test", "test", "test", "test", "test", "test", "", false);
         entreprises.add(entreprise);
 
-        etudiant = new ComptePOJO(id, "","","",false, ComptePOJO.TypeUtilisateur.ETUDIANT, entreprises);
+        etudiant = new ComptePOJO(id, "", "", "", false, ComptePOJO.TypeUtilisateur.ETUDIANT, entreprises);
         etudiants.add(etudiant);
 
 
-        res = ResponseBody.create(MediaType.parse("text/plain"),"test");
+        res = ResponseBody.create(MediaType.parse("text/plain"), "test");
 
 
         compteProf = new CompteResult(id, "John", "Doe", "johndoe@test.com", ComptePOJO.TypeUtilisateur.PROFESSEUR, ConnectUtils.authToken);
         compteEtudiant = new CompteResult(id, "Stewart", "Steve", "stewartsteve@test.com", ComptePOJO.TypeUtilisateur.ETUDIANT, ConnectUtils.authToken);
-
-
-
     }
-
 
 
     @Test
@@ -82,9 +80,6 @@ public class LoginAPITest {
 
         // verify test
         Truth.assertThat(token).isEqualTo(ConnectUtils.authToken);
-
-
-
     }
 
     //@Test
@@ -103,7 +98,6 @@ public class LoginAPITest {
 
         // verify test
         Truth.assertThat(token).isEqualTo(ConnectUtils.authToken);
-
     }
 
     //@Test
@@ -130,8 +124,6 @@ public class LoginAPITest {
 
         // verify test
         Truth.assertThat(liste_etudiant).isEqualTo(etudiants);
-
-
     }
 
     @Test
@@ -153,9 +145,6 @@ public class LoginAPITest {
 
         // verify test
         Truth.assertThat(etudiant_connect).isEqualTo(etudiant);
-
-
-
     }
 
     //@Test
@@ -172,21 +161,19 @@ public class LoginAPITest {
         Response<Entreprise> compteResultResponse = null;
 
         try {
-            compteResultResponse = loginAPI.creerEntreprise(ConnectUtils.authToken,entreprise).execute();
+            compteResultResponse = loginAPI.creerEntreprise(ConnectUtils.authToken, entreprise).execute();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        Entreprise entreprise_cree = new Entreprise("","","","","","","",false);
+        Entreprise entreprise_cree = new Entreprise("", "", "", "", "", "", "", false);
         if (compteResultResponse.isSuccessful()) {
             entreprise_cree = compteResultResponse.body();
         }
 
         // verify test
         Truth.assertThat(entreprise_cree).isEqualTo(entreprise);
-
-
     }
 
     //@Test
@@ -195,17 +182,17 @@ public class LoginAPITest {
 
     @Test
     public void modifierEntreprise() {
-        Mockito.when(loginAPI.modifierEntreprise(ConnectUtils.authToken,id, entreprise)).thenReturn(Calls.response(entreprise));
+        Mockito.when(loginAPI.modifierEntreprise(ConnectUtils.authToken, id, entreprise)).thenReturn(Calls.response(entreprise));
         Response<Entreprise> compteResultResponse = null;
 
         try {
-            compteResultResponse = loginAPI.modifierEntreprise(ConnectUtils.authToken,id,entreprise).execute();
+            compteResultResponse = loginAPI.modifierEntreprise(ConnectUtils.authToken, id, entreprise).execute();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        Entreprise entreprise_modif = new Entreprise("","","","","","","",false);
+        Entreprise entreprise_modif = new Entreprise("", "", "", "", "", "", "", false);
         if (compteResultResponse.isSuccessful()) {
             entreprise_modif = compteResultResponse.body();
         }
@@ -220,13 +207,13 @@ public class LoginAPITest {
         Response<Entreprise> compteResultResponse = null;
 
         try {
-            compteResultResponse = loginAPI.supprEntreprise(ConnectUtils.authToken,id).execute();
+            compteResultResponse = loginAPI.supprEntreprise(ConnectUtils.authToken, id).execute();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        Entreprise entreprise_supr = new Entreprise("","","","","","","",false);
+        Entreprise entreprise_supr = new Entreprise("", "", "", "", "", "", "", false);
         if (compteResultResponse.isSuccessful()) {
             entreprise_supr = compteResultResponse.body();
         }
